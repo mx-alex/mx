@@ -1,5 +1,5 @@
 # mx
-MS Excel and MUMPS database works togethe
+MS Excel and MUMPS database work togethe
 
 (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
 
