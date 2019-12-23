@@ -16,4 +16,4 @@ MX technology introduction :
   -  copy the mx.xlsb VBA-macro to a separate folder on the computer of each client, for example, to c:/mx/ 
   -  copy all **.xlsb files also 
   -  fill in the connection table in the MX_CONFI.xlsb. By default, it set to 127.0.0.1, Port = 2264, Namespace = USER
-  -  run mx.xlsb macro on any computer
+  -  run mx.xlsb macro on any computer  (MS EXCEL be sure)
