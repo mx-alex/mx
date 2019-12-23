@@ -8,4 +8,4 @@ MX technology introduction :
   - Control and data processing are performed by special formulas (commands of MUMPS)  in the cells of the sheets 
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
-Commands of the MUMPS :  mumps.sourceforge.net/docs.html#commands
+  Commands of the MUMPS :  mumps.sourceforge.net/docs.html#commands
