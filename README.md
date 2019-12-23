@@ -9,3 +9,11 @@ MX technology introduction :
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
   Commands of the MUMPS :  mumps.sourceforge.net/docs.html#commands
+  
+  Preparation for the system MX :
+  
+  -  vmx.ro programs must be installed in any M-namespace Cache or IRIS InterSystems and then execute d ^ZSTU
+  -  copy the mx.xlsb VBA-macro to a separate folder on the computer of each client, for example, to c:/mx/ 
+  -  copy all **.xlsb files also 
+  -  fill in the connection table in the MX_CONFI.xlsb
+  -  run mx.xlsb macro on any computer
