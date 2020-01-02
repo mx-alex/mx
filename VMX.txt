@@ -6745,7 +6745,7 @@ d8mM(d8,%I) q:$zv'["Ca" d8  q $$d8mM^bil(d8,%I)
  q
 
 fir
-fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20191207 21:14:26 ]
+fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20191221 00:51:44 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2019
  n o,fir s o="",fir=f f  s o=$o(^Org(o)) q:o=""  i $g(^(o,"firma"))=f s fir=o q
@@ -6788,12 +6788,11 @@ firma(fir,%find)
  .. s:%["IN" %="RU" q:$tr(%,"QWERTYUIOPASDFGHJKLZXCVBNM")=""  s %=$s(%["{1059}{1053}":"BY",$g(^(o,"firma"))["OOO":"RU",1:%)
  .. s:$tr(%,"{1062}{1059}{1050}{1045}{1053}{1043}{1064}{1065}{1047}{1061}{1060}{1067}{1042}{1040}{1055}{1056}{1054}{1051}{1044}{1046}{1069}{1071}{1063}{1057}{1052}{1048}{1058}{1068}{1041}{1070}")="" %="RU"
  ;; i $d(xFirF),fir'=1,fir'="%FIRMA" s firf=fir x xFirF i firma'="" s reNr=VATnoINN q firma
- n %1,firma,%R,FIRMA s firma=$g(^Org(fir,"firma")) n:fir<100 T i fir>99,'$d(^pers(+fir)) n T
+ n %1,firma,%R,FIRMA i fir>99,fir<99999 s T=+fir s:'$d(^pers(T)) T=0
  f %1="Firma","pers" d:'$d(%XG(%1)) ^USX
  i '$l($g(%XG("Firma"))) s %XG("Firma")=""
- s T=+fir,firA=fir,Fi=0,KODS=0,banka="bank",pase=$g(pase,"pase") i T<0 s T=-T,fir=$e(fir,2,99)
- i '$l(firma) s %R=$g(^Firma(fir)) n pvn s pvn=0 x %XG("Firma") s:$g(FIRMA)'="" firma=FIRMA s:$l(pvn)-1>$l(reNr) reNr=pvn
- ;; i %flagOrg s firma=^Org(fir,"firma")
+ s Fi=0,KODS=0,banka="bank",pase=$g(pase,"pase"),firma=$g(^Org(fir,"firma"))
+ i '$l(firma) s %R=$g(^Firma(fir)) n pvn s pvn=0 x %XG("Firma") s:$g(FIRMA)'="" firma=FIRMA s:$l(pvn)-1>$l(reNr) reNr=pvn 
  s bank="" s:$e(firma)=" " firma=$e(firma,2,99)  s:'$l(firma) firma=fir  s:banka["s:" banka=$tr(banka,":","=")
  s banKonts=$p($p(banka,"konts=",2)," ") s:$l($g(^("bankon1")))>3 banKonts=^("bankon1")
  s banKods=$p($p(banka,"kods=",2)," ") s:$l($g(^("bankod1")))>3 banKods=^("bankod1")
