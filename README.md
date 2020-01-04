@@ -12,8 +12,8 @@ MX technology introduction :
   
 Preparation for the system MX :
   
-  -  vmx.ro programs must be installed in any M-namespace Cache or IRIS InterSystems (Windows)  and then execute d ^ZSTU
-  -  copy the mx.xlsb VBA-macro to a separate folder on the win-computer of each client, for example, to c:\mx\ 
-  -  copy all **.xlsb files and pictures also to this folder
+  -  vmx.ro (or vmx.txt) programs must be installed in any M-namespace Cache or IRIS InterSystems (Windows)  and then do ^ZSTU
+  -  copy the mx.xlsb VBA-macro to a separate folder on the any win-computer, for example, to c:\mx\ 
+  -  copy all **.xlsb files and all pictures also to this folder
   -  fill in the connection table in the MX_CONFI.xlsb. By default, it set to 127.0.0.1, Port = 2264, Namespace = USER
   -  run mx.xlsb macro (MS EXCEL be sure, required dot as win-system decimal separator)
