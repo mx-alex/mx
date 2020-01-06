@@ -1271,7 +1271,7 @@ t1t2(t1,t2)
 MXF
 MXF ;  [ 04/26/2006  6:08 PM ]  ;[ 20090514 13:53:39 ]
  ; MSM, CACHE, GT.M,  MiniM
- ; vmx Copyright(c) SIA ENTERS  2005-2019
+ ; vmx Copyright(c) SIA ENTERS  2005-2020
  ; 
 m(%) ; $$RunLine
  n %n i $d(%),% s %n=om n om s om=%n,$p(om,"/",2)=$e("         ",1,%-1)_$p($p(om,"/",2)," ",%) 
@@ -1308,17 +1308,18 @@ m(%) ; $$RunLine
 ERRm n %n,% s $zt=%ztTQMm,%mxWarng("$$m^MXF:"_$ze_" row="_%YXy_" col="_%YXx)=$g(zi)_":::"_$g(%ii)_" :::"_$g(%oiiio2i)_":::"_$g(%oiiio2x)
  i $l($g(%ii)) f %=1:1:$l(%ii,",") s %n=$p(%ii,",",%) i '$l($g(@%n)) s %mxWarng("$$m^MXF:"_$s('$d(@%n):"<undef>index",1:"empty_index:")_" y="_%YXy_" x="_%YXx)=%n_" ::: "_$g(zi)_" ::: "_%ii
  q -1
-B(z,x) n %zrXXoo,%x2 s %zrXXoo=$zr,%x2=$g(x),x=$g(x,%YXx) s:%x2["c" x=%YXx  ; onSelect - izlecosas pogas
- i x s:x<2!(x["+")&(%x2'["c") x=x+%YXx s:x>255 x=2
- i $e(z,1,3)="$$B" s ^omxMacro(%USID,%mxForma,%YXy,x)=z q:1_$d(@%zrXXoo) 1 
- i " "[$e(z),z'["xForma=" s ^omxMacro(%USID,%mxForma,%YXy,x)="$$B 9] 9 o[__ . 10/3:6 "_$e(z,2,480) q:1_$d(@%zrXXoo) 1
- i "1 * "[$e(z,1,2) s ^omxMacro(%USID,%mxForma,%YXy,x)="?$$B    xForma=1  "_$e(z,3,480) q:1_$d(@%zrXXoo) 1
+B(z,x) n %zrXXoo,%x2,%,%YXyy s %YXyy=%YXy  ; onSelect - izlecosas pogas
+ s %zrXXoo=$zr,%x2=$g(x),x=$g(x,%YXx),%=+$p(x,"-",2) s:%x2["c" x=%YXx s:% %YXyy=+x,%YXxx=%
+ i x s:x<2!(x["+")&(%x2'["c") x=x+%YXx s:x>1255 x=2
+ i $e(z,1,3)="$$B" s ^omxMacro(%USID,%mxForma,%YXyy,x)=z q:1_$d(@%zrXXoo) 1 
+ i " "[$e(z),z'["xForma=" s ^omxMacro(%USID,%mxForma,%YXyy,x)="$$B 9] 9 o[__ . 10/3:6 "_$e(z,2,480) q:1_$d(@%zrXXoo) 1
+ i "1 * "[$e(z,1,2) s ^omxMacro(%USID,%mxForma,%YXyy,x)="?$$B    xForma=1  "_$e(z,3,480) q:1_$d(@%zrXXoo) 1
  ; xForma=a 5 s ... 
  i $e(z)="^" s %=$p($e(z,2,99),"("),z="xForma="_$s($d(^AL(%)):"     s @(""x""_""Forma"")="""_$$kav2(z)_""" ",1:"xZRobj     s xZR="""_$$kav2(z)_"""")
- i $e($tr(z," "),1,7)="xForma=" s ^omxMacro(%USID,%mxForma,%YXy,x)="$$B 9-6"_$s(%x2["c":%x2,1:"")_" 9-2 o[__ xForma="_$p($p(z,"xForma=",2)," ")_" 10/3:6 "_$p($p(z,"xForma=",2,9)," ",3,999)  q:1_$d(@%zrXXoo) 1
+ i $e($tr(z," "),1,7)="xForma=" s ^omxMacro(%USID,%mxForma,%YXyy,x)="$$B 9-6"_$s(%x2["c":%x2,1:"")_" 9-2 o[__ xForma="_$p($p(z,"xForma=",2)," ")_" 10/3:6 "_$p($p(z,"xForma=",2,9)," ",3,999)  q:1_$d(@%zrXXoo) 1
  q:1_$d(@%zrXXoo) 0
 R(z,x) n %zrXXoo s %zrXXoo=$zr,x=$g(x,%YXx)  ; on-Right-Click
- i x s:x<2!(x["+") x=x+%YXx s:x>255 x=2
+ i x s:x<2!(x["+") x=x+%YXx s:x>1255 x=2
  i $e(z)="^",$d(@z),'$d(^AL($e($p(z,"("),2,99))) q:1_$d(@%zrXXoo) z
  i $e(z)="^",'$d(@z) q:1_$d(@%zrXXoo) z
  i $e(z)="^" s ^omxGlobR(%USID,%mxForma,%YXy,x)=z q:1_$d(@%zrXXoo) 1
@@ -1334,19 +1335,19 @@ T(oXecute,%YXxx,gotoYX)   ; on-Timer
  s ^onEvents("Timer",%mxForma,%YXy,%YXxx)="n %N,%K,%y,%x s %y="_+%YXy_",%x="_%YXxx_",%K=$g(^oYX(%USID,%mxSheet,%YXy,%YXxx)),%N="""_$g(%N,"o")_""" k gotoYXxx,gotoYXyy,oo,%YXo "_oXecute_"  s:$d(oo) %YX(%y,%x)=oo"
  q:1_$d(@%zrXXoo) 1
 S(oXecute,%YXxx,gotoYX)   ; on-Select
- n %zrXXoo,%1,%2,% s %zrXXoo=$zr,%YXxx=$g(%YXxx,%YXx)
- k ^onSelect(%USID,%mxForma,%YXy,%YXxx)
- s (%,^onSelect(%USID,%mxForma,%YXy,%YXxx))="n %N,%K s %K=$g(^oYX(%USID,%mxSheet,%ySelect,%xSelect)),%N="""_$g(%N,"o")_""" k gotoYXxx,gotoYXyy,oo,%YXo "_oXecute_"  s:$d(oo) %YX(%ySelect,%xSelect)=oo s %ySelect(0)=%ySelect,%xSelect(0)=%xSelect"
- k ^onEvents("cellSelect",%USID,%mxForma,%YXy,%YXxx) s @$zr=%
+ n %zrXXoo,%1,%2,%,%YXyy s %zrXXoo=$zr,%YXxx=$g(%YXxx,%YXx),%YXyy=%YXy,%=+$p(%YXxx,"-",2) s:% %YXyy=+%YXxx,%YXxx=%    
+ k ^onSelect(%USID,%mxForma,%YXyy,%YXxx)
+ s (%,^onSelect(%USID,%mxForma,%YXyy,%YXxx))="n %N,%K s %K=$g(^oYX(%USID,%mxSheet,%ySelect,%xSelect)),%N="""_$g(%N,"o")_""" k gotoYXxx,gotoYXyy,oo,%YXo "_oXecute_"  s:$d(oo) %YX(%ySelect,%xSelect)=oo s %ySelect(0)=%ySelect,%xSelect(0)=%xSelect"
+ k ^onEvents("cellSelect",%USID,%mxForma,%YXyy,%YXxx) s @$zr=%
  ;;;s ^(%YXxx)="k gotoYXxx,gotoYXyy,oo i $$noTrack^MXF() k %YXo "_oXecute_"  s:$d(oo) %YX(%YXy,"_%YXxx_")=oo "  ;; ?????????? loop !!!
  q:1_$d(@%zrXXoo) 1
 noTrack() n % q 1  q:'$d(%YXo) 1
 C(oXecute,%YXxx) 
-   ; on-Change
- n %zr,%1,%2,% s %zr=$zr,%YXxx=$g(%YXxx,%YXx)    ;; %qChange = last_changed_cell_new_value
- i %YXxx s:%YXxx<2!(%YXxx["+") %YXxx=%YXxx+%YXx s:%YXxx>255 %YXxx=2
- s (%,^onChange(%USID,%mxForma,%YXy,%YXxx))="n %N s %N="""_$g(%N,"o")_""" k gotoYXxx,gotoYXyy,oo "_oXecute_"  s:$d(oo) %YX(%yChange,%xChange)=oo k oo "
- k ^onEvents("cellChange",%USID,%mxForma,%YXy,%YXxx) s @$zr=%
+   ; on-Change   ;; %qChange = last_changed_cell_new_value
+ n %zr,%1,%2,%,%YXyy s %zr=$zr,%YXyy=%YXy,%YXxx=$g(%YXxx,%YXx),%=+$p(%YXxx,"-",2) s:% %YXyy=+%YXxx,%YXxx=%    
+ i %YXxx s:%YXxx<2!(%YXxx["+") %YXxx=%YXxx+%YXx s:%YXxx>1255 %YXxx=2
+ s (%,^onChange(%USID,%mxForma,%YXyy,%YXxx))="n %N s %N="""_$g(%N,"o")_""" k gotoYXxx,gotoYXyy,oo "_oXecute_"  s:$d(oo) %YX(%yChange,%xChange)=oo k oo "
+ k ^onEvents("cellChange",%USID,%mxForma,%YXyy,%YXxx) s @$zr=%
  q:1_$d(@%zr) 1
 D(%,x) ; on-DD-click
  n %zr s:$e(%,1,2)="^ " $e(%)="" s x=$g(x,%YXx) i x s:x<2!(x["+") x=x+%YXx
@@ -1397,8 +1398,7 @@ mks(%reportN,%kursSta) s:'$d(%kursSta) %kursSta=kursStar
  q 0
 Xerror s mxERROR=$g(%mxForma)_" ERROR ::: "_$tr(%oXecute,$c(0))_" ::: $ZTRAP="_$ZTRAP_" $$X^MXF: $ZERROR="_$ZERROR
  q mxERROR
-pD(%H,t) 
- ;CONVERTS %H,$H to ggggmmdd
+pD(%H,t) ;CONVERTS %H,$H to ggggmmdd
  q:'$d(%H) $$pD^MXD q:'$d(t) $$pD^MXD(%H) q $$pD^MXD(%H,t)
 dmE(%d,%8) 
  q:'$d(%d) $$dmE^MXD q:'$d(%8) $$dmE^MXD(%d) q $$dmE^MXD(%d,%8)
@@ -1413,7 +1413,7 @@ d8(d,d31,dBas)
  i +d?8n!'$d(dBas) q:$$d31(+d,$g(d31))'="" $$d31(+d,$g(d31)) q +d
  s:+dBas'?8n dBas=$$pD($h+dBas) s:d<10 d=0_+d s:$l(d)=3&(d=+d) d=0_d s:$l(d)<5 d=$e(+dBas,1,8-$l(d))_d q:$$d31(d,8)'="" $$d31(d,8)
  q d
-d31(d,N) 
+d31(d,N) ;
  q:'$g(N) 28+$e(3_($e(d,1,4)#4=0)_3232332323,$e(d,5,6))  q $$d31^MXD(d,N)
 d8plus(d8,p) 
  q:'p d8  q $$d8plus^MXD(d8,p)
@@ -6187,7 +6187,7 @@ izOr
  q
 
 fin
-fin ; ATG [ 12/05/2006  6:25 PM ]  ;[ 20191121 01:02:54 ]
+fin ; ATG [ 12/05/2006  6:25 PM ]  ;[ 20191226 12:22:51 ]
  ; MSM, CACHE, GT.M, MiniM
  ; VMX Copyright(c) SIA ENTERS  2005-2019
  q
@@ -6287,15 +6287,15 @@ koko1(ss,zr,%getFile)
  m %mxINFO(1)=%DK1
  s o="" f  s o=$o(%DK1(o)) q:o=""  s %DK1sum(o)=$g(%DK1sum(o))+$p(%DK1(o)," : ",2)
  q ""
-koko(ss) 
- s:$l($g(xVAL))<3 (xVAL,%VaL)=$s(%gm>201400:"EUR",1:"LVL") n IDK i +$g(d8)'?8n q 0 
+koko(ss) ;
+ s:$l($g(xVAL))<3 (xVAL,%VaL)=$s(%gm>201400:"EUR",1:"LVL") n IDK i +$g(d8)'?8n n d8 s d8=$g(d) q:d8'?8n 0 
  n o,%nk,DK,S,Sp,Sb,koDtXXXX,koKrXXXX,koSummaX,koPrefXX,%1,%2,%3,%k,%,koFile,d8o,%revDK
  i '$d(%XG("koko")) s %1="koko" d ^USX
  s koFile=$e($p($s(%I2["^":%I2,1:%I),"("),2,99)
- q:'$l(koFile) -1  q:$d(%koko(koFile))=-1 ""
+ q:'$l(koFile) -1  q:$g(%koko(koFile))=-2 -2
  i '$d(%koko(koFile)) s o="^koko" f  s o=$q(@o) q:'$l(o)  d
  . m:" "_$p(@o,%B,6)_" "[(" "_koFile_" ") %koko(koFile)=^koko($qs(o,1))
- i '$d(%koko(koFile)) s %koko(koFile)=-1 q ""
+ i '$d(%koko(koFile)) s %koko(koFile)=-2 q -2
  i $g(d)-$g(d8),$g(d)?8n,koFile["sp("!(","_$g(%LI(koFile))[",d,") s d8=d
  s (Kurs,kurs)=1_%VaL,o=$tr(ss,"~k=p-+.0123456789 /?:%")
  i $l(o) d
@@ -6745,7 +6745,7 @@ d8mM(d8,%I) q:$zv'["Ca" d8  q $$d8mM^bil(d8,%I)
  q
 
 fir
-fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20191221 00:51:44 ]
+fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20191230 18:32:52 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2019
  n o,fir s o="",fir=f f  s o=$o(^Org(o)) q:o=""  i $g(^(o,"firma"))=f s fir=o q
@@ -6778,7 +6778,7 @@ ssum(%I,atla)
  d ssum^tirgus(%I,atla)
  q
 firma(fir,%find) 
- s (ema,eMail,tel)=""  ;; s (tel,fax,men,gra,pas,dir,ema,eMail)=""
+ s (ema,eMail,tel,reAd)=""  ;; s (tel,fax,men,gra,pas,dir,ema,eMail)=""
  n %,o,f s reNr=$g(reNr,0),adr=$g(adr,0),%find=$g(%find),T=+$g(T) i '$l($g(fir)) s KODS=$g(KODS,0),fir=1
  i %find=-1 s %="" x "f  s %=$o(^Org(%)) q:'$l(%)  q:$g(^(%,""firma""))=fir" q %
  i %find=2,$d(^Org(fir)) s %find=0
@@ -6791,10 +6791,10 @@ firma(fir,%find)
  n %1,firma,%R,FIRMA i fir>99,fir<99999 s T=+fir s:'$d(^pers(T)) T=0
  f %1="Firma","pers" d:'$d(%XG(%1)) ^USX
  i '$l($g(%XG("Firma"))) s %XG("Firma")=""
- s Fi=0,KODS=0,banka="bank",pase=$g(pase,"pase"),firma=$g(^Org(fir,"firma"))
+ s firA=fir,Fi=0,KODS=0,banka="bank",pase=$g(pase,"pase"),firma=$g(^Org(fir,"firma"))
  i '$l(firma) s %R=$g(^Firma(fir)) n pvn s pvn=0 x %XG("Firma") s:$g(FIRMA)'="" firma=FIRMA s:$l(pvn)-1>$l(reNr) reNr=pvn 
  s bank="" s:$e(firma)=" " firma=$e(firma,2,99)  s:'$l(firma) firma=fir  s:banka["s:" banka=$tr(banka,":","=")
- s banKonts=$p($p(banka,"konts=",2)," ") s:$l($g(^("bankon1")))>3 banKonts=^("bankon1")
+ s banKonts=$p($p(banka,"konts=",2)," ") s:$l($g(^Org(fir,"bankon1")))>3 banKonts=^("bankon1")
  s banKods=$p($p(banka,"kods=",2)," ") s:$l($g(^("bankod1")))>3 banKods=^("bankod1")
  s banka=$p($p(banka,"konts="),"kods=") i $l($g(^("banka1")))>3 s banka=^("banka1"),bank=banka_"  "_banKods_$c(10)_banKonts
  s kFir=2310 s:$g(reDt) kFir=reDt s:$l($g(reAd))<5&$g(reAd) kFir=reAd
@@ -6803,6 +6803,7 @@ firma(fir,%find)
  s %=$g(^("faks1")) s:$l(%)>5 fax=% 
  s %=$g(^("eMail1")) s:$l(%)>5 ema=%,eMail=% i ema="" s %=$g(^("eMail")) s:$l(%)>5 eMail=%,ema=%
  s %=$g(^("reNr")) s:$l(%)>5 reNr=% ;;  s:$l(VAT)>5 reNr=VAT
+ ;; i $l(reAd)>4 s:$l($g(^("adrSt1")))<5 @$zr=reAd,^("kodsSt1")=1
  s OrgVAT="",VAT="" i $l($g(^("VAT")))>5 s (VAT,OrgVAT)=^("VAT") 
  i fir=1 f o="tel","gra","kas","dir" d   s %BANK=bank,%FIRMA=firma,%ADR=adr,(%reNr,%RENR,%REGN)=reNr s:$l(VAT)>5 %REGN=VAT
  . s @(o_1)=$g(^mxConfig(1,"firma",o_1,1))
@@ -6815,7 +6816,7 @@ firma(fir,%find)
  s dap="" i 'reNr s o="QWERTYUIOPASDFGHJKLZXCVBNM" i o'[$e(reNr_1)!(o'[$e(reNr_11,2)) s reNr="xx"_reNr
  i T s %R=$g(^pers(T))_$g(^persArhi(T)) i T=+fir,%R="" s T=0
  i T,%R'="" d ^ZFIO s (firma,o)=Fi s:$l(reNr)<5 reNr=%REGN
- ;; i T,%R'="",$g(mxTestDB),$l(firma) s o=$s($d(^Firma(T)):$zr,$d(^Org(T)):$zr,1:1) s:'o %mxWarng(T)=firma_%B_o_"="_$g(FIRMA)
+ ;; s firma=fir
  q firma
 q() q:xf_xDOK="" 0
  i xf'="" i $tr(firma,%LAT,%lat)'[xf q 1
@@ -8710,6 +8711,106 @@ NNq(no,NN,d0,%Ibez,qq)
 NNcFIFO(nol,NN,di0,q0) 
  q 0
 l(%lN) q $$l^UST(%lN)
+
+trm
+trm ;  ;[ 20200106 15:16:41 ]
+ q
+jo(%comm) 
+ s %jobChild=0
+ if %comm'["; readTRM ;" j job(%comm,%USID):(:1):1 s %jobChild=$ZCHILD
+ if %comm["; readTRM ;" k ^trm(%USID) s ^trm(%USID)=";;;"_$p(%comm,"; readTRM ;")
+ f %=1:1:99 s o=$o(^trm(%USID,""),-1)  h .1  if o,$o(^trm(%USID,""),-1)=o q
+ i 'o,%jobChild w "  !! runing process = ",%jobChild
+ w "^trm(%USID)" 
+ q
+job(%comm,%USID) 
+ s %io=$io,%zt=$zt,%B=$c(254)  k ^trm(%USID) k ^ERR i '$l(%comm) s ^trm(%USID)="" q 
+ o 0 ;;  open "//./nul"::"^trm"
+ s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
+ s %oo="",$zt="er^trm",^ERR=%comm,wwww=0 
+ i %comm[" p  "!(%comm[" P  "),%comm'["""" d  i 111
+ . o 2:($j:1) u 2 k ^SPOOL($j)
+ . x %comm  s:'$l($g(%oo)) %oo="" ; $g(^trm(%USID,0))
+ . c 2 u %io m ^trm(%USID)=^SPOOL($j) s %=$o(^SPOOL($j,""),-1) k ^trm(%USID,%)
+ else  u 0::"^trm"  u:000 "//./nul"::"^trm"  D $ZU(82,12,1) x %comm ;; s ^ERR($h,"$j",2)=$j_" "_$io_$p_" $d(%oo)="_$d(%oo)_" "_-$l($g(%oo))
+ if '$d(%USID) d oo zn %zns s %j=1,%B=$c(254)
+ D $ZU(82,12,0) u 0 s %=0 f o=1:1 s %=$o(%oo(%)) q:'%  s ^|%zns|trm(%USID,%)=%oo(%)
+ s ^|%zns|trm(%USID,o+100)=$g(%oo) s:000 ^ERR(o+1000)=$l(%oo)  k %oo
+ q
+er d oo  s $zt=$g(%zt) ;;  u $io   D $ZU(82,12,0) 
+ s %oo=$g(%oo)_$ze s ^|%zns|trm(%USID,999999)=%oo
+ q
+oo if '$d(%USID) k %j s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
+ q
+wstr(%exsp) 
+ D oo,$ZU(82,12,0) n %  ;;  u 0  ;;  ::"^QQ"  ;; u "//./nul"  ;; w %exsp
+ ;; i $znspace'=%zns s ^|%zns|ERR($h,"wstr")=$znspace_" "_%zns_"  %j="_$g(%j)_"  %oo="_$g(%oo)_%exsp
+ ;; i $l(%exsp)>9999,$d(%oo)=1 s %=$o(^|%zns|trm(%USID,""),-1),^(%+1)=$g(%oo),%oo=""
+ s %oo=$g(%oo)_%exsp,wwww=$g(wwww)+1,$x=$x+$l(%exsp) ;; ,^|%zns|trm(%USID,0)=%oo ;; 
+ i $g(%j)-1 s %=$o(^|%zns|trm(%USID,""),-1),^|%zns|trm(%USID,%+1)=%oo,%oo=""
+ i $l(%oo)>9999 s %=$o(%oo(""),-1),%oo(%+1)=%oo,%oo=""  ;; 
+ D $ZU(82,12,1) ;;  u 0::"^trm"  u:000 $io::"^trm" 
+ q
+wnl D oo,$ZU(82,12,0) w:000 !  D $ZU(82,12,1) s %oo=$g(%oo)_$c(10),$x=1
+ q
+wff D oo,$ZU(82,12,0) w:000 #  D $ZU(82,12,1) s %oo=$g(%oo)_$c(13,12),$y=1,$x=1
+ q
+wchr(%) D oo,$ZU(82,12,0) w:000 *% D $ZU(82,12,1) s %oo=$g(%oo)_$c(%)
+ q
+wtab(%) ; w ?%
+ D oo n %0,%1 s %0=%,%=$s(%>$x:%-$x,1:1),%1="",$e(%1,%)=" ",%oo=$g(%oo)_%1,$x=%0
+ q
+e 
+ s %=0,oo="" f  s %=$o(^SPOOL($j,%)) q:'%  q:%>1111111111  s oo=oo_^(%) s:$l(oo)>9999 ^trm(%USID,%)=oo,oo=""
+ c 2  u %io 
+ if '$d(^trm(%USID)) w $$U^MXF(oo) q ""
+ s ^trm(%USID,99999999)=oo w "^trm(%USID)"
+ if $l($ze)!(%trmComm["%SS") w !,%trmComm,"  $ze=",$ze
+ q ""
+jTest(%comm) 
+ s in=$p,ou=$io  k ^ERR,RR s %io=$io c %io   ;; o 253 u 253 w "ok1",! c 253
+ s %=252 c % o % u %
+ job j(%comm):(:1):1 s ^ERR(55)=$io_" "_$h  h .1 s RRR="",z=0,%wait=1*(''$l(%comm))
+ f zz=0:1:99 o 252 u 252 x "s f=0 f x=1:1:999999 r R:%wait q:'$l(R)  s RRR=RRR_R,f=1,z=z+$l(R) s:$l(RRR)>9999 RR(z)=RRR,RRR="""""  q:'f  ;; h:$l(%comm) .1 
+ s ^ERR(88)=$io s RR(z)=RRR,RRR="",%=0 f  s %=$o(RR(%)) q:'%  s RRR=RRR_RR(%) q:$l(RRR)>19999
+ i z>20000 u %io k ^trm(%USID) m ^trm(%USID)=RR w "^trm(%USID)" s ^ERR=%comm_"  z="_z_"  zz="_zz  q 
+ u %io w $$U^MXF(RRR)," $j(child)==^ERR(18)=="_$g(^ERR(18))," P.job=",$j,"  $ZCHILD=",$ZCHILD,!!," x=",x,"  z=",z,"  $L(RRR)=",$l(RRR),"  zz=",zz  s ^ERR(99)=$j
+ q
+ ;;;;;;;;;;;;;
+j(%comm) s ^ERR(11)=$p_"  $io="_$io_"  "_$h s ^ERR(18)=18
+ ;; SET io=$io s ^ERR(2)=io ;; ##class(%SYSTEM.INetInfo).TCPName() s ^ERR(2)=io
+ ;; SET input=$PRINCIPAL SET output=$IO USE io:(::"M":input:output) ; Ensure that "M" mode is used
+ c 253 o 253::0 s ^ERR(17)=$test  u 253 
+ x %comm ;; c 253 o 252 u 252 r rrr:0 c 252 o 253 u 253 
+ s ^ERR(18)=19 WRITE !,$g(rrr),"------------------ $job=="_$j_"  "_$h,! s ^ERR(18)=$j_"  "_$h
+ c 253  s ^ERR(19)=$p_"  $io="_$io  h:000 9 halt
+ q
+rstr(len,to) 
+ D $ZU(82,12,0) d oo s:'$l($g(len)) len=999
+ ;; if $D(len)&&$D(to) s %input=$e(to_"ooooooooooooooooooooooooo",1,len) g rstre
+ ;; i $D(len) s %input=$e("ooooooooooooooooooooooooo",1,len) g rstre 
+ ;; i $D(to) s %input=to_"sek-ok-Read-to" g rstre
+ ;; i $zv'["MiniM" READ %:3 s:%="" %="trm"  u $io::"^trm"
+ s ^|%zns|trm(%USID)="?"_$zn,%input=""
+ s %=0 f o=1:1 s %=$o(%oo(%)) q:'%   s:000 ^ERR(%+1000)=$l(%oo(%))  s ^|%zns|trm(%USID,%)=%oo(%)
+ s ^|%zns|trm(%USID,o+10)=$g(%oo) k %oo s %oo=""
+ f %=1:1:19 h 1 s o=$g(^|%zns|trm(%USID)) i $e(o,1,3)=";;;" s %input=$e($e(o,4,999),1,len),^|%zns|trm(%USID)="" q
+rstre D $ZU(82,12,1)
+ q %input
+rchr(to) 
+ D $ZU(82,12,0) d oo  
+ i $d(to) s %inp=$a(8)  ;; R *data:to . ;
+ i '$d(to) s %inp=$a(9)  ;; R *data
+ D $ZU(82,12,1) 
+ q %inp
+readTest 
+ zn "%SYS"
+ w 222222222,$zn," $znspace="_$znspace_"  %zns="_$g(%zns)
+ read RRR s ^|%zns|ERR("RRR")=RRR
+ w !,RRR,!,$g(^|%zns|trm(%USID)),"  o=",$g(o),"  %="_$g(%)
+ if RRR=9 s ^|%zns|ERR(7777)=$l($g(%oo))  zw ^|%zns|AL ;; s ^ERR(8888)=$l($g(%oo))
+ zn %zns
+ q
 
 zvn
 zvn ; ATG.alga/izzinas [ 02/23/2006  6:18 PM ]  ;[ 20190827 21:55:17 ]

@@ -9,11 +9,12 @@ MX technology introduction :
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
   Commands of the MUMPS see on :  mumps.sourceforge.net/docs.html#commands
-  
-Preparation for the system MX :
+  Intersystem Cache : https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
+
+Preparation for start MX :
   
   -  vmx.ro (or vmx.txt) programs must be installed in any M-namespace Cache or IRIS InterSystems (Windows)  and then do ^ZSTU
   -  copy the mx.xlsb VBA-macro to a separate folder on the any win-computer, for example, to c:\mx\ 
   -  copy all **.xlsb files and all pictures also to this folder
   -  fill in the connection table in the MX_CONFI.xlsb. By default, it set to 127.0.0.1, Port = 2264, Namespace = USER
-  -  run mx.xlsb macro (MS EXCEL be sure, required dot as win-system decimal separator)
+  -  run mx.xlsb macro (MS EXCEL be sure, required dot as system decimal separator)
