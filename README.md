@@ -9,8 +9,9 @@ MX technology introduction :
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
   Commands of the MUMPS see on :  mumps.sourceforge.net/docs.html#commands
-  Intersystem Cache : https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
-
+  InterSystems Cache : https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
+  InterSystems  IRIS : https://www.intersystems.com/try-intersystems-iris-for-free/
+  
 Preparation for start MX :
   
   -  vmx.ro (or vmx.txt) programs must be installed in any M-namespace Cache or IRIS InterSystems (Windows)  and then do ^ZSTU
