@@ -8,10 +8,11 @@ MX technology introduction :
   - Control and data processing are performed by special formulas (commands of MUMPS)  in the cells of the sheets 
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
+
   Commands of the MUMPS see on :  mumps.sourceforge.net/docs.html#commands
   InterSystems Cache : https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
   InterSystems  IRIS : https://www.intersystems.com/try-intersystems-iris-for-free/
-  
+
 Preparation for start MX :
   
   -  vmx.ro (or vmx.txt) programs must be installed in any M-namespace Cache or IRIS InterSystems (Windows)  and then do ^ZSTU
