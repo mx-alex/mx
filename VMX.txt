@@ -1413,7 +1413,7 @@ d8(d,d31,dBas)
  i +d?8n!'$d(dBas) q:$$d31(+d,$g(d31))'="" $$d31(+d,$g(d31)) q +d
  s:+dBas'?8n dBas=$$pD($h+dBas) s:d<10 d=0_+d s:$l(d)=3&(d=+d) d=0_d s:$l(d)<5 d=$e(+dBas,1,8-$l(d))_d q:$$d31(d,8)'="" $$d31(d,8)
  q d
-d31(d,N) ;
+d31(d,N) 
  q:'$g(N) 28+$e(3_($e(d,1,4)#4=0)_3232332323,$e(d,5,6))  q $$d31^MXD(d,N)
 d8plus(d8,p) 
  q:'p d8  q $$d8plus^MXD(d8,p)
@@ -1745,6 +1745,13 @@ comment(s,mode)
  f %=1:1 q:'$l(s)  s o=$p(s,"^"),s=$p(s,"^",2,999),o="^"_$p(s,")"_%B)_")"_%B_o,s=$p(s,")"_%B,2,999) d 
  . s %SEL($p(o,%B))=$g(%SEL($p(o,%B)))_%B_$p(o,%B,2,99)
  q %
+ q
+omReplace(z,%re,%de,%xe) 
+ k ^omo(%USID) n zz,o
+ for  s z=$q(@z) q:'$l(z)  q:$qs(z,1)'=%USID  s zz=$replace(z,"^om(","^omo(") d:z[(%re_%de)  s @zz=@z 
+ . s o=$g(^(%re)) x:$d(%xe) "s "_%re_"=o,o="_%xe s zz=$replace(zz,%re_%de,o_%de)
+ i $d(o) k ^om(%USID) m ^om(%USID)=^omo(%USID)
+ q $d(o)
  q
 
 MXGTM
@@ -6745,7 +6752,7 @@ d8mM(d8,%I) q:$zv'["Ca" d8  q $$d8mM^bil(d8,%I)
  q
 
 fir
-fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20191230 18:32:52 ]
+fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20200109 23:53:44 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2019
  n o,fir s o="",fir=f f  s o=$o(^Org(o)) q:o=""  i $g(^(o,"firma"))=f s fir=o q
@@ -6753,9 +6760,9 @@ fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20191230 18:32:52 ]
  i '$d(%fir),$$firma(fir)
  q fir
 apmaksa(d8start,d8finish) 
- q apmaksaeeeeeeeeeeeee
+ q apmaksaeeeee
 oQuery(xC,xf,xDOK) 
- ;; i oQueryeeeeeeeeeeeee
+ ;; i oQueryeeeeeee
  n nnn,%se,%10,%1,h,%I,%I2,firma,d8,%DK,zr,r,%S,kurs,o,DOKf,xT k ^oQuery(%USID)
  s zr="^gramatos",xf=$g(xf),xT=0,nnn=0,h="^" s:'$g(xC) xC=$g(oxxC)
  i '$g(^gramatos) q "!-gramatos=0"
@@ -6772,7 +6779,7 @@ oQuery(xC,xf,xDOK)
  .. i $p(DK,"-",2)=xC s %=$s(d8<%XD81:"sk0",1:"sk"),^(%)=$g(^(%))+S
  .. i $l(%) s nnn=nnn+1 s:xT ^("T")=+$p(%10,"|T=",2) s ^("firma")=firma,^("%10")=%10 s ^("og")=zr_r
  q nnn_" xC="_xC_" xf="_xf_" xT="_xT 
-BOSS i eeeeeeeeeeeeeeee
+BOSS i zzeeeeee
  q
 ssum(%I,atla) 
  d ssum^tirgus(%I,atla)
@@ -6784,7 +6791,7 @@ firma(fir,%find)
  i %find=2,$d(^Org(fir)) s %find=0
  i %find>0 k %SEL d  q fir 
  . s %E=fir,o="",f=$tr($p(fir_"..",".."),oLat1_";. ",oLat2) q:'$l(f) 
- . f  s o=$o(^Org(o)) q:'$l(o)  i $tr(o_%B_$g(^(o,"firma")),oLat1,oLat2)[f s %SEL(o)=$g(@$zr),%E=$s(%find["%SEL":"%SEL"_$p(%find,"%SEL",2,9),1:"%SEL"),%=$g(^("VK")) s:'$l(%) %=$e($g(^("reNr")),1,2) i $l(%) d  s %SEL(o,1)="c:\mx\flag\"_%_".gif"
+ . f  s o=$o(^Org(o)) q:'$l(o)  i $tr(o_%B_$g(^(o,"firma")),oLat1_";. ",oLat2)[f s %SEL(o)=$g(@$zr),%E=$s(%find["%SEL":"%SEL"_$p(%find,"%SEL",2,9),1:"%SEL"),%=$g(^("VK")) s:'$l(%) %=$e($g(^("reNr")),1,2) i $l(%) d  s %SEL(o,1)="c:\mx\flag\"_%_".gif"
  .. s:%["IN" %="RU" q:$tr(%,"QWERTYUIOPASDFGHJKLZXCVBNM")=""  s %=$s(%["{1059}{1053}":"BY",$g(^(o,"firma"))["OOO":"RU",1:%)
  .. s:$tr(%,"{1062}{1059}{1050}{1045}{1053}{1043}{1064}{1065}{1047}{1061}{1060}{1067}{1042}{1040}{1055}{1056}{1054}{1051}{1044}{1046}{1069}{1071}{1063}{1057}{1052}{1048}{1058}{1068}{1041}{1070}")="" %="RU"
  ;; i $d(xFirF),fir'=1,fir'="%FIRMA" s firf=fir x xFirF i firma'="" s reNr=VATnoINN q firma
@@ -6832,19 +6839,14 @@ FDKdok(fir,dok,xC,d1,d2,%i,oRound)
  q
 DC(xmsm) q fff
 icFIRMA(%) q $$firma(1)
-ofd() i ofdeeeeeeeeeeeeeeeeeee
+ofd() i ofdeeeeeeee
  q fff
 wofd() s DOKo=DOKf,o=$tr(DOKf,"1234567890./-"_DOKf,"1234567890./-")
  i $l(o)>5 s DOKo=o
  i $l(fir),$l(DOKo) s ^ofd(%USID,fir,DOKo,d8_%I)="" i DOKf'=DOKo s ^(0)=DOKf
  q 1
 DOKfir(DOKf,mxINFO) 
- q ""  ;  i '$d(^ofd(%USID)) i $$ofd()
- n fir,ff s (ff,fir)="" 
- f  s fir=$o(^ofd(%USID,fir)) q:'$l(fir)  d:$d(^ofd(%USID,fir,DOKf))
- . i fir,$d(^pers(fir)) q
- . s ff=ff_fir_%B s:$g(mxINFO) %mxINFO(1,55)=fir_%B_DOKf_%B_$g(^(DOKf,0))_$c(10)
- q $e(ff,1,$l(ff)-1)
+ q ""
  q
 
 gra
@@ -7799,9 +7801,9 @@ Is2L
 l(%lN) q:$d(%lN) $$l^UST(%lN) q $$l^UST
 
 tirgus
-tirgus ; ATG.materiali [ 09/20/2006  2:33 PM ]  ;[ 20191205 18:12:28 ]
+tirgus ; ATG.materiali [ 09/20/2006  2:33 PM ]  ;[ 20200109 22:12:25 ]
  ; MSM, CACHE, GT.M, MINIM
- ; vmx Copyright(c) SIA.ENTERS  2005-2019
+ ; vmx Copyright(c) SIA.ENTERS  2005-2020
  q
 w1 i $g(mxConfig)[":d8min=" q:d8<$p(mxConfig,":d8min=",2)
  i $g(mnosMNd),$e(d8,1,6)<$e(mnosMNd,1,6) q   ;;; VEN UPTK
@@ -8096,7 +8098,7 @@ NNqRest(d6min)
  s onnn=0,%B=$c(254),flagZ=mxConfig[":z:"
  i %gm>201400 m ^NNd=^NNd2013 d
  .  s zi="^NNd" f  s zi=$q(@zi) q:'$l(zi)  s o=+@zi i o,zi'["EUR" s $p(@zi,%B)=o/.702804_"_"_o
- f %FILE="Saiz7","pps","atg","PPRsp","PAVsp","ppq","ppq6" i $d(^AL(%FILE)) k %R d
+ f %FILE="Saiz7","pps","atg","PPRsp","PAVsp","ppq","ppq6","mk" i $d(^AL(%FILE)) k %R d
  . s %1=%FILE d ^USX s %I="^"_%FILE ;; i mxConfig[":^mk:",%FILE'="mk",mxConfig'[":+^mk:" q
  . i %FILE="atg",$d(^invFakt) q  ;;  20170110 big-7
  . ;; i %FILE="mk",mxConfig'[":^mk:",mxConfig'[":+^mk:" q
@@ -8241,7 +8243,7 @@ sklkd(nol,NN,q,d8,var)
 vcdCena(n,NN,d8) 
  n c,c1,d,zr,o,cUPT,d0,vc,S,Q,q2 s (zr,c,c1,d)=" ? " s:'d8 d8=%XD82
  s cUPT="" i d8>20140000,%FIRMA["UPTK" s o=$o(^MNd(NN,20140000)) i o s cUPT=$p(^(o),%B,2)_"_"
- i %gm>(%FIRMA["Balo"+2019_"00") q:$d(^ovcd(%USID,n,NN,d8)) ^(d8)  s (Q,S,vc)=0 d  s %=$o(^vcd(n,NN,d8+.1),-1),(%,^ovcd(%USID,n,NN,d8))=vc_" "_$g(^vcd(n,NN,+%))_" d0="_d0 q %
+ i %FIRMA'["PVAC",%gm>(%FIRMA["Balo"+2019_"00") q:$d(^ovcd(%USID,n,NN,d8)) ^(d8)  s (Q,S,vc)=0 d  s %=$o(^vcd(n,NN,d8+.1),-1),(%,^ovcd(%USID,n,NN,d8))=vc_" "_$g(^vcd(n,NN,+%))_" d0="_d0 q %
  .f o=0:1:5 s d0=$o(^NNd(n,NN,d8-10000_%B),-1),d0=d0\10000-o_"0000^" d  q:vc  
  .. s d=d0 f  s d=$o(^(d)) q:d>d8!'d  s c=^(d),q2=$p(c,%B,2) i q2>0,c>0,c'["tr" s Q=q2+Q,S=q2*c+S,vc=S/Q
  i 'n s o="" f  s o=$o(^vcd(o)) q:'o  i $d(^(o,NN)) s n=o
@@ -8713,7 +8715,7 @@ NNcFIFO(nol,NN,di0,q0)
 l(%lN) q $$l^UST(%lN)
 
 trm
-trm ;  ;[ 20200106 15:16:41 ]
+trm ;  ;[ 20200106 20:41:25 ]
  q
 jo(%comm) 
  s %jobChild=0
@@ -8740,16 +8742,16 @@ job(%comm,%USID)
 er d oo  s $zt=$g(%zt) ;;  u $io   D $ZU(82,12,0) 
  s %oo=$g(%oo)_$ze s ^|%zns|trm(%USID,999999)=%oo
  q
-oo if '$d(%USID) k %j s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
+oo if '$d(%USID) k:000 %j s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
  q
 wstr(%exsp) 
- D oo,$ZU(82,12,0) n %  ;;  u 0  ;;  ::"^QQ"  ;; u "//./nul"  ;; w %exsp
+ D oo,$ZU(82,12,0) n %  u 0  ;;  ::"^QQ"  ;; u "//./nul"  ;; w %exsp
  ;; i $znspace'=%zns s ^|%zns|ERR($h,"wstr")=$znspace_" "_%zns_"  %j="_$g(%j)_"  %oo="_$g(%oo)_%exsp
  ;; i $l(%exsp)>9999,$d(%oo)=1 s %=$o(^|%zns|trm(%USID,""),-1),^(%+1)=$g(%oo),%oo=""
  s %oo=$g(%oo)_%exsp,wwww=$g(wwww)+1,$x=$x+$l(%exsp) ;; ,^|%zns|trm(%USID,0)=%oo ;; 
  i $g(%j)-1 s %=$o(^|%zns|trm(%USID,""),-1),^|%zns|trm(%USID,%+1)=%oo,%oo=""
- i $l(%oo)>9999 s %=$o(%oo(""),-1),%oo(%+1)=%oo,%oo=""  ;; 
- D $ZU(82,12,1) ;;  u 0::"^trm"  u:000 $io::"^trm" 
+ i $l(%oo)>999 s %=$o(%oo(""),-1),%oo(%+1)=%oo,%oo=""  ;; 
+ D $ZU(82,12,1) u 0::"^trm" ;; u:000 $io::"^trm" 
  q
 wnl D oo,$ZU(82,12,0) w:000 !  D $ZU(82,12,1) s %oo=$g(%oo)_$c(10),$x=1
  q
