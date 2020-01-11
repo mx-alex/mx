@@ -1,7 +1,7 @@
 # mx
 Now MS Excel and MUMPS database work togethe, all m-commands are located in cells of Excel
 
-MX technology introduction :
+How it works :
   - All information is kept not in the Excel books, but on the server in the form of multidimensional cubes and virtual Excel sheets
   - When user connects to the server, his real Excel sheet fills with data from required virtual sheet. Sheets are closely interrelated – changes are displayed on both
   - After disconnection, the real Excel sheet is not being saved, however data still remains on the server
@@ -17,8 +17,11 @@ MX technology introduction :
 
 Preparation for start MX :
   
-  -  vmx.ro (or vmx.txt) programs must be installed in any M-namespace Cache or IRIS InterSystems (Windows)  and then do ^ZSTU (or job tcp^MX1)
+  -  vmx.ro programs must be imported in any M-namespace Cache or IRIS InterSystems (Windows) and then do ^ZSTU (or job tcp^MX1)
   -  copy the mx.xlsb VBA-macro to a separate folder on the any win-computer, for example, to c:\mx\ 
   -  copy all **.xlsb files and all pictures and folders also to this folder
   -  fill in the connection table in the MX_CONFI.xlsb. By default, it set to 127.0.0.1, Port = 2264, Namespace = USER
   -  run mx.xlsb macro (MS EXCEL be sure, required dot as system decimal separator)
+  
+MX can be used to create complex systems or as an auxiliary tool to expand the capabilities of your application.
+Practical use for many years.
