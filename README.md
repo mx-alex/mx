@@ -11,22 +11,23 @@ How it works :
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
 
   Commands of the MUMPS see on :  mumps.sourceforge.net/docs.html#commands
-  
-  InterSystems Cache : https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
-  InterSystems  IRIS : https://www.intersystems.com/try-intersystems-iris-for-free/
+  For serious work :
+  InterSystems Cache - https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
+  InterSystems  IRIS - https://www.intersystems.com/try-intersystems-iris-for-free/
+  MiniM - http://www.minimdb.com/download/setup-minim-1.30-win_32.exe
 
 Preparation for start MX :
   
-  -  import vmx.ro in any M-namespace Cache or IRIS InterSystems (Windows) and then do ^ZSTU (or job tcp^MX1)
+  -  import vmx.ro in any M-namespace then do ^ZSTU (or job tcp^MX1)
   -  copy **.xlsb files and all folders to a separate folder on the any win-computer, for example, to c:\mx\ 
-  -  fill in the connection table in the MX_CONFI.xlsb (by default, port = 2264, nspace = USER)
-  -  run mx.xlsb macro (MS EXCEL be sure, required dot as system-decimal-delimiter)
+  -  fill in the connection table in the MX_CONFI.xlsb (by default: port = 2264, (= 5264 for IRIS), nspace = USER)
+  -  run mx.xlsb macro (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 
 Benefits of using MX :
   
-  -  Can be used to create complex systems or as an auxiliary tool 
+  -  Can be used to create complex applications, or as an auxiliary tool 
   -  Microsoft Office applications receive powerful support : the MUMPS data server and M-language
   -  Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional interface via Excel
   -  Convenient tool for teaching MUMPS
 
-To work with mobile devices, there is an spec. MX-option to simulate Excel-grid via browser.
+To work with mobile devices there is an special MX-option to simulate Excel-grid via browser.
