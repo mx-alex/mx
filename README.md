@@ -25,8 +25,8 @@ Preparation for start MX :
 Benefits of using MX :
   
   -  Can be used to create complex systems or as an auxiliary tool 
-  -  Microsoft Office applications receive powerful support in the form of the MUMPS data server and language
+  -  Microsoft Office applications receive powerful support : the MUMPS data server and M-language
   -  Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional interface via Excel
   -  Convenient tool for teaching MUMPS
 
-To work with mobile devices, there is an option to simulate Excel-grid via browser.
+To work with mobile devices, there is an spec. MX-option to simulate Excel-grid via browser.
