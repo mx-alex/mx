@@ -2,7 +2,7 @@
 Now MS Excel and MUMPS database work togethe, all m-commands are located in cells of Excel
 
 How it works :
-  - All information is kept not in the Excel books, but on the server in the form of multidimensional cubes and virtual Excel sheets
+  - Information is kept not in the Excel books, but on the server in the form of multidimensional cubes and virtual Excel sheets
   - When user connects to the server, his real Excel sheet fills with data from required virtual sheet. Sheets are closely interrelated – changes are displayed on both
   - After disconnection, the real Excel sheet is not being saved, however data still remains on the server
   - Control and data processing are performed by special formulas (commands of MUMPS)  in the cells of the Excel
