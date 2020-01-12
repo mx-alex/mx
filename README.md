@@ -20,7 +20,7 @@ Preparation for start MX :
   -  import vmx.ro in any M-namespace Cache or IRIS InterSystems (Windows) and then do ^ZSTU (or job tcp^MX1)
   -  copy the mx.xlsb VBA-macro to a separate folder on the any win-computer, for example, to c:\mx\ 
   -  copy all **.xlsb files and all pictures and folders also to this folder
-  -  fill in the connection table in the MX_CONFI.xlsb (by default, it set to port = 2264, nspace = USER)
+  -  fill in the connection table in the MX_CONFI.xlsb (by default, port = 2264, nspace = USER)
   -  run mx.xlsb macro (MS EXCEL be sure, required dot as system decimal separator)
 
 Benefits of using MX :
