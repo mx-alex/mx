@@ -22,6 +22,12 @@ Preparation for start MX :
   -  copy all **.xlsb files and all pictures and folders also to this folder
   -  fill in the connection table in the MX_CONFI.xlsb. By default, it set to 127.0.0.1, Port = 2264, Namespace = USER
   -  run mx.xlsb macro (MS EXCEL be sure, required dot as system decimal separator)
+
+Benefits of using MX :
   
-MX can be used to create complex systems or as an auxiliary tool to expand the capabilities of your application.
-Practical use for many years.
+  -  Can be used to create complex systems or as an auxiliary tool 
+  -  Microsoft Office applications receive powerful support in the form of the MUMPS data server and language
+  -  Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional interface via Excel
+  -  Convenient tool for teaching MUMPS
+
+To work with mobile devices, there is an option to simulate Excel-grid via browser.
