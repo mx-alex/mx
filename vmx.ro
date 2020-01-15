@@ -1,5 +1,5 @@
-akos  
-  MX* US* ZFIO ZSTU fir QQ bil fin alg 20200111 21:50:12 |TCP|9564|2036
+u127  
+  MX* US* ZSTU fir fin 20200115 20:05:03 |TCP|6124|1308
 MX
 MX ;[ 20191012 17:58:39 ]
  ; MSM, CACHE, GT.M, MiniM
@@ -206,14 +206,21 @@ comRtest(Port)
  q
 
 MX1
-MX1 ; ;[ 20191216 15:44:42 ]
+MX1 ; ;[ 20200115 12:58:33 ]
  ; MSM, CACHE, GT.M, MiniM
- ; vmx Copyright(c) SIA ENTERS  2005-2019
+ ; vmx Copyright(c) SIA ENTERS  2005-2020
+ q
+trm ;
+ s io=$io OPEN io:(:80:"MA"):200 USE io:(:80:"RAWCD":"":32000:32000)
+ s ^mxMonito($$ts,"trm",$j)=io_"   terminal "
+ READ %:1     j:000 webChild:(:5:$io:$io)  s ^mxMonito($$ts,"trm",$j)=io_" %="_%
+ w "terminal-",%,!!!
+ h 1 g trm+2
  q
 c2(m,server,port,uci) 
  n %io,%,r s %io=$p s %15=$c(15)
  i $g(port) CLOSE "|TCP|2" d  i '%chanel2 u %io s %mxWarng(-1)=%chanel2 q %chanel2
- . s %chanel2="ERROR ::: -- not connected to :"_server_":"_port_":"_uci 
+ . s %chanel2="ERRO"_"R ::: -- not connected to :"_server_":"_port_":"_uci 
  . OPEN "|TCP|2":(server:port::$c(15)):2 s %="w $j,"" "",$zv ;; UCI="_uci_"  "_%15
  . i $t USE "|TCP|2" d:$zv[-64  WRITE %,*-3 READ r:1 WRITE %,*-3 READ r:1 s %chanel2=$e(r,1,$l(r)-2)_" "_server_":"_port_":"_uci q
  .. i $zv["Ca" n curdev x "s curdev=##class(%SYS.NLS.Device).%New() s curdevState0=curdev.State,curdev.State=0,curdevState1=curdev.State"
@@ -221,8 +228,8 @@ c2(m,server,port,uci)
  i r u "|TCP|2" w m," ; ",$c(0),%15,*-3 r r:7 s r=$e(r,1,$l(r)-2)
  u %io i m[(";CL"_"OSE;"),%chanel2 CLOSE "|TCP|2" s %chanel2=";CLO"_"SED; "_%chanel2
  q r
-tcpMiniM ; vmx-CONCURRENT-SERVER with tcp port 2233  (minim)  ;
- k ^mxMonito s io="|TCP|:2233"  s ^mxMonito($$ts,1,-$j)="START tcpMiniM "
+tcpMiniM ; vmx-CONCURRENT-SERVER with tcp port 5233  (minim)  ;
+ k ^mxMonito s io="|TCP|:5233"  s ^mxMonito($$ts,1,-$j)="START tcpMiniM "
  OPEN io ;;  USE io:(/MODE="rwb":/TERM=$c(0))
 tcpLmi k:000 ^oooRead1 s $ztrap="tcpErrMi^MX1"
  USE io:/ACCEPT ;;  h 1 r *%1 ;; i %1<0 g tcpLmi 
@@ -243,7 +250,7 @@ web s io="|TCP|"_$j OPEN io:(:80:"MA"):200 USE io:(:80:"RAWCD":"":32000:32000)
  h 1 g web+2
  q
 webChild USE $io:(:80:"RAWCD":"":32000:32000) s:000 ^mxMonito($$ts,0,-$j)=$io
- READ:1 ooo s o=$p($p(ooo,"MX=",2),"-"),port=$s(+o=3:2233,$zv[-64:2264,1:2232),uci=$p(o,+o,2,22)
+ READ:1 ooo s o=$p($p(ooo,"MX=",2),"-"),port=$s(+o=3:5233,$zv[-64:2264,1:2232),uci=$p(o,+o,2,22)
  s %USID="web",shee=0,^mxMonito($$ts,0,-$j)=$io_";;"_ooo
  i 'o s ooo="",port=80,uci="%SYS" d  n o g webReply
  . s:o["{" o=$$u8^MXF(.o) s o=$p(o,";;") s:'$l(o) o="s ooo=1234567890"
@@ -264,7 +271,7 @@ tcpErrMi h 1 x "s view=$view(""err"",1)" s ^mxMonito($$ts,999,$j)=$ze_"  io="_$g
  q
 tcpError h 1 s ^mxMonito($$ts,999,$j)=$ze_"  io="_$g(io)
  c:$d(io) io h 1   ;; goto tcp+2
-tcp ; MX-CONCURRENT-SERVER with tcp on port 2232(32-bit) or 2264(64-bit) or 2233(minim) or 5264 (IRIS) ;
+tcp ; MX-CONCURRENT-SERVER with tcp on port 2232(32-bit) or 2264(64-bit) or 5233(minim) or 5264 (IRIS) ;
  g:$zv["MiniM" tcpMiniM  g:$zv["MS" tcpMSM  q:$zv'["Ca"&($zv'["IRIS")  s io="|TCP|"_$j
  i $zv["IRIS" OPEN io:(:5264:"MA"):200  USE io:(:5264:"RAWCD":"":32000:32000) g tcpL
  OPEN:$zv'["-64" io:(:2232:"MA"):200   OPEN:$zv["-64" io:(:2264:"MA"):200 
@@ -409,14 +416,14 @@ tcpChilRformsm ;; not correct  work
  q
 mxErrChR n e
  s ^mxMonito($g(ooooREAD)+.1,$g(%USID)_" ::: ERROR in : ")=$g(%1omCode)_$ze_" $zt="_$zt_" %mxForma="_$g(%mxForma)_" y="_$g(%YXy)_" x="_$g(%YXx),$zt=""
- s e=$tr(@$zr,$c(0))_" ERROR ::: "_$ze_" ::: "_$g(%1omCode) s:$zv["U) " e=$$U8^MXF(e)
+ s e=$tr(@$zr,$c(0))_" ERRO"_"R ::: "_$ze_" ::: "_$g(%1omCode) s:$zv["U) " e=$$U8^MXF(e)
  s %=$ze,^mxMonito($$ts,$g(%USID)_" ::: ERROR in : ")=e_" ::: "_% s e=$$trw^UST(e,"<mx","<.mx")
  i %["<DISCONNECT>" close $p hang 1 HALT   ;; hang 120
  i %["<WRITE>" close $p hang 1 HALT   ;; hang 120
- s $ec=""  w:'$d(%mxWeb) "ERROR ::: ",$$trw^UST(e,"<mx","<.mx"),0,$c(0),$c(15),*-3 
+ s $ec=""  w:'$d(%mxWeb) "ERRO"_"R ::: ",$$trw^UST(e,"<mx","<.mx"),0,$c(0),$c(15),*-3 
  s %=$c(13)_$c(10)
  i $d(%mxWeb) s %mxWeb="HTTP/1.1 200 OK"_%_"Content-type: text/html"_%_"Access-Control-Allow-Origin: *"_%_"Cache-Control: no-cache"_%_"Content-Length: "
- i $d(%mxWeb) s Html=$g(YX)_";"_$g(%USID)_";"_$g(%mxSheet)_";=ERROR ::: "_$$U8^MXF(e) w %mxWeb_($l(Html)+1)_%_%_Html,$c(0),*-3  s ooo=""  g tcpChil2   ;;; HALT
+ i $d(%mxWeb) s Html=$g(YX)_";"_$g(%USID)_";"_$g(%mxSheet)_";=ERRO"_"R ::: "_$$U8^MXF(e) w %mxWeb_($l(Html)+1)_%_%_Html,$c(0),*-3  s ooo=""  g tcpChil2   ;;; HALT
  I %["<NAMESPACE>" h 1 close $p h 1 HALT
  g tcpChilR
  q
@@ -2509,31 +2516,37 @@ eqvTree2(z1,z2)
  q:%2<0 %2  q 0
 
 MXterm
-MXterm ;  ;[ 20200111 18:56:22 ]
+MXterm ;  ;[ 20200115 16:49:04 ]
  q
-jo(%comm) ;
- s %jobChild=0
- if %comm'["; readTRM ;" j job(%comm,%USID):(:1):1 s %jobChild=$ZCHILD
+jo(%comm) 
+ s %jobChild=0 s ^ERR=%comm
+ if %comm'["; readTRM ;",%comm'["^",%comm'[":" x %comm q
+ if %comm'["; readTRM ;" job job(%comm,%USID):(:1):1 s %jobChild=$ZCHILD
  if %comm["; readTRM ;" k ^trm(%USID) s ^trm(%USID)=";;;"_$p(%comm,"; readTRM ;")
  f %=1:1:99 s o=$o(^trm(%USID,""),-1)  h .1  if o,$o(^trm(%USID,""),-1)=o q
- i 'o,%jobChild w "  !! runing process = ",%jobChild
- w "^trm(%USID)" 
+ i 'o,%jobChild w "  !! running process = ",%jobChild
+ w "^trm(%USID)"  if $$RestMem^USX(%USID,"trm",$j)
  q
 job(%comm,%USID) 
- s %io=$io,%zt=$zt,%B=$c(254)  k ^trm(%USID) k ^ERR i '$l(%comm) s ^trm(%USID)="" q 
+ s %io=$io,%zt=$zt,%B=$c(254)  k ^trm(%USID) k ^oAllVars(%USID,"trm") 
  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
- s %oo="",$zt="er^MXterm",wwww=0 
- i %comm[" p  "!(%comm[" P  "),%comm'["""" d  i 111
- . o 2:($j:1) u 2 k ^SPOOL($j)
+ s %oo="",$zt="er^MXterm",wwww=0 ;; o "|TRM|"::1 j j2:(:5:"|TRM|"):1 c "|TRM|" 
+ i %comm[" p  "!(%comm[" P  ")!(%comm["zw  ")!(%comm["w  "),%comm'["""" d  i 111
+ . o 2:($j:1):"^MXterm"  u 2::"^MXterm"  k ^SPOOL($j)
  . x %comm  s:'$l($g(%oo)) %oo=""
- . c 2 u %io m ^trm(%USID)=^SPOOL($j) s %=$o(^SPOOL($j,""),-1) k ^trm(%USID,%)
- else  u 0::"^trm" D $ZU(82,12,1) x %comm
+ . c 2 u %io m ^|%zns|trm(%USID)=^|%zns|SPOOL($j) s %=$o(^|%zns|SPOOL($j,""),-1) k ^|%zns|trm(%USID,%)
+ else  o $io u $io::"^MXterm"  o:000 "|TRM|" u:000 "|TRM|"::"^MXterm" D $ZU(82,12,1) x %comm
  if '$d(%USID) d oo zn %zns s %j=1,%B=$c(254)
  D $ZU(82,12,0) u 0 s %=0 f o=1:1 s %=$o(%oo(%)) q:'%  s ^|%zns|trm(%USID,%)=%oo(%)
- s ^|%zns|trm(%USID,o+100)=$g(%oo) k %oo
+ s ^|%zns|trm(%USID,o+100)=$g(%oo) k %oo   i $$SaveJob^USX(%USID,"trm",$ZPARENT)
  q
-er d oo  s $zt=$g(%zt)
+er d oo  s $zt=$g(%zt) if $l($g(%USID))*$l($g(%zns))=0 halt
  s %oo=$g(%oo)_$ze s ^|%zns|trm(%USID,999999)=%oo
+ q
+j2 s ^ERR("j2")=$j o "|TRM|:|"_j2 u "|TRM|:|"_j2 s ^ERR("$io")=$io
+ q
+killJob(j) 
+ do $System.Process.Terminate(j)
  q
 oo if '$d(%USID) s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
  q
@@ -2542,7 +2555,7 @@ wstr(%exsp)
  s %oo=$g(%oo)_%exsp,wwww=$g(wwww)+1,$x=$x+$l(%exsp)
  i $g(%j)-1 s %=$o(^|%zns|trm(%USID,""),-1),^|%zns|trm(%USID,%+1)=%oo,%oo=""
  i $l(%oo)>999 s %=$o(%oo(""),-1),%oo(%+1)=%oo,%oo=""
- D $ZU(82,12,1) u 0::"^trm"
+ D $ZU(82,12,1) u 0::"^MXterm"
  q
 wnl D oo,$ZU(82,12,0) w:000 !  D $ZU(82,12,1) s %oo=$g(%oo)_$c(10),$x=1
  q
@@ -2558,20 +2571,20 @@ rstr(len,to)
  ;; if $D(len)&&$D(to) s %input=$e(to_"ooooooooooooooooooooooooo",1,len) g rstre
  ;; i $D(len) s %input=$e("ooooooooooooooooooooooooo",1,len) g rstre 
  ;; i $D(to) s %input=to_"sek-ok-Read-to" g rstre
- ;; i $zv'["MiniM" READ %:3 s:%="" %="trm"  u $io::"^trm"
+ ;; i $zv'["MiniM" READ %:3 s:%="" %="trm"  u $io::"^MXterm"
  s ^|%zns|trm(%USID)="?"_$zn,%input=""
  s %=0 f o=1:1 s %=$o(%oo(%)) q:'%  s ^|%zns|trm(%USID,%)=%oo(%)
  s ^|%zns|trm(%USID,o+10)=$g(%oo) k %oo s %oo=""
  f %=1:1:19 h 1 s o=$g(^|%zns|trm(%USID)) i $e(o,1,3)=";;;" s %input=$e($e(o,4,999),1,len),^|%zns|trm(%USID)="" q
 rstre D $ZU(82,12,1)
  q %input
-rchr(to) ;
+rchr(to) 
  D $ZU(82,12,0) d oo  
  i $d(to) s %inp=$a(8)  ;; R *data:to . ;
  i '$d(to) s %inp=$a(9)  ;; R *data
  D $ZU(82,12,1) 
  q %inp
-readTest ;
+readTest 
  zn "%SYS"
  w 222222222,$zn," $znspace="_$znspace_"  %zns="_$g(%zns)
  read RRR s ^|%zns|ERR("RRR")=RRR
@@ -2579,59 +2592,86 @@ readTest ;
  if RRR=9 s ^|%zns|ERR(7777)=$l($g(%oo))  zw ^|%zns|AL ;; s ^ERR(8888)=$l($g(%oo))
  zn %zns
  q
+ ;; ^%X364     localhost:57773/csp/docbook/DocBook.UI.Page.cls?KEY=GIOD_termio
 
-QQ
-QQ ; ;[ 20200111 21:06:21 ]
- ; MSM, CACHE, IRIS, GT.M, MiniM
- ; VMX  Copyright(c) SIA ENTERS  2005-2020
-0 s %j=0,%B=$c(254) ;;  D E0^USb,^USDOS
-1(%USID) ; start        MX_FORMA_xxx.XLSmb#sheets("1_")
- ;; x:$zv'["GT.M"&($zv'["MiniM") "B 1"
- K (%j,%USID,%unicode,%unicodx,%LANG,%mxWeb,ECB90) s (%,%USID)=$g(%USID,"xxx")
- k ^MsgVM(%),^MsgMV(%),^MsgMVM(%),^MsgVMV(%),^MVinfo(%),^rM(%),^mxM(%),^US($j),^oMX(%),^ooMX(%),^JOB(%)
- s ^JOB(%USID)=$j,^JOB(%USID,$j)=$h,%B=$c(254),%j=$g(%j)
- i $$NewDate^MXD()
-start ;; q:$d(flgPlusM)
- s %1="Firma" d ^USX i $d(^Org(1)),$$firma^fir(1)
- s %VaL=$s('$g(%gm):"EUR",%gm<201400:"LVL",1:$g(%VaL,"EUR")),xVAL=$s($l($g(xVAL))=3:xVAL,1:%VaL)
- s %B=$c(254),mxConfig="" k koko,%koko d %lat^fin q:'$d(^koko)!'$d(^konti)
- s (xC,xDOK,xf,xv,xCe,xCh,xT,xO,xmsm,xatb,xInv)=""
- s vbak=$g(^oVVVo(%USID)) i $g(%gm)'?6n,$$NewDate^MXD()
- i $l($g(%CvRee))>3 q:$g(mxConfig)[":CURRENCY="
- n oo,o,% s oo=":CURRENCY=LVL:",o="",d8KoFiDo=0
- i %gm>201400 s d8KoFiDo=20131231,oo=":CURRENCY=EUR:" i '$d(^VAL("Ls",20140101,"-")) s @$zr=%B_+$j(1/.702804,0,7)_%B_.702804
- f  s o=$o(^VAL(o)) q:'$l(o)  s:o?3A oo=oo_o_":"
- s $p(mxConfig,%B,15)=oo
- f o=1:1:9 s $p(mxConfig,%B,o)=$p($g(^mxConfig(1,"mxConfig",o,1)),%B,2)
- i mxConfig["NOz5" s flagNOz5=-1 k ^z5
- s $p(mxConfig,%B,10)=$g(^SetATG("mxConfig"))
- i $d(^SetATG("fir : firma")) s $p(mxConfig,%B,11)=":fir : firma:"
- ;; i $d(^SetATG("d8min")) s $p(mxConfig,%B,12)=":d8min="_+^("d8min")
- s %="",%CvRee="*" f  s %=$o(^konti(%)) q:%=""  d
- . s o=$p(^konti(%),%B,4) i $l(o)>2,$d(^VAL(o)),o'[%VaL s %CvRee=%CvRee_-%_o ;;,%CvRee(%)=o
- f %="VIDkods","kas1" i $d(^mxConfig(1,"firma",%,1)) s @%=$p(^(1),%B,2)
- s kokoKorr=$d(^kokoKorr)
- q
-GetUser() ; http://www.georgejames.com/ws/HandT010.htm
- q ""
-k q
-C 
-c ; clear all !!  for localhost only 
- k ^M,^US,^ParVM,^MsgVM,^MsgMV,^MsgMVM,^MsgVMV,^rm,^UTILITY
- k ^Err,^Er,^ERROR,^mvars,^mxM,^r,^rr,^rrr
- k ^menu,^ReSheet,^ReadSh
- i $zv'["Ca",$zv'["MiniM",$zv'["IRIS" d
- .s %g="^" f  s %g=$o(@%g) q:%g=""  s %g="^"_%g i %g["^o" k @%g
- i $zv["Ca"!($zv["IRIS") d
- .n gd x "d GetDir^%GD($zu(5),""gd"")"
- .s %g="" f  s %g=$o(gd(%g)) q:'$l(%g)  i %g["^o",%g'["^odd" k @%g
- .s %g="" f  s %g=$o(gd(%g)) q:'$l(%g)  i %g["^us" k @%g
- s zr="^AL" f  s zr=$q(@zr) q:zr=""  d
- .  k:$tr($qs(zr,1)," :`~!@#$%^&*()_+=,.:""/?,","************************")["*" @zr  k:$qs(zr,1) @zr
- .  k:".0-^"[$e($qs(zr,1)) @zr k:$$Uu^MXF("1.{1055}{1048}{1043}")[$e($qs(zr,2)_0) @zr k:$$Uu^MXF(".{1055}{1048}{1043}")[$e($qs(zr,3)_1) @zr
- .  k:$qs(zr,4)>80 @zr  k:$qs(zr,2)="T" @zr k:$qs(zr,2)="GL" @zr k:$qs(zr,2)="G" @zr
- .  k:$qs(zr,4)="%Gf" @zr  k:$qs(zr,2)="%FUN" @zr k:$qs(zr,2)="%Tf" @zr
- q
+APC 
+BEL 
+CBT(%1) ; $X
+CCH 
+CHA(%1) ; $X
+CHT(%1) ; $X
+CNL(%1) ; $X, $Y
+CPL(%1) ; $X, $Y
+CPR 
+CTC(%1,%2,%3,%4,%5,%6,%7,%8,%9) 
+CUB(%1) ; $X
+CUD(%1) ; $Y
+CUF(%1) ; $X
+CUP(%1,%2) ; $X,$Y
+CUU(%1) ; $Y
+CVT(%1) ; $Y
+DA 
+DAQ(%1,%2,%3,%4,%5,%6,%7,%8,%9) 
+DCH(%1) 
+DCS 
+DL(%1) 
+DMI 
+DSR(%1) 
+EA(%1) 
+ECH(%1) 
+ED(%1) 
+EF(%1) 
+EL(%1) 
+EMI 
+EPA 
+ESA 
+FNT 
+GSM 
+GSS 
+HPA(%1) ; $X
+HPR(%1) q  ; $X
+HTJ s $x=$x+4 q  ; $X
+HTS s $x=$x+4 q  ; $X
+HVP(%1,%2) ; $X, $Y
+ICH(%1) 
+IL(%1) 
+IND ; $Y
+INT 
+JFY 
+MC 
+MW 
+NEL ; $X, $Y
+NP(%1) 
+OSC 
+PLD ; $Y
+PLU ; $Y
+PM 
+PP(%1) 
+PU1 
+PU2 
+QUAD 
+REP(%1) ; $X, $Y
+RI ; $Y
+RIS ; $X=0, $Y=0
+RM(%1,%2,%3,%4,%5,%6,%7,%8,%9) 
+SEM 
+SGR(%1,%2,%3,%4,%5,%6,%7,%8,%9) 
+SL 
+SM(%1,%2,%3,%4,%5,%6,%7,%8,%9) 
+SPA 
+SPI 
+SR 
+SS2 
+SS3 
+SSA 
+ST 
+STS 
+SU 
+TBC 
+TSS 
+VPA(%1) ; $Y
+VPR(%1) ; $Y
+VTS 
  q
 
 US
@@ -2880,7 +2920,7 @@ tAccessE s $zt=%zt w ";",$c(0) q 0 ; not accessed
  q
 
 USDOS
-USDOS ; MX.Shell  ;[ 20200111 21:49:06 ]
+USDOS ; MX.Shell  ;[ 20200113 17:35:03 ]
  ; MSM, CACHE, IRIS, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2020
  ; 
@@ -3175,12 +3215,12 @@ ErGSend
  ..i %=%r k %r(%) q
  ..i %r["*",1_%[(1_$p(%r,"*")) k %r(%)
  q:$g(%L)_%RL["?"
- s %file=$p(%file,"."),%CMT=$g(%MET)_" "_$g(%USER)_" "_%RL_" "_$$ts^MX1_" "_$io
+ s:%file'[".r" %file=$p(%file,".") s %CMT=$g(%MET)_" "_$g(%USER)_" "_%RL_" "_$$ts^MX1_" "_$io
  s %=%file,$p(%,"\",$l(%,"\"))="x.x"  q:$$zos(2,%)=-5  
  d OpenUseW
  w $g(%USID)_"  ",!,%CMT n r 
- s %r="" f n=1:1 s %r=$o(%r(%r)) q:%r=""  d  q:$zc
- .;; k r x "zl @%r f %=0:1 s t=$t(@%r+@%) q:'$l(t)  s:t'["" ""&% t=t_"" ""  s r(%)=t"
+ s %r="" f n=1:1 s %r=$o(%r(%r)) q:%r=""  d  ;;  q:$zc
+ . ;; k r x "zl @%r f %=0:1 s t=$t(@%r+@%) q:'$l(t)  s:t'["" ""&% t=t_"" ""  s r(%)=t"
  .k r f %=0:1:999 s t=$t(+%^@%r) i $l(t) s r(%)=t_$s(t'[" "&%:" ",1:"")
  .f %=0:1 s t=$g(r(%)) q:'$l(t)  s t=$$U^MXF(t) s:%RL["-msm" t=$$Uu^MXF(t) w !,t
  .w ! q:'$zc   ;;  q:%j
@@ -4291,7 +4331,7 @@ trw(t,w1,w2,n)
  q
 
 USX
-USX ; MX-SERVER [ 01/10/2006  10:11 PM ]  ;[ 20191107 20:16:20 ]
+USX ; MX-SERVER [ 01/10/2006  10:11 PM ]  ;[ 20200115 00:16:55 ]
  ; MSM, CACHE, GT.M, MiniM
  ; MX  Copyright(c) SIA ENTERS  2005-2019
  ; 
@@ -4486,10 +4526,12 @@ VarsMe1(%zr)
  .. s ^(%1)=$e(%3,1,250),%3=$e(%3,251,9999),%1=%1+250
  s ^(%1)=%3_$c(4)
  q $d(@%zr)
+SaveJob(%1,%2,LiOfMvar) 
+ n %mxWeb     job SaveMem(%1,%2,$ZPARENT):(:1):1   q $d(^oAllVars(%1,%2))
 SaveMem(%1,%2,LiOfMvar) 
  s:'$d(%2) %2=$g(%1),%1=%USID
  n % s:0[$g(%2) %2=0 s:0[$g(%1) %1=%USID i %2'<0,$d(%mxWeb) q %2
- k ^oAllVars(%1,%2) s ^(%2,"$j")=$j
+ k ^oAllVars(%1,%2) s ^(%2,"$j")=$j i $g(LiOfMvar) s ^("$j")=+LiOfMvar,LiOfMvar=""
  i $l($g(LiOfMvar)) d  q $g(%11)
  . i LiOfMvar="%FILE" s %=$tr(%LI(%FILE),",~"," ") q:'$l(%)  s LiOfMvar=%_" %xgl() %xglm() %G() %W() %FILE %gFILE %GM %I %LG %K %KEM %N %B %SF %NEW %LIv" 
  . s ^oAllVars(%1,%2,-1)=LiOfMvar
@@ -4522,22 +4564,24 @@ RestAdd(%1,%2)
  i $d(^oAllVars(%1,%2,1))
  n % s %=999 f  s %=$o(^(%)) q:'$l(%)  i $e(%)'="$",'$d(@%) m @%=^oAllVars(%1,%2,%)
  q 1
-RestMem(%1,%2,%) 
- s:'$d(%2) %2=$g(%1),%1=%USID
+RestMem(%1,%2,%3) 
+ s:'$d(%2) %2=$g(%1),%1=%USID s %3=$g(%3) n %
+ i %3>0,$g(^oAllVars(%1,%2,"$j"))=%3 kill (%1,%2,%3,%USID,%mxWeb,%mxSheet)
  i %2<0,$d(%mxWeb),$j=$g(^oAllVars(%1,%2,"$j")),$g(%session)=$g(^("%session")) q $j
  s:0[$g(%1) %1=%USID s:0[$g(%2) %2=0 ;; i %2'<0,$d(%mxWeb) q %2
- h:'$d(^oAllVars(%1,%2,"$j")) 1   q:'$d(^oAllVars(%1,%2,"$j")) -1  
- i '$d(%mxWeb),^("$j")-$j q -1
+ h:'$d(^oAllVars(%1,%2,"$j")) .1   q:'$d(^oAllVars(%1,%2,"$j")) -1  
+ i %3>0,^("$j")-%3 q -%3_" -- saved.job="_^("$j")
+ i %3'>0,'$d(%mxWeb),^("$j")-$j q -1
  i $l($g(^oAllVars(%1,%2,-1))) n %11,LiOfMvar s LiOfMvar=^(-1) d  g RestMemE
  . f %11=1:1:$l(LiOfMvar," ") s %=$p(LiOfMvar," ",%11) i $l(%),%'="%" s %=$p(%,"("),@%=$g(^(%)) i $d(^(%))>1 k @% m @%=^oAllVars(%1,%2,%) i $d(^oAllVars(%1,%2,%))
  i $zv'["MS" s %=999 f  s %=$o(^(%)) q:%=""  d:$e(%)'="$"
  .q:" oo o ERR mxMsgBox mxERROR %USID %RestMem % %1 %2 "[(" "_%_" ")
- .i $e(%)="%",'$d(%mxWeb),$d(@%) q:"%LANG %YX %omPrint %mxSheet %mxForma %XD81 %XD82 %gm %DatUMs %DATUMS %MENESI %GADS %DAYS %YEAR %XD81m %XD82m "[(%_" ")
+ .i %3'>0,$e(%)="%",'$d(%mxWeb),$d(@%) q:"%LANG %YX %omPrint %mxSheet %mxForma %XD81 %XD82 %gm %DatUMs %DATUMS %MENESI %GADS %DAYS %YEAR %XD81m %XD82m "[(%_" ")
  .i $d(^(%))=1 s @%=^(%) q
  .k @% m @%=^oAllVars(%1,%2,%)
  i $zv["MS" s %=999 f  s %=$o(^(%)) q:%=""  d:$e(%)'="$"
  .q:" oo o ERR mxMsgBox mxERROR %USID %RestMem % %1 %2 "[(" "_%_" ")
- .i $e(%)="%",$d(@%) q:"%LANG %YX %omPrint %mxSheet %mxForma %XD81 %XD82 %gm %DatUMs %DATUMS %MENESI %GADS %DAYS %YEAR %XD81m %XD82m "[(%_" ")
+ .i %3'>0,$e(%)="%",$d(@%) q:"%LANG %YX %omPrint %mxSheet %mxForma %XD81 %XD82 %gm %DatUMs %DATUMS %MENESI %GADS %DAYS %YEAR %XD81m %XD82m "[(%_" ")
  .k @% i $d(^(%))#2 s @%=^(%) d:$l(@%)=500
  ..n %22
  ..f %22=501:500 q:'$d(^oAllVars(%1,%2,%,%22))  s @%=@%_^(%22)
@@ -4927,570 +4971,9 @@ SelALGlo(%all)
  . q:'$g(%all)  i '$d(@%1) s %SEL($c(254)_%)=^AL(%,"NAME")
  q $d(%SEL)
 
-ZFIO
-ZFIO ; ATG.Alga/pers. ; [ 02/23/2006  5:15 PM ]  ;[ 20190118 18:52:33 ]
- ; MSM, CACHE, GT.M, MiniM
- ; VMX inCellSoft  Copyright(c) SIA ENTERS  2005-2019
- ; 
- N %R,%,d,%n,%1,%2,n,nn,nnn,f,max,o,DCH0
- k CF,DCH,du,dp,diPak,kPak,Amats,SN,zF,kFIO,paseDati
- i '$d(%XG("pers")) s %1="pers" d ^USX
- S %R=$G(^pers(+$g(T))) s:'$l(%R) %R=$g(^persArhi(+$g(T))) s:$l(%R)=500 %R=%R_$g(^(+T,501))_$g(^(1001)) s:%R[$c(10) %R=$tr(%R,$c(10),"^")
- s zF=0 X %XG("pers")
- s:DCH["k" DCH=$$trw^UST(DCH,"k","200"),$p(%R,%B,8)=DCH s DCH0=DCH
- ; flagDCH !! (not flagCDR):
- i $g(flagDCH),$l(DCH,-%gm)>2 f o=1:1 d  q:%2'[-%gm  s DCH=%1_%gm_%2
- .  s %1=$p(DCH,-%gm),%2=$p(DCH,-%gm,2,99)
- f o=2:1 s %n=$tr($p(%LI("pers"),",",o),"~") q:'$l(%n)  d
- . i @%n[" " s @%n=$p(@%n_"          ","          ") s:'$l(@%n) @%n=0
- . f  q:@%n_"!!!"'["^!!!"  s @%n=$e(@%n,1,$l(@%n)-1)
- s atbrkods=$p(SN,"^",$l(DCH,"^")),%2=0 
- f n=1:1:$l(DCH,"^") s %1=%2,(%,%2)=$p(DCH,"^",n) d   
- .i $zr'["Arh" s:$tr(%1,"-")>$tr(%2,"-") %mxWarng(+T)=%1_"--"_%2_" -- uz "_$zr_" datums ievad{299}ts nepareizi (nevis hronolo{291}iski) ! "_DCH 
- .s:-%[-9 %=19_%  s:%[-9 %=-19_-%  s d(+%)=+%
- .s %=+$p(%_" "_$p(kPak,"^",n),"-",2) i %>19600000 s d(%+.2)=-% q
- .s %=+$p($p(kPak,"^",n),"-",3)       i %>19600000 s d(%+.2)=-% q
- s %=1,(dp,du,DFIO)=0,dpu=DCH
- ;  i $g(flagpers) k pers1 m pers1=d 
- f  s %=$o(d(%)) q:%=""  d:%gm_33>%
- .i d(%)>19600000 s DCH(%)=d(%)
- .i d(%)>19600000 s dp(%)=% s:dp["-"!'dp dp=%,DFIO=%
- .i d(%)<-19600000 s (du,du(%\1))=%\1,dp=dp_"-"
- s:du<dp du=0 i du,-du'[-%gm s DFIO=0
- f o=2:1 s %n=$tr($p(%LI("pers"),",",o),"~") q:'$l(%n)  i %n'="DCH" d:@%n["^"!(%n="SN")
- .s n=$g(@%n) k @%n s:$e(n)="^" n="-"_n s %1="?",nn="nn?"
- .f %=1:1:$l(DCH,"^") d
- ..s:$p(n,"^",%)="" $p(n,"^",%)=%1
- ..s nnn=$g(@%n),@%n=$p(n,"^",%) s:@%n'="" %1=@%n
- ..s @%n=$tr(@%n,";",":"),d=+$p(DCH,"^",%) i %n="SN",SN,d>0,SN<9 s SN=$p(SN,+SN,2,9) s:SN="" SN="-"
- ..i d<0 s d=-d i %n="SN",SN s:SN<0 SN=$tr(SN,"-") i %>1 s SN=+SN_$s(nn>1:$p(nn,+nn,2,9),1:" "_nn)
- ..  s:-d[-9 d=19_d q:d<19600000
- ..i d>(%gm_33) s:nnn'="" @%n=nnn q
- ..i %>1 s:@%n="" @%n=nn
- ..x "s "_%n_"(d)=@%n" s nn=@%n
- S TARF="",ADRF=ADR
- s SN=$tr(SN,"|") s:+SN=1 SN=$e(SN,2,99) s:SN="" SN="-"
- i SN["i"!(SN["r") s %=0  d  s:% ^persO(T,%gm*100,"SNxxxPAK")=%,^persO(T,$e(DCH,1,6)*100,"SNxxxPAK")=%
- . s:SN["i2"!(SN["i3")!(SN["iii") %="090" i SN["r" s %=$s(SN["rv":"091",1:"092")
- s %=Fi_" ",sex=$s(%[" v ":"v",%[" s ":"s",%["s ":"v",1:"s")
- S FIO=Fi,Fi=$p(Fi," ",1,2) s:$e(Fi)=" " Fi=$e(FIO,2,99) i $e(Fi,2,99)'[" " s Fi=$tr(Fi," ")_" "_$tr(FIO," ") s:$l(Fi)<3 Fi=$tr(FIO," ")_+T_" "_+T_$tr(FIO," ")
- s %=19_$e(KODS,5,6)_$e(KODS,3,4)_$e(KODS,1,2),ageGG=%XD82-%\10000,dzimDat=%
- k mAlga,mKoef m mAlga=diPak,mKoef=kPak
- s %=$o(DCH(""),-1) S:% DCH=DCH(%) s DCH=+DCH
- i mxConfig[":LM:" s UB=+$p(CF,".",2),CF=CF\1 i 'DFIO,T,$d(^AM(T,%gm)) d
- . s o=$g(^(%gm,242)) k:o<.001 ^(242) s:$d(^AM(T,%gm)) DFIO=%gm_33
- s (VEF,Cf,VED)=CF,KAF=Amats,Agrupa=Amats
- i Amats,Amats<99 s (VED,VEF)=+Amats,Amats=$p(Amats,+Amats,2,9)
- i Amats>99 s:Amats?4n&'zF zF=+Amats,Amats=$p(Amats,+Amats,2) s Agrupa=$p(Amats,+Amats)_+Amats,Amats=$p(Amats,+Amats,2,9)
- s:Fi["VAKANCE"!($l(Fi)<3) DFIO=0 s:Amats="" Amats=0
- i $l($g(paseDati))<3 s paseDati=IZD
- k nereKODS s %=$p(ADR,",") i $l(%)=2,$d(^kNo("VK",%)) s nereKODS=%_$p(KODS,",",2),KODS=$p(KODS,",")
- s kFIO=0 i $g(persAizs)<0 s KODS="xxxxxx-xxxxx",(paseDati,Amats,Fi,ADR)="Person{257}ldatu Aizsadz{299}ba"
- i -du'[-%gm,-dp'[-%gm s kFIO(%gm)=1,kFIO=1 q
- ;
- s %1=$o(dp(%gm*100),-1),%2=$o(du(%gm*100),-1),f=%2<%1
- s:'%2 f=1 s:'%1 f=0
- s max=28+$e(3_($e(%gm,1,4)#4=0)_3232332323,$e(%gm,5,6))
- f %=%gm*100+1:1:%gm*100+max d
- . i $d(du(%)) s f=0,kFIO=kFIO+1 q
- . i $d(dp(%)) s f=1,kFIO=kFIO+1 q
- . s kFIO=kFIO+f
- s kFIO=kFIO/max s:kFIO>1!'kFIO kFIO=1
- s:SN["n" kFIO=1 s kFIO(%gm)=kFIO
- q
-T(T,%gm) 
- s %gm=$e(%gm,1,6) d ZFIO
- q Fi_" "_KODS_" "_Amats
-m(%gm) 
- s %gm=$e(%gm,1,6) d ZFIO 
- q ""
-pers 
- q
-IZD(iz0,iz,iz8) 
- n %,%1,%2,%3
- s iz=$e(100000000+iz,2,9),iz0=$e(100000000+iz0,2,9)
- s %3=$e(iz0,7,8)-$e(iz,7,8)
- s %2=$e(iz0,5,6)-$e(iz,5,6)
- s %1=$e(iz0,1,4)-$e(iz,1,4)
- s %3=$e(iz8,7,8)-%3,%2=$e(iz8,5,6)-%2,%1=$e(iz8,1,4)-%1
- i %1<0 s %1=%1+30,%2=%2-1
- i %2<0 s %2=%2+12,%1=%1-1
- s %=%1*100+%2*100+%3
- q %
-period(T,d1,%3) 
- n o,oo,ooo,ffff,m,periods,o1,o2,d1o,%R 
- i $g(d1)<1 s d1o=$g(d1),d1=%gm\100_"0101"
- s %R=$g(^pers(+T)) s:%R="" %R=$g(^persArhi(+T)) s:$l(%R)=500 %R=%R_$g(^(+T,501))_$g(^(1001)) s:%R[$c(10) %R=$tr(%R,$c(10),"^")
- s oo=$p(%R,%B,8),oo=$tr(oo,"^","|"),oo=$$trw^UST(oo,"-","|-")
- s oo=-2_"|"_$$trw^UST(oo,"||","|"),ooo=""
- s ffff=0 f o=1:1:199 s o1=$p(oo,"|",o),o2=$p(oo,"|",o-1) d:o1
- .i o1<0,-o1<d1 s ooo="" q
- .i o1>(d1-1),o2<-1,o1<(%XD82+.1) s ooo=ooo_$e(o1,7,8)_"."_$e(o1,5,6),ffff=1
- .i o1<0,-o1<(%XD82+1),-o1>(d1-1) s ooo=ooo_"-"_$e(o1,8,9)_"."_$e(o1,6,7)_" ",ffff=-1
- s o="01.01"
- s:ooo<0 ooo=o_ooo s ooo=$p(ooo_"   ","   ")
- i ffff>0!$g(%3) s ooo=ooo_"-"_($e(3_($e(%gm,1,4)#4=0)_3232332323,%gm#100)+28)_"."_$e(%gm,5,6)
- i $g(d1o)<0,'$g(%3) f o=$l(ooo," ")-1:-1:1 i $e($p(ooo," ",o),10,11)<$e($p(ooo," ",o+1),4,5) s ooo=$p(ooo," ",o+1,999) q
- q ooo_"."_$e(%gm,1,4)_".g."
-pers1(T) q 0
- ;
-pers0(T) q 0
-Fi(gm) n %R,Fi s:'$d(gm) gm=%gm
- S %R=$G(^pers(+$g(T))) s:%R="" %R=$g(^persArhi(+T)) s:$l(%R)=500 %R=%R_$g(^(+T,501))_$g(^(1001)) s:%R[$c(10) %R=$tr(%R,$c(10),"^")
- q:'$l(%R) +$g(T)_"-nav-sarakstaa -"_$g(T)
- s Fi=$p(%R,%B,2) q:Fi'["^" Fi  n DCH,n,% s DCH=$p(%R,%B,8),%R=Fi
- f n=1:1:$l(DCH,"^") s %=$p(DCH,"^",n) i %>0 q:$e(%,1,6)>gm  s:$l($p(%R,"^",n))>2 Fi=$p(%R,"^",n)
- q Fi
-
 ZSTU
 mx ; d TCPSTART^APIMGR  ;[ 20160203 14:57:53 ]
 tcp j tcp^MX1  j web^MX1
-
-alg
-alg ; ;  [ 03/25/2006  5:05 PM ]  ;[ 20190206 20:20:41 ]
- ; MSM, CACHE, MiniM
- ; vmx Copyright(c) SIA ENTERS  2005-2019
- ; 
-parm0 f %1="O","pers" d ^USX
- k ^ZCT d ZCT
- i $$Tf^ZT(%gm)
-parm1 
-algStart d %lat^MXF
- s Oparads=900,Osant=0
- s (hAM,h,%B("AM"))=$c(254),Oavban=903,Oalban=904
- S (Onod,On)=881,Or=799.5,Osoc=899,Oprof=890,Odividen=0
- s Os1=500,Os2=509,Ocomp=-1,Oalim=885,Okase=884,Osoda=886,Oavans=880
- s Malim=4,Msoda=5,Mnod=1,Msoc=3,Mprof=2,Matv=7,Mslim=6
- s Oatv="241 242 243",Osli="510 511 512",Osve=214
- i $g(%FIRMA)["UPTK" s Oatv="174 175 176",Osli="130 131 132"
- s t="Osant hAM On Or Osoc Oprof Os1 Os2 Okase Osoda Oavans Oatv Osli Osve Malim Msoda Mnod Msoc Matv Mslim"
- f %=1:1:$l(t," ") s %1=$p(t," ",%) i $d(^kNo("alga",%1)) s @%1=$p(^(%1),$c(254),2)
- s Onod=On 
- q
-ZCT N T S T=1  q:$g(^ZCT)=%gm  k ^ZCT
- F  S T=$O(^pers(T)) Q:'T  d ^ZFIO S ^ZCT(Cf,+T)=1
- S ^ZCT=%gm
- q
-
-bil
-bil ; ATG.bilance un PVN [ 04/26/2006  7:00 PM ]  ;[ 20190519 17:36:21 ]
- ; MSM, CACHE, GT.M, MiniM
- ; vmx Copyright(c) SIA ENTERS  2005-2019
- q
-q() i xf'="",$tr(firma,%LAT,%lat)'[xf q 1
- i 'xDOK,xDOK'="",DOKf'=xDOK q 1
- i xDOK,DOKf-xDOK q 1
- q 0
-%vv g @%V
-%I0 d %I0^fin q
-Kase d %I0,%I0^kas,KaseV^kas q
-atg 
-pps d %I0,ppsV^tirgus q
-pamk d %I0,%I0^pam,pamkV^pam q
-FRq 
-PAV 
-PPR d %I0,%I0^tirgus,PPRV^tirgus q
-Saiz7 
-Saiz d %I0,%I0^kas,SaizV^kas q
-vbak d %I0,vbakV^fin q
-ciko d %I0,cikoV^fin q
-alg d %I0,algV^zvn  q
-ppq6 
-ppq 
-ppf d %I0,%I0^fin,ppfV^fin q
-z5 
- Q:"LVL Ls EUR"'[xVAL  s koko1="z5"  i "EUR"'[xVAL,%gm>201400 q
- s %FILE="z5" d %I0,%I0^fin n T,%I,%I2,DOKf,DOK,firma,fir,kurs,d8,d s T=0
- s (d8,z5C)="",(piez,DOK)="z5",%1=99999999,%I="",%2=0,ob=0,NN=0 k obj
- f  s %I=$o(%tSelect(%I)) q:%I=""  s d=$qs(%I,1) i d?8n s:d<%1 %1=d s:d>%2 %2=d
- n d8maxVoo s d8maxVoo=%XD82 i %1<99999999 s d8=%1-.1,d8maxVoo=%2
- f  s d8=$o(^z5(d8)) q:d8>d8maxVoo!'d8  f  s %I=$o(^z5(d8,%I)) q:%I=""  i '$d(%tSelect)!$d(%tSelect(%I)) f  s z5C=$o(^z5(d8,%I,z5C)) q:z5C=""  d
- .  s r=^(z5C),%I2=%I q:$e(%I)'="^"  i '$d(@%I) k ^z5(d8,%I,z5C) q
- .  s s1z5=$p(r,%B,2),s2z5=$p(r,%B,3),kurs=$$vk^fin(s1z5_" "_s2z5,d8)
- .  s fir=$p(r,%B,4),firma=$p(r,%B,5),(DOK,DOKf)=$p(r,%B,6)
- .  s S=s1z5-s2z5,DK=$p(r,%B,7) i S<0 s S=-S,DK=$p(DK,"-",2)_"-"_$p(DK,"-")
- .  s %1=$p($e(%I,2,99),"("),%R=$g(@%I) q:%R=""  d
- . .   n DOK,DOKf,firma,fir d:'$d(%XG(%1)) ^USX  x %XG(%1)
- .  x xVw i $g(gramatos)>0 s %=$g(^gramatos(d8,%I)) d
- ..    i '$l(%) s ^(%I)=%B_DK_%B_S q
- ..    d kokoSave^fin 
- q
-Banka d %I0
-BankaV 
- s (OfirO,OfirmaO,DOKfin)="",d8KoFiDo=$g(d8KoFiDo,0) i d8KoFiDo'["-" s d8KoFiDo=0 s:%gm>201400 d8KoFiDo=20131231 
- s %RunQuit=0,oGlob=0,xLev="",ofir="",da=0,%XI=%XI(%FILE),%XG=%XG(%FILE)
- n K,T,fir,firma,DOKf,oI
- I $d(%tSelect) s %I="" d  q
- .f  s %I=$o(%tSelect(%I)) q:%I=""  i %I["^Banka(",$d(@%I) s oI=%I d BankaS s (OfirO,OfirmaO)=""
- s oI="^Banka" s:$g(d8KoFiDo) oI=oI_"(d8KoFiDo+.1)" s:$g(xd8start)?8n %I=oI_"("_xd8start_")"
-BankaS d:$d(%tSelect)  i '$d(%tSelect) F  S oI=$q(@oI) Q:'$l(oI)  d  Q:'$d(oI)
- .s (%I,%I2)="^"_$e(oI,2,99)
- .X %XI s d8=d,xLev="" s:-d[-9 (d,d8)=19_+d s:$g(flagd8mM) (d,d8)=$$d8mM^fin(.d8,.%I) i d8\1>%XD82,'$d(%tSelect) k:'$g(flagd8mM) oI q
- .S DOKfin="",%R=$tr(@oI,$c(10),"^") x %XG s:'K K=9999 i xT,firma-xT q
- .q:-K[-261  i 'sD,'sK k @%I q           ;;;;;;; uz ^Kase !!!!!
- .s fir=firma,fir2="" s:OfirO=fir firma=OfirmaO
- .i $e(fir),fir[":",-xC[-26,$d(^pers(+fir))!$d(^persArhi(+fir)),$l($p(fir,":",2)) s fir=$p(fir,":",2,9),OfirO=""
- .s:OfirO'=fir!(fir>99) T=0,firma=$$firma^fir(fir),OfirO=fir,OfirmaO=firma
- .i '$p(sD,"^",2),'$p(sK,"^",2) d Banka1 q
- .n oRo,oo,o1 s oRo=%R,o1=$l(sD,"^"),xLevMax=$l(sK,"^")
- .s:xLevMax<o1 xLevMax=o1
- .f xLev=1:1:xLevMax s %R="" d
- .. F oo=2:1:$L(%LG(%FILE),",") s %n=$p(%LG(%FILE),",",oo),%=$tr(%n,"~"),o1=$p(@%,"^",xLev) d
- ...  s:o1="" o1=$g(oRo(%n,xLev-1)) s oRo(%,xLev)=o1
- .. s %n="" f  s %n=$o(oRo(%n)) q:%n=""  n @%n s @%n=oRo(%n,xLev)
- .. d Banka1
- q:$d(%tSelect)  k xLev
- q
-Banka1 
- s:DOK[" " DOK=$tr(DOK," ") s:DOK="-" DOK=-n s DOKf=DOK,Piez=piez,%=1
- g:" . 0 - -- "'[DOKfin DOKfin g:mxConfig[":DOKf=DOK:" DOKfin
- i piez["," s piez=$$trw^UST(piez,", ",","),%=$l($tr(piez,"1234567890"_piez,"1234567890"))/$l(piez)
- i DOK["mu" s %1=$p(DOK,"mu"),%2=$p(DOK,"mu",2) i $l(%1),$l(%2) s DOKf=%1,DOK=%2,%=0
- i piez[$$Uu^MXF("{275}{311}") f o="Nr. ","Nr.","r{275}{311}.","R{275}{311}.","r{275}{311}ins. ","R{275}{311}ins. ","r{275}{311}ins.","R{275}{311}ins." i piez[$$Uu^MXF(o) d  q
- . s %1=$p($p(piez,o,2)," ") s:%1="" %=$p($p(piez,o,2)," ",2)
- . i $l(%1),$l($tr(%1,1234567890_%1,1234567890))>3 s DOKf=%1,%=0
- i %,piez["p" d
- .i $e(piez)="p" s o=$p($p(piez,"p",2)," ") s:$e(o)="p" o=$e(o,2,999) i $l($tr(o,1234567890_o,1234567890))>3!o!($g(xLevMax)>1)!(%FIRMA["NIKSI") s DOKf=$tr(o," ") q
- .i $p(piez,"p",2) s DOKf=$p($p(piez,"p",2)," ") q
- .s o=$p($p(piez,"p",$l(piez,"p"))," ") s:o DOKf=o
-DOKfin i " . 0 - -- "'[DOKfin s DOKf=$tr(DOKfin," ")
- i DOKf["d",+$p(DOKf,"d",2)?8n s DOKf=$p(DOKf,"d")
- i "fk fdk"[%V,"5252 2222"[($e(K,1,2)_$e(xC,1,2)),$e(piez)="p" s DOKf=$e(piez,2,99)  ; UPTK 2019
-  ;; i -K[-52 s ^k52(DOK)=%I,^k52d(DOKf,d8_%I)=sD-sK_" "_sD_" "_sK
- s AvNor=$p($p(piez,"#",2)," ") i 'AvNor,$e(DOKfin)="#" s AvNor=$e(DOKfin,2,99)
- i bak=K,sK s %=$$vk^fin(sK,-d8) i %,%-1 s %=$p(%,+%,2),bak=bak_"."_%
- s atb=0 i T s atb=T
- i T,-K[-238,'AvNor,$g(xatb) d
- . s o=$o(^oToAvNor(%USID,T,d8-.1)) i $e(o,1,6)=$e(d8,1,6) s AvNor=^(o) q:xatb=T
- . s o=$o(^oToAvNor(%USID,T,d8+.1),-1) i $e(o,1,6)=$e(d8,1,6) s AvNor=^(o) q:xatb=T
- . s AvNor=-T
- q:$$q
- i $d(sD) s ss=sD+sK_" "_sD_" "_sK   i $$koko^fin(ss)
- q
-oCFDval 
- q  
-GaG ;\GALVENA GRAMATA\C,DK,mm\sd0,sk0,sd,sk\\@kn\k ^opaDokum(%USID)
- s mm=d8\100 s:d8<%XD81 mm=0 
- i C_DK["*" s C=$tr(C,"*"),DK=$tr(DK,"*") d
- . s %mxWarng(%I2)="{1087}{1086}{1078}{1072}{1083}{1091}{1081}{1089}{1090}{1072} {1080}{1089}{1087}{1088}{1072}{1074}{1090}{1077} {1082}{1086}{1085}{1090}* - {1079}{1074}{1077}{1079}{1076}{1086}{1095}{1082}{1072} {1085}{1077}{1076}{1086}{1087}{1091}{1089}{1090}{1080}{1084}{1072} "
- i $g(paDokume),mm s mm=mm_-d8_%I2,^opaDokum(%USID,$p(DK,"-"),mm,DK)=S,^opaDokum(%USID,$p(DK,"-",2),mm,DK)=S
-gg s o="-2680-8150-8170-8250-8270-8050-8190-" s:%V["G" o=o_"2380-" 
- f %=1,2 i o[$e($p(DK,"-",%),1,4) s $p(DK,"-",%)=$e($p(DK,"-",%),1,4)
- g dk^fin
-GraD ;\GALVENA GRAMATA (DOKUM)\C,DK,mm\sd0,sk0,sd,sk\\@kn
- s mm=d8_firma_%B_DOK_%B_DOKf s:d8<%XD81 mm=0
- g gg
-GGD ;\GALVENA GRAMATA (dienas)\C,mm,DK\sd0,sk0,sd,sk\\@kn
- s mm=d8 s:d8<%XD81 mm=0
- g gg
-GG ;\GALVENA GRAMATA\C4,kv,m\sd(*),sk(*),sd0(*),sk0(*)\C4-%ggmm\@kn\s sd00=0,sk00=0,iii=0 k f s:'xC xC=2310 k ^oMX(%USID)
- s %=%XD82\10000_"0101" i %<%XD81 n %XD81 s %XD81=%
- n m s m=d8\100 S:d8<%XD81 m=0,kv=0 s:m kv=m#100+2\3
- f %=1,2 s %1=$p(DK,"-",%) i $l($p(%1,".",2))>2 s %1=$p(%1,"."),$p(DK,"-",%)=%1
- s ooxC=xC i -xC[-8 n xC s xC=""
- d dkk^fin
- i '$d(f),S,DK-ooxC=0!($p(DK,"-",2)-ooxC=0) s f=1 d
- .  n S s S=.0000001 f m=%gm\100*100+1:1:%gm s kv=m#100+2\3 d dkk^fin
- q:xC  s o=""
- f  s o=$o(^M(%V,%ggmm,o)) q:'o  i o-ooxC k ^(o),^rm(%V,%ggmm,o)
- q
-GGL s C=C4 i %E="kv",'kv q
- s %l="sd sk "
- k msd d
- . n sd,sk,sd0,sk0 s %=$$rm^USX("C4")
- . s %="" f  s %=$o(sd(%)) q:%=""  d  i 'sd(%),'sk(%) k sd(%),sk(%)
- ..   s sd00=sd00+$g(sd0(%)),sk00=sk00+$g(sk0(%))
- . m msd=sd
- s (k,sd,sk,s)="",g=10 f  s k=$o(msd(k)) q:k=""  d
- . f %="sd","sk","sd0","sk0" s @%@(k)=$g(@%@(k))
- . s kk=$p(k,":",2)
- . i msd(k) s g=g+1 x "s r"_g_"=kk"
- . s:sd(k)*sd(k)<.00003 sd(k)=0 s sd=sd+sd(k),sk=sk+sk(k)
- . i msd(k) s %l=%l_" s"_g x "s s"_g_"=sd(k)"
- i '$d(f(%V,C)),C d
- . s sd000=sd00-sk00,sk000=0 s:sd000<0 sk000=-sd000,sd000=0
- . s s4=sd000-sk000,t=$$konti^fin(C),f(%V,C)=1
- q:m=0
- i %E="m" s s4=s4+sd-sk,sd4=s4,sk4=0.0001 s:sd4<0 sk4=-sd4,sd4=0.0001
- s mm=m,gg=GADS
- s kv="    "_$s(kv=1:"  -I-",kv=2:" -II-",kv=3:"-III-",1:"-IV-")
- s rr=$s(%E="kv":"kv",%E="C4":"gg",1:"mm"),ii=@%E
- i $$l("rr ii "_%l_" sd4 sk4 ")
- s iii=iii+1 m ^oMX(%USID,%V,iii)=lUST
- q
-GGDT ;\GALVENA GRAMATA (DT)\-C4,m\sd(),sk(),sd0,sk0\-%ggmm\@kn\s iii=0 k ^oMX(%USID)
- n m,%XD81 s %XD81=$e(%gm,1,4)_"0101",m=0
- s:d8'<%XD81 m=$e(d8,1,6)
- f %=1,2 s %1=$p(DK,"-",%) i $l($p(%1,".",2))>2 s %1=$p(%1,"."),$p(DK,"-",%)=%1
- i 'm g dkk^fin
- d dkk^fin n S s m=0,S=999999 g dkk^fin
- q
-GGDTL f o="sd","sk","sd0","sk0" m ^oMX(%USID,%V,C4,m,o)=@o
- q
-knf ;\Konta zurnals pa firmam\C,-FK,KOR,firma\sd,sk,sd0,sk0,sdg,skg=%FILE\-%ggmm\@kn\@kn
-kn ;\Konta zurnals\C,-FK,KOR\sd,sk,sd0,sk0,sdg,skg=firma,%FILE\-%ggmm\ppq6 Saiz Saiz7 Banka Kase ppq ppf ciko pps atg FRq PPR PAV alg pamk vbak z5\s iii=0 k ^oMX(%USID),s00,s0
- s (sdg,skg)=0 g gg
-knfL 
-knL i %E="C" s s0(C)=sd0-sk0 q
- i 'sd,'sk,'sdg,'skg q
- n %FILE i $$l("KOR sd sk sdg skg firma %FILE %E ")
- s iii=iii+1 m ^oMX(%USID,%V,iii)=lUST
- q
-knn ;\Konta zurnali\-C4,C,-FK,KOR\sd0,sk0,sd,sk,sdg,skg=firma\-%ggmm\@kn\s iii=0,oC=0 k ^oMX(%USID)
- n FK s FK=-DK[-C,(sdg,skg)=0 g gg
-knnL 
- i (sd-sk)*(sd-sk)<.0000003 q:KOR  i (sd0-sk0)*(sd0-sk0)<.0000003 q:KOR  q:oC-C
- i $$l("%E C KOR sd0 sk0 sd sk sdg skg firma")
- s iii=iii+1,oC=C m ^oMX(%USID,%V,iii)=lUST
- q 
-bank ;\bank\-d88,-DOKf,%I\sd0(),sk0(),sd(),sk()=firma,piez,kurs,d8,DOK,C\-%ggmm\Banka Kase Saiz ciko vbak\s iii=0 k ^oMX(%USID)
- i d8'<%XD81 s d88=d8 g dk^fin
- n DOKf,%I s (d88,DOKf,%I)=11111111 g dk^fin
- q
-bankL s:'d8 d8=d88 
- f n="sd0","sk0","sd","sk" s k=1,@n=0 f  s k=$o(@n@(k)) q:k=""  d:-k[-xC
- . s sdk=@n@(k) x "s "_n_"=$$sv^fin("""_n_"++sdk"")" 
- i $$l("d8 DOK DOKf %I sd0 sk0 sd sk firma piez kurs C")
- s iii=iii+1 m ^oMX(%USID,%V,iii)=lUST
- q
-kap ;koGra;\Konta gramata\d88,DOK\sd0(),sk0(),sd(),sk()=firma,piez,%FILE,d8,DK,II\-%ggmm\@kn\s k1=0,iii=0 k s0d8,s0d8v,kagC,dDOK,%Vfla(%V),^oMX(%USID),sd0,sk0,sd,sk
- s II=%I2 i %I2["Kasp" s %=piez n piez s piez=$p(%,":.")
-  i %I2["ppq6" s %=piez n piez s piez=NN
- i d8<%XD81 n DOK s (d88,DOK)=11111111 g dk^fin
- s %=DOK n DOK s DOK=d8_":"_%_$s(%'[DOKf:" "_DOKf,1:"")_"piez="_$e(piez,1,20)_":!:"_+$g(T)_$e(firma,1,9)_DOKf
- i -xC[-261 s DOK=d8_":"_% s:%=+% DOK=d8_":"_$j(%,''sD+7,0)
- i -xC[-561 s:T DOK=DOK_-T
- i xC[9999,$p(xC,".",2)?2n f %=1,2 s o=$p(DK,"-",%) i $p(o,".",2)=$p(xC,".",2) s $p(DK,"-",%)=xC
- s d88=%XD82 d dk^fin g dkk^fin
- q
-kapL s d88ooooo=d88,DOKooooo=DOK,DOK=$p(DOK,":!:")
- i d88=11111111 s (k,sd0o,sk0o)="" f  s k=$o(sd0(k)) q:'$l(k)  d
- .q:-k'[-xC  i k'=xC,xC'["..",xC'["*" q
- .i k'=xC,xC["..",%B_k'[(%B_$p(xC,"..")) q
- .i k'=xC,xC["*",%B_k'[(%B_$p(xC,"*")) q
- .s sd0o=$$sv^fin("sd0o++sd0(k)"),sk0o=$$sv^fin("sk0o++sk0(k)")
- q:d88=11111111
- n o
- s oDOK=DOK s:II'="" II="<mx @"_II 
- i %E="d88" s firma=""
- i DOK[":",DOK s oDOK=DOK,d=+DOK,dDOK=$$dat(+DOK),DOK=$p(DOK,":",2) d
- . s %=0 s:xC %=$p($g(^konti(xC)),%B,4)
- . i $l(%)>2,%'["LVL",%'["Ls",d<20140000 s dDOK=dDOK_" kurs="_$$vk^fin(%,$s(d#100<33:d,1:-d))
- . i '$d(dDOK(dDOK)) s dDOK(dDOK)=1,o=$$l("dDOK d8 II"),iii=iii+1 m ^oMX(%USID,%V,15,iii)=lUST
- s h=" ",(s1d,spk,k,sd,sk,sd0,sk0,osd,osk)=0 k spk s spk=""
- s k="" f  s k=$o(sd(k)) q:k=""  d:k'[":"
- .i $$kxC(k,xC) s osk=$$sv^fin("osk++sk(k)"),osd=$$sv^fin("osd++sd(k)")
- s:osd*osd<.00003 osd=0 s:osk*osk<.00003 osk=0
- k kk 
- i osd s k="" f  s k=$o(sd(k)) q:k=""  s kk=$p(k,":",2) d:kk
- . i '$$kxC($p(k,":"),xC),'$$kxC(kk,xC),-kk'[-5721,-kk'[-8 q
- . i -kk[-5721 s kk=kk_" "
- . i sd(k)["+"!sd(k),$$kxC($p(k,":"),xC) s kk(kk)=$$sv^fin("kk(kk)++sd(k)"),sd=$$sv^fin("sd++sd(k)")
- i osd s k="" f  s k=$o(kk(k)) q:k=""  d
- .s p=""
- .s DOK=$p(oDOK,"piez="),o=$p(DOK,":",2,9) s:o'="" DOK=o
- .s:$l(piez)>2 firma=firma_" ^"_piez s:II'="" DOK=DOK_II
- .i $l(firma)<60 s firma=$tr(firma,"^",":")
- .i k,firma="" s firma=$$konti^fin(k)
- .s sv=$p(kk(k),"++",2,9),o=$e(sv_1,1,3)
- .i %E="DOK" s ^(o)=$g(^oMX(%USID,%V,5,1,o))+kk(k)
- .s DOK2=DOK,firma2=firma,k2=k,kk2=kk(k),p2=p,sv2=sv
- .s DOK4=DOK,firma4=firma,k4=k,kk4=kk(k),p4=p,sv4=sv
- .i %E="DOK",$$l^UST(" DOK2 firma2 k2 kk2 p2 sv2 d88ooooo DOKooooo II")
- .i %E'="DOK",$$l^UST("DOK4 firma4 k4 kk4 p4 sv4 d88ooooo DOKooooo II")
- .s iii=iii+1 m ^oMX(%USID,%V,15,iii)=lUST
- .s firma="",piez=""
- k kk 
- i osk s k="" f  s k=$o(sk(k)) q:k=""  s kk=$p(k,":",2) d:kk
- . i '$$kxC($p(k,":"),xC),'$$kxC(kk,xC),-kk'[-5721,-kk'[-8 q
- . i -kk[-5721 s kk=kk_" "
- . i sk(k)["+"!sk(k),$$kxC($p(k,":"),xC) s kk(kk)=$$sv^fin("kk(kk)++sk(k)"),sk=$$sv^fin("sk++sk(k)")
- i osk s k="" f  s k=$o(kk(k)) q:k=""  s p="" d
- .s p="",DOK=$p(oDOK,"piez="),o=$p(DOK,":",2,9) s:o'="" DOK=o
- .s:$l(piez)>2 firma=firma_" ^"_piez s:II'="" DOK=DOK_II
- .s:$l(firma)<60 firma=$tr(firma,"^",":") i k,firma="" s firma=$$konti^fin(k)
- .s sv=$p(kk(k),"++",2,9),o=$e(sv_1,1,3) 
- .i %E="DOK" s ^(o)=$g(^oMX(%USID,%V,5,2,o))+kk(k)
- .s DOK3=DOK,firma3=firma,k3=k,p3=p,kk3=kk(k),sv3=sv,kk=kk(k)
- .s DOK5=DOK,firma5=firma,k5=k,p5=p,kk5=kk(k),sv5=sv
- .i %E="DOK",$$l^UST("  DOK3 firma3  k3  p3  kk3 sv3  d88ooooo DOKooooo II")
- .i %E'="DOK",$$l^UST(" DOK5 firma5  k5  p5  kk5 sv5  d88ooooo DOKooooo II")
- .s iii=iii+1 m ^oMX(%USID,%V,15,iii)=lUST
- .s firma="",piez=""
- q:%E'="d88" 
- s s4=sd-sk+$g(s0d8(0))
- i $$sv^fin("sd++-sk++s0d8v","s4v")
- i $$sv^fin("sd++sk","v")
- i $$sv^fin("sd++0","sdvv")
- i $$sv^fin("sk++0","skvv")
- s vv="" k Ls m Ls=^oMX(%USID,%V,5) f  s vv=$o(v(vv)) q:vv=""  d
- . s sdvv=$g(sdvv(vv)),skvv=$g(skvv(vv))
- . s Ls1=$g(Ls(1,vv)),Ls2=$g(Ls(2,vv))
- . k p f o=1,2 s v="" f  s v=$o(Ls(o,v)) q:v=""  s p(o)=$g(p(o))+Ls(o,v)
- . s p1=0,p2=0 s:$g(p(1)) p1=Ls1/p(1)*100 s:$g(p(2)) p2=Ls2/p(2)*100
- . s %=$$l("p1 Ls1 p2 Ls2 sdvv skvv vv"),iii=iii+1 m ^oMX(%USID,%V,18,iii)=lUST
- q
-kxC(%1,%2) 
- q $$kxC^kas(%1,%2)
-tSelect ;\^gramatos\-DOKf,-ooFILE,-d8,-ooI2,-C,-DK,xLev\sd0,sk0,sd,sk=firma,kurs,ko1,Sp,Sb\\@kn\n d8 k ^oMX(%USID,%V) s iii=0,limC="4*",oxCxo=0,vbakStop=1
- s:'$d(%tSelect) %tSelect=0 s ooFILE=%FILE,ooI2=%I2
- s:$g(xLev)="" xLev=0 s ko1=$tr(koko1,%B,"|")
- g ap
-tSelectL i $$l("kurs ooFILE d8 ooI2 C DK sd0 sk0 sd sk firma DOKf ko1 Sp Sb")
- s iii=iii+1 m ^oMX(%USID,%V,iii)=lUST
- q
-ap ;\Apgrozijuma parskats \%C4,C\sd0,sk0,sd,sk=text,text1,fir\\@kn\k ^ito,^oxxTestC,^oapItogo(%USID) k ito s limC="4*" i $g(xC)_$g(xmsm)_$g(xf)_$g(xDOK)_$g(xT)_$g(xINV)_$g(oxCxo)="" s oxCxo=1
- s text="",text1="",DK=$tr(DK," "),mm6=$e(d8,1,6),firm=C
- i xmsm["DOK" s text=%I2 g dk^fin
- i %gm>201900,d8<20170000,-xC[-22 n DOKf s DOKf=-xC,d8=$e(d8,1,4)_1231
- i xC!(xmsm["INV") d  g dk^fin
- . s text=d8_" "_firma_"::"_DOKf_"::<mx @"_%I2,text1=""
- . i xf="" s text=firma s:fir text=fir_" "_firma s:xC[".." text=+xC s:xmsm["INV" text=%I2,text1=""
- . i T,xC,xT["*"!(xmsm["[""alg""") s text=T_":"_$$Fi^ZFIO
- . i T,-xC[-561!(-xC[-238),$d(^pers(T))!$d(^persArhi(T)) s text=T_":"_$$Fi^ZFIO
- . i -xC[-21,-xC'[-219,$l(NN)>1,xmsm["NN" s text=NN_"::"_d8_"::"_DOKf_"::"_%I2
- . s limC=99,%C4=text,firm=text i '$l(%C4) s %C4=xC i '$l(%C4) s %C4=DK i '$l(%C4) s %C4=0
- s %="-2680-8150-8170-8250-8270-8050"
- i $$dkx^fin(S,DK,"s %C4=$e(C,1,4) i $l(C)>4,'xC s:"""_%_"""[$e(C,1,4) C=C\1")
- q
-apL 
- s:sd0'<sk0 sd0=sd0-sk0,sk0=0 s:sk0'<sd0 sk0=sk0-sd0,sd0=0
- s s1=sd0+sd,s2=sk0+sk S:s1'<s2 s1=s1-s2,s2=0 s:s2'<s1 s2=s2-s1,s1=0
- f %="sd0","sk0","sd","sk","s1","s2" d
- .i %M[%W s @%=ito(%E,%) k ito(%E,%) q
- .f e="%C4","C","%ggmm" s ito(e,%)=$g(ito(e,%))+@%
- i 'sd0,'sk0,'sd,'sk q
- i %E="%C4" s C=%C4 I limC["*" s C=C_"*"
- i xC,%M[%W d
- . s:sd0>sk0 sd0=sd0-sk0,sk0=0 s:sk0>sd0 sk0=sk0-sd0,sd0=0
- . s:s1>s2 s1=s1-s2,s2=0 s:s2>s1 s2=s2-s1,s1=0
- s:%E="C" ^ito(C)=s1-s2,^ito(23,C)=sd-sk,^ito(C,"t")=text1_text
- s:%E="C" ^oapItogo(%USID,C)=s1-s2,^oapItogo(%USID,23,C)=sd-sk,^oapItogo(%USID,C,"t")=text1_text
- q
-AT ;\apgroz-alga\T\sd0,sk0,sd,sk=%I2\\Banka Kase Saiz ciko alg
- q:'T  i $l(xT) s o=T n T s T=o_":"_%I2
- g dk^fin 
-ATm ;\apgroz-alga-menesi\T,m,%I2\sd0,sk0,sd,sk\\Banka Kase Saiz ciko alg
- q:'T  i $l(xT) s o=T n T s T=o_":"_%I2
- n m s m=d8\100 S:d8<(%gm\100*10000) m=111111
- d dk^fin k sd0,sk0,sd,sk
- q
-BT ;\alga\DK,T\sd0,sk0,sd,sk\\Banka Kase Saiz ciko alg
- q:'T
- g dk^fin
-ap12o ;\Apgrozijuma parskats par menesiem\mm,C\sd0,sk0,sd,sk\\@kn\k ^oap12o(%USID)
- s mm=$e(d8,1,6) s:d8<%XD81 mm=1
- g ap
-ap12oL s:C ^oap12o(%USID,+mm,C)=sd0-sk0+sd-sk
- q
-ap12 ;\Apgrozijuma parskats par menesiem\%C4,C,mm\sd0,sk0,sd,sk=text\\@kn\k ito,^oap12(%USID) s limC=22
- s mm=$e(d8,1,6) s:d8<(%gm\100_"0101") mm=1
- g ap
-ap12L s ^("D")=sd+sd0+$g(^oap12(%USID,C,+mm,"D")),^("K")=sk+sk0+$g(^("K"))
- s:mm?6n ^("D")=$g(^oap12(%USID,C,999999,"D"))+sd,^("K")=sk+$g(^("K"))
- i 'C s ^oap12(%USID)=%gm
- q
-ito(fo) i '$d(fo) s fo=$p($g(^g1($e(%gm,1,4),+nnn)),%B,5)
- n ss,%k,f,k,k2,z,s s ss=0 i fo<0 s fo=0_fo
- f %k=1:1:$l(fo,"+") s k=$p($p(fo,"+",%k),"-") i k s o=1 d
- .f  s o=$o(ito(o)) q:'$l(o)  i o,o'["*" d:k[".."  i -o[-k&(k=+k)!(o=k),fo'[("("_o_")"),o s ss=ss+ito(o),s(o)=$g(s(o))+ito(o)
- .. i o,-o'[-k,o>k,o'>$p(k,"..",2),fo'[("("_o_")") s ss=ss+ito(o),s(o)=$g(s(o))+ito(o)
- f %k=2:1:$l(fo,"-") s k=$p($p(fo,"-",%k),"+") i k s o=1 d
- .f  s o=$o(ito(o)) q:'$l(o)  i o'["*",-o[-k,o s ss=ss-ito(o),s(o)=$g(s(o))-ito(o)
- k SSSS s s="",o="",SSSS(0)=fo f  s o=$o(s(o)) q:o=""  i s(o) s SSSS(o)=s(o),s=s+s(o) i $d(itoCheck) s itoCheck(o)=s 
- q ss
-dat(d8) q $e(d8,1,4)_".g. "_$p(%MONTHS," ",$e(d8,5,6))_". "_$e(d8,7,8)_"."
-PVNd ;\PVN.Deklaracija \r\sd(),sk()\\Banka Kase ppq ppf ppq6 pps FRq PPR PAV atg Saiz Saiz7 ciko\k DKdPVN,formPVNd 
- Q:d8<%XD81  s r=1 i xC'="" n xC s xC=""
- i %FILE="ciko",piez["**apSl" q
- i "Vv"[$e(firma),$tr($tr(firma,%LAT,%lat)," ")["valstskase" q
- i K["/5721.2" s o=DK n DK s:o[-5210 $p(o,"-",2)=9999 s:-o[-5210 $p(o,"-")=9999 s DK=o
- i DK["572"!(-DK[-8) s DKdPVN(DK)=$g(DKdPVN(DK))+S
- i $$dkx^fin(S,DK)
-PVNdL q
-GB ;\B I L A N C E \r,C\sd,sk,sd0,sk0=firma\-%ggmm\@kn\k ito
- s r=1 g dk^fin
-GBL s ito(C)=+$g(ito(C))+sd-sk+sd0-sk0
- q
-l(%lN,%i,%x) q $$l^UST(%lN)
-isGramat(%I) 
- s z="^koko" f  s z=$q(@z) q:z=""  i " "_$p(@z,%B,6)_" "[(" "_$e($p(%I,"("),2,9)_" ") s z=1 q
- q z
-gz(d8,%I,xC,z) 
- q -1
-pvn(gm,%) s:$e(+gm,1,6)<200000!($e(+gm,1,6)>209900) %mxWarng("PVN")=gm_" -- {1087}{1088}{1086}{1074}{1077}{1088}{1100}{1090}{1077} {1076}{1072}{1090}{1091} PVN -- "_$g(%I)_$g(zi)
- n p s gm=$e(+gm,1,6),p=$s(gm>201206:21,gm>201100:22,gm>200900:18,1:21)
- i gm>201300 n P s P=$o(^mxNorma("PVN","PVN",gm_33),-1) i P>20130000 s P=$g(^(P,"norValue")) s:P<15!(P>30) %mxWarng("PVN")=$zr_"  "_P_" %   -- PVN -- ?? -- mxNorma  -- ",P=0  s:P p=P
- s:$g(%)[100 p=p+100 s:$g(%)[.01 p=p/100
- q p
-d8mM(d8,%I) 
- q:$zv'["Ca" d8  x "s %=$d(^||d8mM)" q:'% d8  n z,%2 s z="^mM"
- x "f  s z=$q(@z) q:'$l(z)  s %2=$qs(z,2) i %2 s ^||d8mM($e(%2,2,99))=$$pD^MXD($qs(z,1))"
- x "s %=$d(^||d8mM(%I))"
- q:% @$zr   x "s ^||d8mM(0,%I)=d8" q d8 
-s(nform)   ; form=";;+k6110..6119;;+k5210..5219;;-d5210..5219;;:261:262:238"
- n k,k2,o,os,x,s,dia,ia,%,formtt,form,%1,%2,z,DK,if,L,ss m ss=sd,ss=sk
- i nform d
- . i $d(formPVNd(%gm,nform)) s form=formPVNd(%gm,nform) q
- . i $d(^mxNorma("formPVNd",nform)) s o=$o(^(nform,d8+.1),-1) i o s form=^(o,"norma"),if=$g(^("piez")) i 'if,$l(if),'@(if) s if=if_$zr_" form="_form,form="-if"
- . q:$d(form)
- . i $d(^kNo("PVNd2018")) s (form,formPVNd(%gm,nform))=$p($g(^kNo("PVNd2018",nform)),%B,2) q:%gm>201800
- . s (form,formPVNd(%gm,nform))=$p($g(^kNo("PVNd11",nform)),%B,2) 
- q:$l($g(form))<5 "_"_nform_" form="_$g(form)_" if="_$g(if)
- s s=0,form="+"_form,formtt=$$trw^UST(form,"+",";;+")
- s formtt=$$trw^UST(formtt,"-",";;-")_";;"
- s k2=$p(form,":",2,99) i k2 s k2=$p(k2_"::","::")
- s k=0 f  s k=$o(ss(k)) q:k=""  d
- . s o=$p(k,":",2) ;; i k2,o f x=1:1:$l(k2,":") i -o[-$p(k2,":",x) s o=0 q
- . s os=s,%1=$g(sd(k)),%2=$g(sk(k))
- . i %1 s:formtt[("+d"_+k_";;") s=s+%1 s:formtt[("-d"_+k_";;") s=s-%1
- . i formtt[("+k"_+k_";;") s s=s+%2 i form["-(k8)" s %=1 f  s %=$o(DKdPVN(%)) q:'%  i -%[-8,%[-k s s=s-DKdPVN(%)
- . i %2,formtt[("-k"_+k_";;") s s=s-%2
- . ;; s:s %mxWarng(nform_-k)=%1_%B_%2_%B_s_%B_form
- . q:os-s  q:form'[".."
- . f z="+","-" f %=2:1:$l(form,z) s dia=$p($p($p(form,z,%),"+"),"-") d
- .. s if=$p(dia,":",2) i if q:-o'[-if 
- .. s x=+$p(dia,"/",2) s:'x x=1 s x=1/x i dia["*",x=1 s x=+$p(dia,"*",2) s:'x x=1
- .. s ia=$e(dia,2,99)_".."_$e(dia,2,99)
- .. i %1,$e(dia)="d",z="+",k'<ia,k'>$p(ia,"..",2) s s=%1*x+s q
- .. i %1,$e(dia)="d",z="-",k'<ia,k'>$p(ia,"..",2) s s=-%1*x+s q
- .. i %2,$e(dia)="k",z="+",k'<ia,k'>$p(ia,"..",2) s s=%2*x+s q
- .. i %2,$e(dia)="k",z="-",k'<ia,k'>$p(ia,"..",2) s s=-%2*x+s q
- q s
-orC ;\pirmas datums \firma\d8\\ppq ppf ppq6 ciko pps atg Saiz Saiz7 PPR PAV FRq Banka Kase z5 vbak\s:'xC xC=2310 k ^orC(%USID)
- i $g(flagDOKf) s o=$tr(DOKf,"1234567890/.-+"_DOKf,"1234567890/.-+") i $l(o)>2,$l($tr(DOKf," "))-$l(o)=3 n DOKf s DOKf=o
- i DOKf["//" s o=$p(DOKf,"//") i $l(o) n DOKf s DOKf=o
- I $l(xf_xDOK),$$q q
- i $l(xmsm) x "s %="_xmsm q:'%
- ;; s ^fd(fir,DOKf,d8_%I)=1,xC1=$p(xC,"+")
- s ^fd1(firma,DOKf,d8_%I)=1,^fd1(firma,"=*=",d8)=1
- n o s o=xC[".."!(xC["*"),oDOK=DOKf,xC1=$p(xC,"+")
- f x=1,2 s C=$p(DK,"-",x) I C-xC1=0!(-C[-xC1&o) d  i $g(%flagVom) s:$l($g(formulaL))<9 formulaL="i $$m^MXF()" x formulaL
- .s v=1 i kurs,kurs-1 s %=S,v=$p(kurs,+kurs,2) n S s S=%
- .s:x=2 S=-S
- .i d8'<%XD81 s ^orC(%USID,xC1,firma)=999999999,^(firma,DOKf)=999999999 q
- .i kurs,kurs-1 s S=S*kurs
- .s %=$g(^orC(%USID,xC1,firma))+S s ^(firma)=%
- .s %=$g(^(firma,DOKf))+S s ^(DOKf)=%
- .i $g(oxVisi),d8'<%XD81 s ^(DOKf)=99999999 q
- .i %*%<.00000001 k ^(DOKf) i $d(^orC(%USID,xC1,firma))<2 k ^(firma)
- q
-gramat s %FILE="gramat" d %I0 
- n s,S,kurs,sD,sK,fir,firma,DOK,DOKf,DOKfin,T,%I,%I2,Piez,piez,K,KOR,atb,bak,%R,o,dok,d8,NN,xForm,DKS,DKSnn,DKSn2,gramat,sZak,zDok
- s d8=%XD81-.1,d8=20090000,dok="",NN=0,dad=0 q:$d(%tSelect)  q:$g(%V)="an1"
- s s=0,T=0,rn="",ob=0,kurs=1,piez="" k obj
- f gramat=0:1 s d8=$o(^gramat(d8)) q:d8>%XD82!'d8  s dok="" f  s dok=$o(^gramat(d8,dok)) q:'$l(dok)  d
- .s (DKS,DKSnn,DKSn2)=0,d=d8,(DOK,DOKf,DOKfin)=$tr(dok," "),(sZak,kNN,AvNor,T,atb)=0,kurs=1,val=xVAL
- .s (zDok,fir,piez)="",%=$$getObj^MXTQM($name(^gramat(d8,dok))) q:'$l(zDok)  q:'$d(@zDok)  d  
- .. s d8o=d8,firo=fir n fir,d8 i 1_$$getObj^MXTQM(zDok)  q:$g(d8)-d8o
- .q:'DKS&'DKSnn  s (%I,%I2)=zDok,firma=$$firma^fir(fir)  i fir="" s %mxWarng(zDok)=" {1085}{1077} {1091}{1082}{1072}{1079}{1072}{1085}{1072} {1092}{1080}{1088}{1084}{1072} " q
- .s:'$l(piez) piez=$e($p(zDok,"("),2,99)_"<mx <$$B 9] 9 o xForma="_xForm  s Piez=piez
- .s:DOKf="" (DOK,DOKf,DOKfin)=0  i $g(flagDOKf) s o=$tr(DOKf,"1234567890/.-+"_DOKf,"1234567890/.-+") i $l(o)>2,345[($l($tr(DOKf," "))-$l(o)) s (DOK,DOKf,DOKfin)=o
- .i $l(val)=3,val'=xVAL s kurs=$$vk^fin(1_" "_val,d8)
- .f dks=DKS,DKSnn,DKSn2 f %DKS=1:1:$l(dks,%B) s S=$p(dks,%B,%DKS) i S,$d(@zDok@(%DKS)) s DK=$p(S,":"),NN=$p(S,":",3),(sD,S,ss,Sb,Sbv)=+$j($p(S,":",2),0,2),sK=0,(Sp,Spv)=0 i DK[+xC!'xC d
- .. s bak=$p(DK,"-"),K=$p(DK,"-",2) x xVw
- q
- q
 
 fin
 fin ; ATG [ 12/05/2006  6:25 PM ]  ;[ 20191226 12:22:51 ]
