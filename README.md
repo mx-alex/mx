@@ -25,7 +25,7 @@ Preparation for start MX :
   
   -  import vmx.ro in any M-namespace then do ^ZSTU (or job tcp^MX1)
   -  copy **.xlsb files and all folders to a separate folder on the any win-computer, for example, to c:\mx\ 
-  -  fill in the connection table in the MX_CONFI.xlsb (by default: port = 2264, (= 5264 for IRIS), nspace = USER)
+  -  edit the connection table in the MX_CONFI.xlsb (server - port - nspace)
   -  run mx.xlsb macro (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 
 Benefits of using MX :
