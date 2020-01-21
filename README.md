@@ -28,6 +28,7 @@ Preparation for start MX :
   -  edit the [connections] table in the MX_CONFI.xlsb 
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 
+
 With MX :
   
   -  you can create new complex projects, or use MX as an auxiliary tool 
