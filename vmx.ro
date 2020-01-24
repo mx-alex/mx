@@ -1,175 +1,17 @@
-u127  
-  MX* US* ZSTU fir fin 20200117 22:54:32 |TCP|3600|7856
+user2  
+  MX* US* ZSTU fir fin 20200123 13:46:45 |TCP|6368|10236
 MX
-MX ;[ 20191012 17:58:39 ]
- ; MSM, CACHE, GT.M, MiniM
- ; vmx Copyright(c) SIA ENTERS 2005-2017
-QQMENU0 ; TKWEB  ; feast load menu in the frame "QQMENU"
+MX ;[ 20200123 13:03:14 ]
+ ; MSM, CACHE, IRIS,  GT.M, MiniM
+ ; vmx Copyright(c) SIA ENTERS 2005-2020
  Q
-QQMENU ; TKWEB  ; create menu in the frame "QQMENU"
- Q
-T1menuA ; Example : convert something to '^T1menu'
- Q
-T1menu ; it called from QQMENU and create HTML-page "menu" from ^T1menu
- Q
-treeMap(line,t) 
- Q t
-QQFORM0 ; TKWEB  ; feast load in frame "QQFORM"
- Q
-QQFORM ; TKWEB   ; frame for forms - main users frame
- Q
-QQCOMM ; TKWEB  ; frame for comments and error-messages
- Q
-XX ; TKWEB  ; execution m-command from ..&A=xxxxxxxxx
- q
-oxxxo ;          execute m-command from ..&A=xxxxxxxxx
- Q
-QQEMPT ; TKWEB  ; empty page 
- Q
- ;  
- ;----------------------------------------------------------------
- ; Sub Code1()
- ;   Const ForReading = 1, ForWriting = 2, ForAppending = 8
- ;  Dim fs, f
- ; Set fs = CreateObject("Scripting.FileSystemObject")
- ;    Set f = fs.OpenTextFile("c:\Norway\code1.txt", ForAppending, 0)
- ;   f.writeLine ("***********")
- ;  f.Close
- ; End Sub
- ;----------------------------------------------------------
- ;Sub Code2()
- ;Dim z
- ;Set fs = CreateObject("Scripting.FileSystemObject")
- ;Set a = fs.CreateTextFile("c:\testfile.txt", True)
- ;St1 = "var item"
- ;St2 = " = null;" + Chr(13) + Chr(10) + "item"
- ;St3 = " = new MTMenu();" + Chr(13) + Chr(10) + "item"
- ;St4 = ".addItem("""
- ;St5 = """);/n"
- ;St = St1 + St2 + St3 + St4
- ;z = Len(St1)
- ;St1 = St1 + "_1"
- ;St1 = Left(St1, z + 1) + LTrim(Str(23))
- ;    StI = Left(StI, Len("item") + 1) + _
- ;    LTrim(Str(Val(Mid(StI, Len("item") + 2, Len(StI) - Len("item") - 1)) + 1)): y = 1: _
- ;    St = St1 + StI + St2 + StI + St3 + StI + St4 + Cells(yy, 1).Value + St5: _
- ;    If (Cells(yy, 2).Value <> "") Then _
- ;    Submenu = Left(StI, Len("item")) + Submenu1 + StI + Submenu2: a.write Submenu: _
- ;    y = 0: St = Left(StI, Len("item")) + St4 + Cells(yy, 1).Value + St5: _
- ;    a.write St: z = Len(StI): _
- ;    StI = Left(StI, Len("item") + 1) + _
- ;    LTrim(Str(Val(Mid(StI, Len("item") + 2, Len(StI) - Len("item") - 1)) + 1)): _
- ;    St = St1 + StI + St2 + StI + St3: y = 0: _
- ;    a.write St: GoTo Line1
- ; 
- ;a.writeLine (St)
- ;a.write St1
- ;a.Close
- ; 
- ;End Sub
- ;Sub main()
- ;Dim yy, xx, Submenu
- ;xx = 2
- ; 
- ;Set fs = CreateObject("Scripting.FileSystemObject")
- ;Set a = fs.CreateTextFile("c:\code.html", True)
- w "<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"">",!
- w "<html><head><title>[insert your title here]</title>",!
- w "<script type='text/javascript'>",!
- w "var relocateURL = "" / "";""",!
- w "if (parent.frames.length == 0) {",!
- w "  if (document.images) { location.replace(relocateURL); }",!
- w "  else                 { location = relocateURL;        }",!
- w "}</script>",!
- ;
- w "<script type=""text/javascript"" src=""mtmcode.js""></script>",!
- ;
- w "<script type=""text/javascript"">",!
- w "MTMDefaultTarget = ""text"";",!
- w "var MTMIconList = null;",!
- w "MTMIconList = new IconList();",!
- w "MTMIconList.addIcon(new MTMIcon(""menu_link_external.gif"", ""http://"", ""pre""));",!
- w "MTMIconList.addIcon(new MTMIcon(""menu_link_pdf.gif"", "".pdf"", ""post""));",!
- ;a.writeLine ("")
- ;
- ;Submenu = ""
- ;Submenu1 = ".makeLastSubmenu("
- ;Submenu2 = ");" + Chr(13) + Chr(10) + Chr(13) + Chr(10)
- ;Memo = 0
- ;St = ""
- ;StI = "menu"
- ;St1 = "var "
- ;St2 = " = null;" + Chr(13) + Chr(10)
- ;St3 = " = new MTMenu();" + Chr(13) + Chr(10)
- ;St4 = ".addItem("""
- ;St5 = """);" + Chr(13) + Chr(10)
- ;
- ;If (Cells(1, 1).Value = "") Then GoTo Line2
- ;St = St1 + StI + St2 + StI + St3 + StI + St4 + Cells(1, 1).Value + St5
- ;StI_1 = StI
- ;a.write St
- ;
- ;For yy = 2 To 148
- ;    If (Cells(yy, 1).Value = "") Then Exit For
- ;    
- ;    If (Cells(yy, xx + 1).Value = "1") Then
- ;    xx = xx + 1
- ;    If (StI_1 <> StI) Then
- ;    StI = StI_1
- ;    StI = Left(StI, InStrRev(StI, "_")) + _
- ;    LTrim(Str(Val(Mid(StI, InStrRev(StI, "_") + 1)) + 1))
- ;    StI_1 = StI
- ;    Else
- ;    StI = StI + "_1": StI_1 = StI: Memo = 1
- ;    End If
- ;    St = St1 + StI + St2 + StI + St3 + StI + St4 + Cells(yy, 1).Value + St5: _
- ;    a.write St: GoTo Line1
- ;    End If
- ;    
- ;    While ((Cells(yy, xx).Value = "") * (Cells(yy, 1).Value <> ""))
- ;    Submenu = Left(StI, InStrRev(StI, "_") - 1) + Submenu1 + StI + Submenu2: _
- ;   a.write Submenu: StI_1 = StI: StI = Left(StI, InStrRev(StI, "_") - 1): _
- ;   xx = xx - 1
- ;   Wend
- ;
- ;    If (Cells(yy, xx).Value <> "") Then _
- ;    St = StI + St4 + Cells(yy, 1).Value + St5: a.write St: GoTo Line1
- ;  
- ; Line1:
- ; Next
- ; 
- ;     While (xx > 2)
- ;     Submenu = Left(StI, InStrRev(StI, "_") - 1) + Submenu1 + StI + Submenu2: _
- ;     a.write Submenu: StI = Left(StI, InStrRev(StI, "_") - 1): xx = xx - 1
- ;     Wend
-  
- ;a.writeLine ("</script>")
- ;a.writeLine ("</head>")
- ;a.writeLine ("<body onload=""MTMStartMenu(true)"" bgcolor=""#000033"" text=""#ffffcc"" link=""yellow"" vlink=""lime""  alink=""red"">")
- ;a.writeLine ("</body>")
- ;a.writeLine ("</html>")
- ; 
- ; 
- ;
- ;Line2: a.Close
- ;
- ;End Sub
-MXPOST ; TKWEB
- Q
-MXCALC ; TKWEB
- Q
-ERCALC 
- Q
-MXWEB ; TKWEB-(this comment enables this linetag to be reference from web)
+MXWEB ; TKWEB-(this comment enables this linetag to be reference from web  with  M3)
 MXGET ; TKWEB
  Q
-ii(oo) 
- q ""
+ii(oo) q ""
 UCI(%UCI) n %
  x:$zv["Mini"!($zv["Ca")!($zv["IRIS") "s %=$znspace" x:'$d(%) "s %=$p($zu(0),"","")"
- s %UCI="UNDEF" s:$d(%) %UCI=% 
- q %UCI
- ;
+ q $g(%,"UNDEF")
 sv j comX4(12) q
 comX4(comPort,b,zr) 
  s zr=$g(zr,"^sv"),b=$g(b,9600),ComPort="COM"_comPort  ;; ,terminat=$g(terminat,13)
@@ -206,7 +48,7 @@ comRtest(Port)
  q
 
 MX1
-MX1 ; ;[ 20200115 23:51:46 ]
+MX1 ; ;[ 20200123 12:53:43 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2020
  q
@@ -214,7 +56,7 @@ trm
  s i=$io,p=$p,io="|TRM|:|"_$j 
  ;; close $p   OPEN io:(:5533:"MA"):200 
  ;; USE io:(:5533:"RAWCD":"":32000:32000)
- s ^mxMonito($$ts,"trm",$j)="%SYS -- START trm^MX1 $io="_$io_"  i="_i_"  p="_p
+ s ^mxMonito($$ts,"trm",$j)=$znspace_" -- START trm^MX1 $io="_$io_"  i="_i_"  p="_p
  ;; s ^mxMonito($$ts,"trm",$j)=io_"   terminal "
  q  ;;; 
 trmRead READ R:99     j:000 webChild:(:5:$io:$io)  s ^mxMonito($$ts,"trm",$j)=io_" %="_%
@@ -248,12 +90,12 @@ tcpLmi k:000 ^oooRead1 s $ztrap="tcpErrMi^MX1"
  s ^mxMonito($$ts,1,-$j)="START tcpMiniM ->> j tcpChild^MX1 "
  g tcpLmi
  q
-web s io="|TCP|"_$j OPEN io:(:80:"MA"):200 USE io:(:80:"RAWCD":"":32000:32000)
+web s io="|TCP|"_$j OPEN io:(:80:"MA"):200 USE io:(:80:"RAWCD":"":32765:32765)
  s ^mxMonito($$ts,0,-$j)=io_"  --- 80 "
  READ %  j webChild:(:5:$io:$io)  s ^mxMonito($$ts,1,-$j)=io_"  --- 80 "
  h 1 g web+2
  q
-webChild USE $io:(:80:"RAWCD":"":32000:32000) s:000 ^mxMonito($$ts,0,-$j)=$io
+webChild USE $io:(:80:"RAWCD":"":32765:32765) s:000 ^mxMonito($$ts,0,-$j)=$io
  READ:1 ooo s o=$p($p(ooo,"MX=",2),"-"),port=$s(+o=3:5233,$zv[-64:2264,1:2232),uci=$p(o,+o,2,22)
  s %USID="web",shee=0,^mxMonito($$ts,0,-$j)=$io_";;"_ooo
  i 'o s ooo="",port=80,uci="%SYS" d  n o g webReply
@@ -278,20 +120,20 @@ tcpError h 1 s ^mxMonito($$ts,999,$j)=$ze_"  io="_$g(io)
 tcp ; MX-CONCURRENT-SERVER with tcp on port 2232(32-bit) or 2264(64-bit) or 5233(minim) or 5264 (IRIS) ;
  s i=$io,p=$p
  g:$zv["MiniM" tcpMiniM  g:$zv["MS" tcpMSM  q:$zv'["Ca"&($zv'["IRIS")  s io="|TCP|"_$j
- i $zv["IRIS" OPEN io:(:5264:"MA"):200  USE io:(:5264:"RAWCD":"":32000:32000) g tcpL
+ i $zv["IRIS" OPEN io:(:5264:"MA"):200  USE io:(:5264:"RAWCD":"":32765:32765) g tcpL   ;; 32767=7FFF
  OPEN:$zv'["-64" io:(:2232:"MA"):200   OPEN:$zv["-64" io:(:2264:"MA"):200 
- USE:$zv'["-64" io:(:2232:"RAWCD":"":32000:32000)   USE:$zv["-64" io:(:2264:"RAWCD":"":32000:32000)
- s ^mxMonito($$ts,0,$j)="%SYS -- START tcp^MX1 $io="_$io_"  i="_i_"  p="_p
+ USE:$zv'["-64" io:(:2232:"RAWCD":"":32765:32765)   USE:$zv["-64" io:(:2264:"RAWCD":"":32765:32765)
+ s ^mxMonito($$ts,0,$j)=$znspace_" -- START tcp^MX1 $io="_$io_"  i="_i_"  p="_p
 tcpL 
  s $ztrap="tcpError^MX1"
  READ %   j tcpChild^MX1:(:5:$io:$io)
- ;; s ^mxMonito($$ts,0,$j)="%SYS -- START j tcpChild^MX1 "_$g(%)
+ ;; s ^mxMonito($$ts,0,$j)=$znspace_" -- START j tcpChild^MX1 "_$g(%)
  h 1 g tcpL
  q
  ;; i $zv["Ca" s ip=$zu(67,15,$j),o=$d(^mxSYSTEM("mxDenyIP",ip_1)) d  g:o tcpL
  ;; . s ^mxMonito($$ts,0,$j)=ip_" "_p_" "_$tr(%accept_" job="_$j_" $za="_$za_" $zb="_$zb_" $zc="_$zc,$c(0),"o")
  ;; . i o s o=o_$zr,@$zr=@$zr_" ::: access denyed ::: "_o
-tcpChild ;; s ^mxMonito($$ts,0,$j)="%SYS -- START j tcpChild^MX1 "
+tcpChild ;; s ^mxMonito($$ts,0,$j)=$znspace_" -- START j tcpChild^MX1 "
  k ooo s ooo="" 
  i $zv["MS" USE 56 g tcpChilR^MX1
  i $zv["MS" USE 56 s uci=-1 d  g:'u tcpChild  V 2:$J:v*32+u:2 g tcpChilR^MX1   ;; msm-mx---EXCEL  -- not web
@@ -300,8 +142,8 @@ tcpChild ;; s ^mxMonito($$ts,0,$j)="%SYS -- START j tcpChild^MX1 "
  . S zu=$ZU(uci_",MXM"),u=$P(zu,","),v=$P(zu,",",2) ;; V 2:$J:v*32+u:2
  . h 2 s ^mxMonito($$ts,2,-$j)=uci_"   r="_r 
  i $zv["MiniM" USE $io:(/MODE="rwb":/TERM=$c(0))
- i $zv["Ca" USE:$zv'[-64 $io:(:2232:"RAWCD":"":32000:32000) USE:$zv[-64 $io:(:2264:"RAWCD":"":32000:32000)
- i $zv["IRIS" USE $io:(:5264:"RAWCD":"":32000:32000)
+ i $zv["Ca" USE:$zv'[-64 $io:(:2232:"RAWCD":"":32765:32765) USE:$zv[-64 $io:(:2264:"RAWCD":"":32765:32765)
+ i $zv["IRIS" USE $io:(:5264:"RAWCD":"":32765:32765)
  s ^mxMonito($$ts,1,$j,"$io")=$io
  ;; i $d(^oooRead1) s ooo=^oooRead1,o=$tr($p($p(ooo," UCI=",2)," "),"""") s:$e(ooo,1,3)="GET" o=$p($p(ooo,"UCI=",2),";") s ^mxMonito($$ts,2,-$j)=ooo k ^oooRead1
 tcpChil2 s $ztrap="saveMem^MX1",ooo=""
@@ -314,7 +156,7 @@ tcpChil2 s $ztrap="saveMem^MX1",ooo=""
  . ;;  i '$l(ooo),$g(%session),$d(%mxWeb),$znspace'="%SYS" k YX,Y,X,ooo i $$SaveMem^USX(%USID,-%session)
  ;; q:'$l(o)
  s ooooREAD=-99 s $ztrap="mxErrChR^MX1"
- i $znspace="%SYS"!111,$l(uci)>2,$l(uci)<9,$znspace'=uci zn uci
+ i $l(uci)>2,$l(uci)<9,$znspace'=uci zn uci
  i $e(ooo,1,3)'="GET" w uci,0,$c(0),$c(15),*-3 g tcpChilR^MX1  ;; mx-EXCEL
  q:'$l(uci)
  ;; s ^mxMonito($$ts,3,$j)="START tcpChild^MX1  ooo="_ooo_-$l(o)_$g(o)
@@ -2526,11 +2368,11 @@ eqvTree2(z1,z2)
  q:%2<0 %2  q 0
 
 MXterm
-MXterm ;  ;[ 20200117 21:04:45 ]
+MXterm ;  ;[ 20200118 19:43:24 ]
  q
 jo(%comm) 
- s %zt=$zt,$zt="erjo^MXterm" n % s ^ERR(0)=%comm
- if %comm'["; readTRM ;" s %=$$killJob($g(%jobChild)) i %comm'["^",%comm'[":" x %comm q
+ s %zt=$zt,$zt="erjo^MXterm" n % s ^ERR(0)=%comm  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
+ if %comm'["; readTRM ;" s %=$$killJob($g(%jobChild)) i %comm'["^",%comm'[":" s:$l($g(%USID)) ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_$zt,%zns=$znspace x %comm d:'$l($g(%USID)) oo q  
  if %comm'["; readTRM ;" job job(%comm,%USID):(:1):1 s %jobChild=$ZCHILD
  if %comm["; readTRM ;" k ^trm(%USID) s ^trm(%USID)=";;;"_$p(%comm,"; readTRM ;")
  f %=1:1:99 s o=$o(^trm(%USID,""),-1)  h .1  if o,$o(^trm(%USID,""),-1)=o,%>9 q
@@ -2540,7 +2382,7 @@ jo(%comm)
 erjo w $ze," $zn=",$zn
  q
 job(%comm,%USID) 
- s %io=$io,%ztzzz=$zt,%B=$c(254)  k ^trm(%USID) k ^oAllVars(%USID,"trm") ;; s ^ERR(3.3)=%comm
+ s %io=$io,%B=$c(254)  k ^trm(%USID) k ^oAllVars(%USID,"trm") ;; s ^ERR(3.3)=%comm
  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
  s %oo="",$zt="er^MXterm",wwww=0 ;; o "|TRM|"::1 j j2:(:5:"|TRM|"):1 c "|TRM|" 
  i %comm[" p  "!(%comm[" P  ")!(%comm["zw  ")!(%comm["w  "),%comm'["""" d
@@ -2550,7 +2392,7 @@ job(%comm,%USID)
  i $l(%comm) o $io u $io::"^MXterm" D $ZU(82,12,1) x %comm
  if '$d(%USID) d oo zn %zns s %j=1,%B=$c(254)
  D $ZU(82,12,0) u 0 s %=0 f o=1:1 s %=$o(%oo(%)) q:'%  s ^|%zns|trm(%USID,%)=%oo(%),^ERR(%)=%oo(%)
- s ^|%zns|trm(%USID,o+100)=$g(%oo) k %oo   i %zns=$znspace,$$SaveJob^USX(%USID,"trm",$ZPARENT)
+ s ^|%zns|trm(%USID,o+100)=$g(%oo) k %oo   i %zns=$znspace,$d(%USID),$$SaveJob^USX(%USID,"trm",$ZPARENT)
  q
 er d oo  s $zt=$g(%zt) if $l($g(%USID))*$l($g(%zns))=0 halt
  s %oo=$g(%oo)_$ze s ^|%zns|trm(%USID,999999)=%oo
@@ -4988,8 +4830,8 @@ SelALGlo(%all)
  q $d(%SEL)
 
 ZSTU
-mx ; d TCPSTART^APIMGR  ;[ 20200115 21:46:09 ]
-tcp u 0   j tcp^MX1  j trm^MX1   ;; j web^MX1
+mx ; d TCPSTART^APIMGR  ;[ 20200122 21:00:24 ]
+tcp j tcp^MX1  ;; j trm^MX1   ;; j web^MX1
  q
 
 fin
