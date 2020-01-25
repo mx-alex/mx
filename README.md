@@ -34,7 +34,9 @@ With MX :
   -  you can create new complex projects, or use MX as an auxiliary tool 
   -  your working Microsoft Office applications receive powerful support : the MUMPS data server and M-language
   -  your working Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional interface via Excel
-  -  there is no problem exporting documents to Excel - you are already in Excel !
+  -  you can use MX as their reporting framework
+  -  there is no problem exporting documents to Excel - with MX you are already in Excel !
+  
   
 
 In MX each cell is a mini-terminal, therefore MX is convenient tool for teaching MUMPS
