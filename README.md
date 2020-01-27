@@ -20,7 +20,7 @@ How it works :
 Preparation for start MX :
   -  install IRIS or CACHE preferably in unicode on any win-computer and start terminal 
   -  import m-routines vmx.ro in any M-namespace (USER> zn "yournspace" DO ^%RI) then: DO ^ZSTU
-  -  copy **.xlsb files and all folders to a separate folder on the any win-computer, for example, to c:\mx\ 
+  -  copy **.xlsb files and all folders to a separate folder on the any win-computer, for example, to c:\mx\, or to a removable drive (flash) 
   -  edit the [connections] table in the MX_CONFI.xlsb 
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 
