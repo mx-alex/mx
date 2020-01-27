@@ -10,11 +10,12 @@ How it works :
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
 
-  MUMPS:  http://mumps.sourceforge.net/docs.html#commands
-	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
+  MUMPS:  http://mumps.sourceforge.net/docs.html#commands  
+	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms  
 	http://www.minimdb.com/download/setup-minim-1.30-win_32.exe
   
   Download: https://www.intersystems.com/try-intersystems-iris-for-free/
+		https://download.intersystems.com/download/login.csp
 
 Preparation for start MX :
   -  install IRIS or CACHE preferably in unicode on any win-computer and start terminal 
