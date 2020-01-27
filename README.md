@@ -10,16 +10,11 @@ How it works :
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
 
-  Commands of the MUMPS see on :  mumps.sourceforge.net/docs.html#commands
+  MUMPS:  http://mumps.sourceforge.net/docs.html#commands
+	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
+	http://www.minimdb.com/download/setup-minim-1.30-win_32.exe
   
-  For practical work you can download one of these M-servers :
-  
-  -  InterSystems Cache - https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
-  
-  -  InterSystems  IRIS - https://www.intersystems.com/try-intersystems-iris-for-free/
-  
-  -  MiniM - http://www.minimdb.com/download/setup-minim-1.30-win_32.exe
-  
+  Download: https://www.intersystems.com/try-intersystems-iris-for-free/
 
 Preparation for start MX :
   -  install IRIS or CACHE preferably in unicode on any win-computer and start terminal 
@@ -35,10 +30,9 @@ With MX :
   -  your working Microsoft Office applications receive powerful support : the MUMPS data server and M-language
   -  your working Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional interface via Excel
   -  you can use MX as their reporting framework
-  -  there is no problem exporting documents to Excel - with MX you are already in Excel !
+  -  there is no problem exporting documents to Excel - with MX you are already in Excel and in DB at the same time!
   
   
-
 In MX each cell is a mini-terminal, therefore MX is convenient tool for teaching MUMPS
 
 In future we plan to use browser to simulate Excel.
