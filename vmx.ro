@@ -1,5 +1,5 @@
 user2  
-  MX* US* ZSTU fir fin 20200127 19:55:19 |TCP|3772|2300
+  MX* US* ZSTU fir fin 20200128 17:14:03 |TCP|3772|648
 MX
 MX ;[ 20200123 13:03:14 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
@@ -2368,10 +2368,11 @@ eqvTree2(z1,z2)
  q:%2<0 %2  q 0
 
 MXterm
-MXterm ;  ;[ 20200127 19:53:22 ]
+MXterm ;  ;[ 20200128 17:10:24 ]
  q
-jo(%comm) 
- s %zt=$zt,$zt="erjo^MXterm" n % s ^ERR(0)=%comm  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
+jo(%comm) ; s ^ERR(0)=1_%comm
+ i $e(%comm,1,2)="Q;"!($e(%comm,1,2)="q;")!($e(%comm,1,7)=" ;STOP ") s %=$$killJob($g(%jobChild)) q
+ s %zt=$zt,$zt="erjo^MXterm" n %  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
  if %comm'["; readTRM ;" s %=$$killJob($g(%jobChild)) i %comm'["^",%comm'[":" s:$l($g(%USID)) ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_$zt,%zns=$znspace x %comm d:'$l($g(%USID)) oo q  
  if %comm'["; readTRM ;" job job(%comm,%USID):(:1):1 s %jobChild=$ZCHILD
  if %comm["; readTRM ;" k ^trm(%USID) s ^trm(%USID)=";;;"_$p(%comm,"; readTRM ;")
@@ -2450,8 +2451,8 @@ readTest
  zn %zns
  q
  ;; ^%X364     localhost:57773/csp/docbook/DocBook.UI.Page.cls?KEY=GIOD_termio
-APC ; 
-BEL ; 
+APC 
+BEL 
 CBT(%1) ; $X
 CCH 
 CHA(%1) ; $X
