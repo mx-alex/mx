@@ -1,5 +1,5 @@
 user2  
-  MX* US* ZSTU fir fin 20200129 00:01:00 |TCP|696|6400
+  MX* US* ZSTU fir fin 20200202 20:14:20 |TCP|3264|508
 MX
 MX ;[ 20200123 13:03:14 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
@@ -1681,15 +1681,15 @@ version
   ;
 
 MXTQM
-MXTQM ;  [ 03/28/2005  1:14 AM ]  ;[ 20200116 17:18:00 ]
- ; MSM, CACHE, GT.M, MiniM
+MXTQM ;  [ 03/28/2005  1:14 AM ]  ;[ 20200201 17:14:29 ]
+ ; MSM, CACHE, IRIS, GT.M, MiniM
  ; vmx ( multi-users virtual EXCEL incorporated into the database )
- ; Copyright (c) 2005-2019, SIA ENTERS, Latvia, 42102022219
+ ; Copyright (c) 2005-2020, SIA ENTERS, Latvia, 42102022219
  ; registered by Agency INTELS, Riga, Latvia, 40003134156, on June 28, 2005, Nr.178
  q
 TQM(o) ; Create & Processed ^oTQMo(%USID,%mxForma)
  s %UCI=$$UCI^MX(),%USID000=$g(%USID(0)) k:$zv["MiniM" ^mxMonito
- d:$zv["Ca" DISABLE^%NOJRN n %zvMSM,gotoForm,oXoooooo,oFlgLANG  s %zvMSM=$s($zv["MS":1,1:+$g(%zvMSM))
+ d:$zv["Ca"!($zv["IRIS") DISABLE^%NOJRN n %zvMSM,gotoForm,oXoooooo,oFlgLANG  s %zvMSM=$s($zv["MS":1,1:+$g(%zvMSM))
  n oo,ooo,%ooOOooo,%oXoOxx1,oOOiii,oOOqqq,oOOqqq14,%noOOooo,%,%1,%2,%3,%3mapGlo,%1globYX,%2globYX,%4,%3flag,%0,%N
  n yyROW,%yyROWnn,yyPLUSoo,xxCOL,flagItog,flagIton,flagItos,%MxEXCEL,%YXy,%YXx,%Yrc,mxLvarYX,%mVarsYX
  n %mxIndeQ,%l,%lX,%E,ERRinTQM,butCount,%mxSheet,%tabRow1,%tabRow,%zTQMo,%insRows,%lastTab 
@@ -1703,7 +1703,7 @@ TQM(o) ; Create & Processed ^oTQMo(%USID,%mxForma)
  .s %=" --- {1080}{1079}{1084}{1077}{1085}{1077}{1085}{1080}"
  .s %mxWarng(-1)=%_"e {1080}{1076}{1077}{1085}{1090}{1080}{1092}{1080}{1082}{1072}{1090}{1086}{1088}{1072} {1082}{1083}{1080}{1077}{1085}{1090}{1072} MX !! --- (( "_%USID
  .s %USID=%USID000 
- k oYX,%YX,%YXi s o=%USID,(oSheetYX,%)=%mxForma 
+ k oYX,%YX,%YXi s o=%USID,(oSheetYX,%)=%mxForma i '%mxForma s persAizs=12
  k ^oTQMo(o,%),^oTQMo2(o),^oTQMret(o,%),^oErr(o),^onEvents(o,%)
  k ^omxMacro(o,%),^omxGlobA(o,%),^onSelect(o,%),^onChange(o,%),^oYX(o,%)
  k ^omxRight(o,%),^omxGlobR(o,%)  ; onRightClick
@@ -1853,7 +1853,7 @@ tabRow .. i $e(oOOqqq14,2)="_" s %lastTab=%YXy d  q
  . s:'$d(^oYX(%USID,%mxForma,%YXy,2)) ^(2)=%mxForma q:'$d(^vmxExcel(%USID,%mxForma,".RowHeight"))
  . s o=$p($p(@$zr,"*"),":",1,%YXy) s:'$l($p(o,":",%YXy)) $p(o,":",%YXy)=":"
  . f %=%YXy:-1:2 i $p(o,":",%) q:%YXy-%<9  s @$zr=$p(o,":",1,%)_":*"_$s(%YXy-%>%1:%1,1:%YXy-%) q
- i $d(mxERROR) d:$zv["Ca" ENABLE^%NOJRN  q $g(%YXy)_" mxERROR "_$g(mxERROR)
+ i $d(mxERROR) d:$zv["Ca"!($zv["IRIS") ENABLE^%NOJRN  q $g(%YXy)_" mxERROR "_$g(mxERROR)
 eErrTQM s:$zv["MiniM" ^mxMonito($g(ooooREAD)+.7,$g(%mxForma)_" ")="eErrTQM" s $ze=""
  s yyPLUSoo=0
  s yyROW="",$zt="TQMe^MXTQM",$ze="" i $d(%2globYX) d
@@ -1865,7 +1865,7 @@ eErrTQM s:$zv["MiniM" ^mxMonito($g(ooooREAD)+.7,$g(%mxForma)_" ")="eErrTQM" s $z
  ;
 TQMe k ^oTQMo2(%USID,%mxForma)
  s $zt="ErrTQM^MXTQM"
- d:$zv["Ca" ENABLE^%NOJRN 
+ d:$zv["Ca"!($zv["IRIS") ENABLE^%NOJRN 
  q $g(yyROW)
 ztRunEnd q
 %lX i $d(%lX) m @%zTQMo@(yyROW)=%lX k %lX
@@ -4188,9 +4188,9 @@ trw(t,w1,w2,n)
  q
 
 USX
-USX ; MX-SERVER [ 01/10/2006  10:11 PM ]  ;[ 20200117 22:15:36 ]
- ; MSM, CACHE, GT.M, MiniM
- ; MX  Copyright(c) SIA ENTERS  2005-2019
+USX ; MX-SERVER [ 01/10/2006  10:11 PM ]  ;[ 20200130 18:47:21 ]
+ ; MSM, CACHE, IRIS, GT.M, MiniM
+ ; MX  Copyright(c) SIA ENTERS  2005-2020
  ; 
  N II,GG,%IG,%2,L,%FILE,%B,%,o,%n,%x s %=""
  S %FILE=$P(%1," "),%USPR=$G(%USPR,"%USPR"),%B=$c(254) q:"o"_%B[%FILE
@@ -4268,9 +4268,9 @@ rm(%e,%nn)
  s $p(%e,",")="^rm(%USID,%V" 
  s:'$d(%nn) %nn=$g(%V(%V,"4.rm")) q:%nn="" ""
  f %x=1:1:$l(%nn,%B) s %n=$p(%nn,%B,%x),%=$g(@%n) k @%n s @%n=%
- i '$d(%V(%V,"rm")) s %=$c(255) d
- .i $o(^rm(%USID,%V,%ggmm,%))'="" f  s %=$o(^(%)) q:%=""  s %V(%V,"rm",%)=^(%)
- .i '$d(%V(%V,"rm"))   f  s %=$o(^rm(%USID,%V,%)) q:%=""  s %V(%V,"rm",%)=^(%)
+ i '$d(%V(%V,"rm")) s %=$c(255) d  ;; s:$zv["U_"&000 %=$c(55555) d
+ .i $o(^rm(%USID,%V,%ggmm,%))'="" f  s %=$o(^(%)) q:%=""  s %V(%V,"rm",%)=$g(^(%))
+ .i '$d(%V(%V,"rm")) f  s %=$o(^rm(%USID,%V,%)) q:%=""  s %V(%V,"rm",%)=^(%)
  .k ^rm(%USID,$j,%V) m ^rm(%USID,$j,%V)=%V(%V,"rm") k %V(%V,"rm") s %V(%V,"rm")=1
  s %="" i $e(%e,$l(%e))'=")" s %e=$e(%e,1,$l(%e)-1)
  f  s %=$o(^rm(%USID,$j,%V,%)) q:%=""  d:$g(%V(%V,4))["*"!($d(@%e@(%))#10)
@@ -5393,7 +5393,7 @@ d8mM(d8,%I) q:$zv'["Ca" d8  q $$d8mM^bil(d8,%I)
  q
 
 fir
-fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20200109 23:53:44 ]
+fir(f,%fir) ; ; [ 02/15/2006  5:18 PM ]  ;[ 20200131 22:54:29 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2019
  n o,fir s o="",fir=f f  s o=$o(^Org(o)) q:o=""  i $g(^(o,"firma"))=f s fir=o q
@@ -5433,8 +5433,9 @@ firma(fir,%find)
  i %find>0 k %SEL d  q fir 
  . s %E=fir,o="",f=$tr($p(fir_"..",".."),oLat1_";. ",oLat2) q:'$l(f) 
  . f  s o=$o(^Org(o)) q:'$l(o)  i $tr(o_%B_$g(^(o,"firma")),oLat1_";. ",oLat2)[f s %SEL(o)=$g(@$zr),%E=$s(%find["%SEL":"%SEL"_$p(%find,"%SEL",2,9),1:"%SEL"),%=$g(^("VK")) s:'$l(%) %=$e($g(^("reNr")),1,2) i $l(%) d  s %SEL(o,1)="c:\mx\flag\"_%_".gif"
- .. s:%["IN" %="RU" q:$tr(%,"QWERTYUIOPASDFGHJKLZXCVBNM")=""  s %=$s(%["{1059}{1053}":"BY",$g(^(o,"firma"))["OOO":"RU",1:%)
- .. s:$tr(%,"{1062}{1059}{1050}{1045}{1053}{1043}{1064}{1065}{1047}{1061}{1060}{1067}{1042}{1040}{1055}{1056}{1054}{1051}{1044}{1046}{1069}{1071}{1063}{1057}{1052}{1048}{1058}{1068}{1041}{1070}")="" %="RU"
+ ..s:%["IN" %="RU" q:$tr(%,"QWERTYUIOPASDFGHJKLZXCVBNM")=""  
+ ..s %=$s(%[$$Uu^MXF("{1059}{1053}"):"BY",$g(^(o,"firma"))["OOO"!($g(^("firma"))[$$Uu^MXF("{1054}{1054}{1054}")):"RU",$g(^("firma"))["SIA":"LV",1:%)
+ ..s:$tr(%,$$Uu^MXF("{1062}{1059}{1050}{1045}{1053}{1043}{1064}{1065}{1047}{1061}{1060}{1067}{1042}{1040}{1055}{1056}{1054}{1051}{1044}{1046}{1069}{1071}{1063}{1057}{1052}{1048}{1058}{1068}{1041}{1070}"))="" %="RU"
  ;; i $d(xFirF),fir'=1,fir'="%FIRMA" s firf=fir x xFirF i firma'="" s reNr=VATnoINN q firma
  n %1,firma,%R,FIRMA i fir>99,fir<99999 s T=+fir s:'$d(^pers(T)) T=0
  f %1="Firma","pers" d:'$d(%XG(%1)) ^USX
@@ -5453,14 +5454,13 @@ firma(fir,%find)
  s %=$g(^("reNr")) s:$l(%)>5 reNr=% ;;  s:$l(VAT)>5 reNr=VAT
  ;; i $l(reAd)>4 s:$l($g(^("adrSt1")))<5 @$zr=reAd,^("kodsSt1")=1
  s OrgVAT="",VAT="" i $l($g(^("VAT")))>5 s (VAT,OrgVAT)=^("VAT") 
- i fir=1 f o="tel","gra","kas","dir" d   s %BANK=bank,%FIRMA=firma,%ADR=adr,(%reNr,%RENR,%REGN)=reNr s:$l(VAT)>5 %REGN=VAT
- . s @(o_1)=$g(^mxConfig(1,"firma",o_1,1))
- . i @(o_1)="" s @(o_1)=$p($p($p($g(^Firma(1)),o_"=",2)," "),%B)
- ;;
+ i fir=1 d  
+ . f o="tel","gra","kas","dir" s @(o_1)=$g(^mxConfig(1,"firma",o_1,1)) i @(o_1)="" s @(o_1)=$p($p($p($g(^Firma(1)),o_"=",2)," "),%B)
+ . s ema1=ema,%BANK=bank,%FIRMA=firma,%ADR=adr,(%reNr,%RENR,%REGN)=reNr s:$l(VAT)>5 %REGN=VAT
  s:reNr[$$Uu^MXF("{1048}") reNr="RU"_reNr
- s OrgVK="zz",%=$e(reNr,1,2) s:$l(VAT)>5 %=$e(VAT,1,2) s:%["IN" %="RU" d  s:$l(%)&'% OrgVK=%
- . q:$tr(%,"QWERTYUIOPASDFGHJKLZXCVBNM")=""  s %=$s(%["{1059}{1053}":"BY",firma["OOO":"RU",adr["Polija":"PL",1:%)
- . s:$tr(%,"{1062}{1059}{1050}{1045}{1053}{1043}{1064}{1065}{1047}{1061}{1060}{1067}{1042}{1040}{1055}{1056}{1054}{1051}{1044}{1046}{1069}{1071}{1063}{1057}{1052}{1048}{1058}{1068}{1041}{1070}")="" %="RU"
+ s OrgVK="zz",%=$e(reNr_11,1,2) s:$l(VAT)>5 %=$e(VAT,1,2) s:%["IN" %="RU" d  s:$l(%)&'% OrgVK=%
+ . q:$tr(%,"QWERTYUIOPASDFGHJKLZXCVBNM")=""  s %=$s(%[$$Uu^MXF("{1059}{1053}"):"BY",firma["OOO":"RU",firma[$$Uu^MXF("{1054}{1054}{1054}"):"RU",firma["SIA"!(firma["I/U")!(firma["Z/S"):"LV",adr["Polija":"PL",1:%)
+ . s:$tr(%,$$Uu^MXF("{1062}{1059}{1050}{1045}{1053}{1043}{1064}{1065}{1047}{1061}{1060}{1067}{1042}{1040}{1055}{1056}{1054}{1051}{1044}{1046}{1069}{1071}{1063}{1057}{1052}{1048}{1058}{1068}{1041}{1070}"))="" %="RU"
  s dap="" i 'reNr s o="QWERTYUIOPASDFGHJKLZXCVBNM" i o'[$e(reNr_1)!(o'[$e(reNr_11,2)) s reNr="xx"_reNr
  i T s %R=$g(^pers(T))_$g(^persArhi(T)) i T=+fir,%R="" s T=0
  i T,%R'="" d ^ZFIO s (firma,o)=Fi s:$l(reNr)<5 reNr=%REGN
