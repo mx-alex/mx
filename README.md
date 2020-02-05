@@ -25,7 +25,7 @@ How it works :
 			Set root = "<path on filesystem to which repository was downloaded>"
 			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
 			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
-  -  copy **.xlsb files and all folders to a separate folder on the any win-computer, for example, to c:\mx\, or to a removable drive (flash) 
+  -  copy **.xlsb files and all folders to a separate folder, for example: to c:\mx\, or to a removable drive (flash) 
   -  edit the [connections] table in the MX_CONFI.xlsb 
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 
