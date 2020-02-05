@@ -21,6 +21,7 @@ How it works :
   -  download the repository
   -  install IRIS preferably in unicode on any win-computer
   -  start terminal then run the following commands:
+  
 			zn "yournspace"
 			Set root = "<path on filesystem to which repository was downloaded>"
 			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
