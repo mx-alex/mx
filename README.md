@@ -6,7 +6,7 @@ How it works :
   - When user connects to the server, his real Excel sheet fills with data from required virtual sheet, also, any cell of the sheet can give a query to the database, the query result is displayed. Sheets are closely interrelated – changes are displayed on both
   - User works with the sheet, mx-triggers (commands of MUMPS in cells) monitor his actions and initiate the necessary procedures
   - After disconnection, the real Excel sheet is not being saved, however data still remains on the server if necessary
-  - MX work without additional programming of VBA-macros or MUMPS, enough formulas
+  - MX work without additional programming of VBA-macros or MUMPS, enough mx-formulas
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
 
