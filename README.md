@@ -29,7 +29,7 @@ How it works :
   -  copy **.xlsb files and all folders to a separate folder, for example: to c:\mx\, or to a removable drive (flash) 
   -  edit the [connections] table in the MX_CONFI.xlsb 
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
-
+	note : if ^ZSTU is in  %SYS it starts automatically when IRIS or CACHE restarts
 
 	With MX :
   
@@ -49,8 +49,7 @@ How it works :
 	After editing click this icon again for save.
 	Carefully program For …  loops so as not to cause an infinite loop.
 	Do not use column “A” - it is reserved for the system.
-	You will see some examples of work MX, the easiest is game i15.
+	After running the mx.xlsb macro, you will see a few examples. The easiest to learn is game i15.
 	Small bonus.  In MX each cell is a mini calculator.
 	You entered  345+5=    in a cell, and immediately got the result: 350.
-
-	Good luck!
+	Try MX - it's just !
