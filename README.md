@@ -36,7 +36,7 @@ How it works :
   -  you can create new complex projects, or use MX as an auxiliary tool 
   -  your working Microsoft Office applications receive powerful support : the MUMPS data server and M-language
   -  your working Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional interface via Excel
-  -  you can use MX as their reporting framework
+  -  you can use MX as their reporting framework, M controls conditional formatting Excel
   -  there is no problem exporting documents to Excel - with MX you are already in Excel and in DB at the same time!
   
   
