@@ -12,14 +12,13 @@ How it works :
 
   MUMPS:  http://mumps.sourceforge.net/docs.html#commands  
 	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms  
-	http://www.minimdb.com/download/setup-minim-1.30-win_32.exe
-  
-  Download: https://www.intersystems.com/try-intersystems-iris-for-free/
+	
+  Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
 		https://download.intersystems.com/download/login.csp
 
 	Preparation for start MX with IRIS InterSystems :
   -  download the repository
-  -  install IRIS preferably in unicode on any win-computer
+  -  if you don’t yet have Cache or IRIS download and install IRIS preferably in unicode on any win-computer
   -  start terminal then run the following commands:
   
 			zn "yournspace"
@@ -29,7 +28,13 @@ How it works :
   -  copy **.xlsb files and all folders to a separate folder, for example: to c:\mx\, or to a removable drive (flash) 
   -  edit the [connections] table in the MX_CONFI.xlsb 
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
+<<<<<<< HEAD
 		note : if you import vmx.ro to %SYS as well, MX-server will start automatically.
+=======
+		
+		note : if ^ZSTU and ^MX1 is in  %SYS, next time MX will start automatically, without Do ^ZSTU.
+
+>>>>>>> 208952b8cec18fad6e0f88e91ec904de6c041544
 
 	With MX :
   
