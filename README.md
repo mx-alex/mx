@@ -13,12 +13,12 @@ How it works :
   MUMPS:  http://mumps.sourceforge.net/docs.html#commands  
 	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms  
 	
-  Download: https://www.intersystems.com/try-intersystems-iris-for-free/
+  Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
 		https://download.intersystems.com/download/login.csp
 
 	Preparation for start MX with IRIS InterSystems :
   -  download the repository
-  -  install IRIS preferably in unicode on any win-computer
+  -  download and install IRIS preferably in unicode on any win-computer
   -  start terminal then run the following commands:
   
 			zn "yournspace"
