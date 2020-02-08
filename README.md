@@ -12,8 +12,7 @@ How it works :
 
   MUMPS:  http://mumps.sourceforge.net/docs.html#commands  
 	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms  
-	http://www.minimdb.com/download/setup-minim-1.30-win_32.exe
-  
+	
   Download: https://www.intersystems.com/try-intersystems-iris-for-free/
 		https://download.intersystems.com/download/login.csp
 
