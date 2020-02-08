@@ -18,7 +18,7 @@ How it works :
 
 	Preparation for start MX with IRIS InterSystems :
   -  download the repository
-  -  download and install IRIS preferably in unicode on any win-computer
+  -  if you don’t yet have Cache or IRIS download and install IRIS preferably in unicode on any win-computer
   -  start terminal then run the following commands:
   
 			zn "yournspace"
