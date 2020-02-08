@@ -29,7 +29,9 @@ How it works :
   -  copy **.xlsb files and all folders to a separate folder, for example: to c:\mx\, or to a removable drive (flash) 
   -  edit the [connections] table in the MX_CONFI.xlsb 
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
+		
 		note : if ^ZSTU and ^MX1 is in  %SYS, MX will start automatically, without Do ^ZSTU.
+
 
 	With MX :
   
