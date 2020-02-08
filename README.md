@@ -28,13 +28,8 @@ How it works :
   -  copy **.xlsb files and all folders to a separate folder, for example: to c:\mx\, or to a removable drive (flash) 
   -  edit the [connections] table in the MX_CONFI.xlsb 
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
-<<<<<<< HEAD
-		note : if you import vmx.ro to %SYS as well, MX-server will start automatically.
-=======
-		
-		note : if ^ZSTU and ^MX1 is in  %SYS, next time MX will start automatically, without Do ^ZSTU.
 
->>>>>>> 208952b8cec18fad6e0f88e91ec904de6c041544
+		note : if you import vmx.ro to %SYS as well, MX-server will start automatically.
 
 	With MX :
   
