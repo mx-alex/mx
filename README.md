@@ -30,7 +30,7 @@ How it works :
   -  edit the [connections] table in the MX_CONFI.xlsb 
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 		
-		note : if ^ZSTU and ^MX1 is in  %SYS, MX will start automatically, without Do ^ZSTU.
+		note : if ^ZSTU and ^MX1 is in  %SYS, next time MX will start automatically, without Do ^ZSTU.
 
 
 	With MX :
