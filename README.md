@@ -52,4 +52,4 @@ How it works :
 	After running the mx.xlsb macro, you will see a few examples. The easiest to learn is game i15.
 	Small bonus.  In MX each cell is a mini calculator.
 	You entered  345+5=    in a cell, and immediately got the result: 350.
-	<b Try MX - it's just !  /b>
+	<b> Try MX - it's just !  </b>
