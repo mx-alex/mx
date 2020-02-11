@@ -26,7 +26,7 @@ How it works :
 			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
 			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
   -  copy **.xlsb files and all folders to a separate folder, for example: to c:\mx\, or to a removable drive (flash) 
-  -  edit the [connections] table in the MX_CONFI.xlsb 
+  -  edit the [connections] table in the MX_CONFI.xlsb (tcp port and $znspace)
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 
 		note : if you import vmx.ro to %SYS as well, MX-server will start automatically.
