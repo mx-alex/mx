@@ -1,5 +1,5 @@
-Cache for Windows^INT^vmx^~Format=Cache.S~^RAW
-%RO on 06 Feb 2020  12:05 AM
+IRIS for Windows^INT^vmx^~Format=IRIS.S~^RAW
+%RO on 11 Feb 2020   1:18 PM
 MX^INT^1^65411,72860^0
 MX ;[ 20200123 13:03:14 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
@@ -2367,41 +2367,44 @@ eqvTree2(z1,z2)
  s %1=0 f  s %1=$o(@z1@(%1)) q:'%1  s %2=0 f  s %2=$o(@z1@(%1,%2)) q:'%2  s %=$p($g(^(%2)),"<mx ") i $p($p($g(@z2@(%1,%2)),"<mx "),"?")'=% s %2=-1_" "_%1_-%2_"  "_%_" ::: "_$g(@z2@(%1,%2)),%1=" "_%1 q
  q:%2<0 %2  q 0
 
-MXterm^INT^1^65414,83931^0
-MXterm ;  ;[ 20200203 19:49:24 ]
+MXterm^INT^1^65420,47813^0
+MXterm ;  ;[ 20200211 13:16:53 ]
  q
 jo(%comm) ;;  s ^ERR(0,$h)=1_%comm h 1
  i $e(%comm,1,2)="Q;"!($e(%comm,1,2)="q;")!($e(%comm,1,6)=" ;STOP") s %=$$killJob($g(%jobChild)) k ^trm(%USID)  w !,"-EXIT-" q
+ ;; i %comm_"   "[" p  "!(%comm[" P  "),%comm'["""" x %comm q ""
  s %zt=$zt,$zt="erjo^MXterm" n %  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
- if %comm'["; readTRM ;" s %=$$killJob($g(%jobChild)) i %comm'["^",%comm'[":" s:$l($g(%USID)) ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_$zt,%zns=$znspace x %comm d:'$l($g(%USID)) oo q  
- if %comm'["; readTRM ;" job job(%comm,%USID):(:1):1 s %jobChild=$ZCHILD
+ if %comm'["; readTRM ;" s %=$$killJob($g(%jobChild)) i %comm'["^",%comm'[":",%comm'["w " s:$l($g(%USID)) ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_$zt,%zns=$znspace x %comm d:'$l($g(%USID)) oo q  
+ if %comm'["; readTRM ;" job job(%comm,%USID):(:1):1 s %jobChild=$ZCHILD,^JOB(%USID,$ZCHILD)=$h
  if %comm["; readTRM ;" k ^trm(%USID) s ^trm(%USID)=";;;"_$p(%comm,"; readTRM ;")
  f %=1:1:99 s o=$o(^trm(%USID,""),-1)  h .1  if o,$o(^trm(%USID,""),-1)=o,%>9 q
- i 'o,$g(%jobChild),%>98 w "  !! running process = ",%jobChild 
- w "^trm(%USID)"    if $$RestMem^USX(%USID,"trm",$j)
+ i 'o,$g(%jobChild),%>98 w "  !! process ID = ",%jobChild i $$killJob(%jobChild)
+ D:00 $ZU(82,12,0) w "^trm(%USID)"    if $$RestMem^USX(%USID,"trm",$j)
  q
 erjo w $ze," $zn=",$zn
  q
 job(%comm,%USID) 
- s %io=$io,%B=$c(254)  k ^trm(%USID) k ^oAllVars(%USID,"trm") ;; s ^ERR(3.3)=%comm
+ s %io=$io,%B=$c(254)  k ^trm(%USID) k ^oAllVars(%USID,"trm")
  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
- s %oo="",$zt="er^MXterm",wwww=0 ;; o "|TRM|"::1 j j2:(:5:"|TRM|"):1 c "|TRM|" 
- i %comm[" p  "!(%comm[" P  ")!(%comm["zw  ")!(%comm["w  "),%comm'["""" d
- . o 2:($j:1):"^MXterm"  u 2::"^MXterm"  k ^SPOOL($j)
- . x %comm  s:'$l($g(%oo)) %oo="" s %comm=""
- . c 2 u %io m ^|%zns|trm(%USID)=^|%zns|SPOOL($j) s %=$o(^|%zns|SPOOL($j,""),-1) k ^|%zns|trm(%USID,%)
- i $l(%comm) o $io u $io::"^MXterm" D $ZU(82,12,1) x %comm
+ s %oo="",$zt="er^MXterm" ;; o "|TRM|"::1 j j2:(:5:"|TRM|"):1 c "|TRM|" 
+ i ("  "_%comm_"  "[" zw  ")!("  "_%comm_"  "["w  ") s %comm="s %=""%"" f  s %=$o(@%) q:'$l(%)  i '$p(%,""%"",2),%'[""%o"" w %,""="",$g(@%),! i $d(@%)>2 s %1=% f  s %1=$q(@%1) q:'$l(%1)  q:$p(%1,""("")'=%  w ""    "",%1,""  =  "",$g(@%1),!"
+ ;; i %comm[" p  "!(%comm[" P  ")!(%comm["zw  ")!(%comm["w  "),%comm'["""" d
+ ;;. o 2:($j:1):"^MXterm"  u 2::"^MXterm"  k ^SPOOL($j)
+ ;;. x %comm  s:'$l($g(%oo)) %oo="" s %comm=""
+ ;;. c 2 u %io m ^|%zns|trm(%USID)=^|%zns|SPOOL($j) s %=$o(^|%zns|SPOOL($j,""),-1) k ^|%zns|trm(%USID,%)
+ o $io u $io::"^MXterm" D $ZU(82,12,1) x %comm  D $ZU(82,12,0) u 0 
  if '$d(%USID) d oo zn %zns s %j=1,%B=$c(254)
- D $ZU(82,12,0) u 0 s %=0 f o=1:1 s %=$o(%oo(%)) q:'%  s ^|%zns|trm(%USID,%)=%oo(%) ;; ,^ERR(%)=%oo(%)
- s ^|%zns|trm(%USID,o+100)=$g(%oo) k %oo   i %zns=$znspace,$d(%USID),$$SaveJob^USX(%USID,"trm",$ZPARENT)
+ s %=0 f o=1:1 s %=$o(%oo(%)) q:'%  s ^|%zns|trm(%USID,%)=%oo(%)
+ s ^|%zns|trm(%USID,o+100)=$g(%oo) k %oo i $d(%USID),$$SaveJob^USX(%USID,"trm",$ZPARENT)
  q
-er d oo D $ZU(82,12,0) close 2  u:$d(%io) %io  s $zt=$g(%zt) if $l($g(%USID))*$l($g(%zns))=0 halt
- s %oo=$g(%oo)_$ze s ^|%zns|trm(%USID,999999)=%oo
+er d oo D $ZU(82,12,0) u $io  u:$d(%io) %io  s $zt=$g(%zt) if $l($g(%USID))*$l($g(%zns))=0 halt
+ s ^|%zns|trm(%USID,999999)=$e($g(%oo),1,9999)_$ze
  q
-x(%comm) s %io=$io k ^SPOOL($j)  ;; s ^ERR=%comm ;; k ^trm(%USID) k ^oAllVars(%USID,"trm") ;; s ^ERR(3.3)=%comm
+x(%comm) s %io=$io k ^SPOOL($j) i $$killJob(0)  ;;  s ^ERR=%comm ;; k ^trm(%USID)
  ;; s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
  s %oo="",$zt="erx^MXterm"
- ;; i %comm[" p  "!(%comm[" P  ")!(%comm["zw  ")!(%comm["w  "),%comm'["""" d
+ i (%comm_"  "["zw  ")!(%comm_"  "["w  ") s %comm="s %=""%"" f  s %=$o(@%) q:'$l(%)  i '$p(%,""%"",2) w %,""="",$g(@%) w:$d(@%)>2 !,"" ..."" w ! "
+ i %comm_"   "[" p  "!(%comm[" P  "),%comm'["""" x %comm q ""
  d
  . o 2:($j:1):"^MXterm"  u 2::"^MXterm" 
  . D $ZU(82,12,1)  x %comm   D $ZU(82,12,0) s:'$l($g(%oo)) %oo="" ;; s %comm=""
@@ -2416,15 +2419,17 @@ erx d oo D $ZU(82,12,0) close 2 u:$d(%io) %io s $zt=$g(%zt) ;; if $l($g(%USID))*
  q
 j2 s ^ERR("j2")=$j o "|TRM|:|"_j2 u "|TRM|:|"_j2 s ^ERR("$io")=$io
  q
-killJob(j) q:'j 0
- i $d(^$JOB(+j)) do $System.Process.Terminate(j) q j
- q -j
+killJob(j) 
+ n % s %=$g(%USID,0) s:'j j=$o(^JOB(%USID,0)) q:'j 0  k ^JOB(%,+j) q:'$d(^$JOB(+j)) -j  
+ i +$p($zv,"Build ",2)>496 do $System.Process.Terminate(+j) q j
+ Do $ZUTIL(4,+j,-65) q j
+ q 0
 oo if '$d(%USID) s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
  q
 wstr(%exp) 
  ;;
  D oo,$ZU(82,12,0) n %  u 0  
- s %oo=$g(%oo)_%exp,wwww=$g(wwww)+1,$x=$x+$l(%exp)
+ s %oo=$g(%oo)_$e(%exp,1,9999),wwww=$g(wwww)+1,$x=$x+$l(%exp)
  i $g(%j)-1 s %=+$o(^|%zns|trm(%USID,""),-1),%oo=$g(^|%zns|trm(%USID,%))_%oo s:$l(%oo)>999!'% %=%+1,%oo=%exp s ^|%zns|trm(%USID,%)=%oo,%oo=""
  i $l(%oo)>999 s %=$o(%oo(""),-1),%oo(%+1)=%oo,%oo=""
  D $ZU(82,12,1) u 0::"^MXterm"
@@ -2467,6 +2472,8 @@ readTest
  zn %zns
  q
  ;; ^%X364     localhost:57773/csp/docbook/DocBook.UI.Page.cls?KEY=GIOD_termio
+zw n % s %=" " f  s %=$q(@%) q:'$l(%)  w !,%,"=",$g(@%)
+ q
 APC 
 BEL 
 CBT(%1) ; $X
