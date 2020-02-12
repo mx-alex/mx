@@ -1,5 +1,5 @@
-IRIS for Windows^INT^vmx^~Format=IRIS.S~^RAW
-%RO on 11 Feb 2020   1:18 PM
+IRIS for Windows^INT^vmx.ro^~Format=IRIS.S~^RAW
+%RO on 12 Feb 2020   7:24 PM
 MX^INT^1^65411,72860^0
 MX ;[ 20200123 13:03:14 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
@@ -2367,8 +2367,8 @@ eqvTree2(z1,z2)
  s %1=0 f  s %1=$o(@z1@(%1)) q:'%1  s %2=0 f  s %2=$o(@z1@(%1,%2)) q:'%2  s %=$p($g(^(%2)),"<mx ") i $p($p($g(@z2@(%1,%2)),"<mx "),"?")'=% s %2=-1_" "_%1_-%2_"  "_%_" ::: "_$g(@z2@(%1,%2)),%1=" "_%1 q
  q:%2<0 %2  q 0
 
-MXterm^INT^1^65420,47813^0
-MXterm ;  ;[ 20200211 13:16:53 ]
+MXterm^INT^1^65421,69002^0
+MXterm ;  ;[ 20200212 19:10:02 ]
  q
 jo(%comm) ;;  s ^ERR(0,$h)=1_%comm h 1
  i $e(%comm,1,2)="Q;"!($e(%comm,1,2)="q;")!($e(%comm,1,6)=" ;STOP") s %=$$killJob($g(%jobChild)) k ^trm(%USID)  w !,"-EXIT-" q
@@ -2400,21 +2400,21 @@ job(%comm,%USID)
 er d oo D $ZU(82,12,0) u $io  u:$d(%io) %io  s $zt=$g(%zt) if $l($g(%USID))*$l($g(%zns))=0 halt
  s ^|%zns|trm(%USID,999999)=$e($g(%oo),1,9999)_$ze
  q
-x(%comm) s %io=$io k ^SPOOL($j) i $$killJob(0)  ;;  s ^ERR=%comm ;; k ^trm(%USID)
+x(%comm,%znsp)      s %io=$io k ^SPOOL($j) i $$killJob(0)  ;;  ;; k ^trm(%USID)
  ;; s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
- s %oo="",$zt="erx^MXterm"
- i (%comm_"  "["zw  ")!(%comm_"  "["w  ") s %comm="s %=""%"" f  s %=$o(@%) q:'$l(%)  i '$p(%,""%"",2) w %,""="",$g(@%) w:$d(@%)>2 !,"" ..."" w ! "
- i %comm_"   "[" p  "!(%comm[" P  "),%comm'["""" x %comm q ""
- d
- . o 2:($j:1):"^MXterm"  u 2::"^MXterm" 
- . D $ZU(82,12,1)  x %comm   D $ZU(82,12,0) s:'$l($g(%oo)) %oo="" ;; s %comm=""
- . c 2 u %io ;; m ^|%zns|trm(%USID)=^|%zns|SPOOL($j) s %=$o(^|%zns|SPOOL($j,""),-1) k ^|%zns|trm(%USID,%)
- ;; i $l(%comm) o $io u $io::"^MXterm" D $ZU(82,12,1) x %comm
+ n %oo  s %oo="",$zt="erx^MXterm"   s ^|"USER"|ERR=%comm 
+ i (%comm_"  "[" zw  ")!(%comm_"  "[" w  ")!(%comm_"  "[" ZW  ")!(%comm_"  "[" W  ") s %comm="s %=""%"" f  s %=$o(@%) q:'$l(%)  i '$p(%,""%"",2) w %,""="",$g(@%) w:$d(@%)>2 !,"" ..."" w ! "
+ i "  "_%comm_"   "[" p  "!("  "_%comm[" P  "),%comm'["""" x %comm q ""
+ i $d(%znsp) s %UCI=$znspace zn %znsp  
+ o 2:($j:1):"^MXterm"  u 2::"^MXterm" 
+ D $ZU(82,12,1)  x %comm   D $ZU(82,12,0) s:'$l($g(%oo)) %oo="" ;; s %comm=""
+ c 2 u %io ;; m ^|%zns|trm(%USID)=^|%zns|SPOOL($j) s %=$o(^|%zns|SPOOL($j,""),-1) k ^|%zns|trm(%USID,%)
+ i $d(%znsp),$d(%UCI) zn %UCI  
  ;; if '$d(%USID) d oo zn %zns s %j=1,%B=$c(254)
- n %,o s %=0 f o=1:1 s %=$o(%oo(%)) q:'%  s ^SPOOL($j,o)=%oo(%) ;;  s ^|%zns|trm(%USID,%)=%oo(%)
+ n %,o s %=0 f o=1:1 s %=$o(%oo(%)) q:'%  s ^SPOOL($j,o)=%oo(%)
  s ^SPOOL($j,o+100)=$g(%oo)   k %oo ;; ^|%zns|trm(%USID,o+100)=$g(%oo) k %oo i %zns=$znspace,$d(%USID),$$SaveJob^USX(%USID,"trm",$ZPARENT)
  q ""
-erx d oo D $ZU(82,12,0) close 2 u:$d(%io) %io s $zt=$g(%zt) ;; if $l($g(%USID))*$l($g(%zns))=0 halt
+erx zn:$d(%znsp) %znsp  d oo D $ZU(82,12,0) close 2 u:$d(%io) %io s $zt=$g(%zt) ;; if $l($g(%USID))*$l($g(%zns))=0 halt
  q $g(%oo)_$ze ;; s ^|%zns|trm(%USID,999999)=%oo
  q
 j2 s ^ERR("j2")=$j o "|TRM|:|"_j2 u "|TRM|:|"_j2 s ^ERR("$io")=$io
@@ -2429,13 +2429,16 @@ oo if '$d(%USID) s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$
 wstr(%exp) 
  ;;
  D oo,$ZU(82,12,0) n %  u 0  
- s %oo=$g(%oo)_$e(%exp,1,9999),wwww=$g(wwww)+1,$x=$x+$l(%exp)
+ i %exp[$c(10) s %=$o(%oo(""),-1),%oo(%+1)=%oo_$p(%exp,$c(10))_"*****"_$c(10),%exp=$p(%exp,$c(10),2,999),%oo="",$x=1
+ s %oo=$g(%oo)_$e(%exp,1,9999),$x=$x+$l(%exp)
  i $g(%j)-1 s %=+$o(^|%zns|trm(%USID,""),-1),%oo=$g(^|%zns|trm(%USID,%))_%oo s:$l(%oo)>999!'% %=%+1,%oo=%exp s ^|%zns|trm(%USID,%)=%oo,%oo=""
  i $l(%oo)>999 s %=$o(%oo(""),-1),%oo(%+1)=%oo,%oo=""
  D $ZU(82,12,1) u 0::"^MXterm"
  q
-wnl D oo,$ZU(82,12,0) w:000 !  D $ZU(82,12,1) s %oo=$g(%oo)_$c(10),$x=1
+wnl D oo,$ZU(82,12,0) n % w:000 !
+ s %=$o(%oo(""),-1),%oo(%+1)=%oo_$c(10),%oo="",$x=1
  i $g(%j)-1 s %=+$o(^|%zns|trm(%USID,""),-1),%oo=$g(^|%zns|trm(%USID,%))_%oo s ^|%zns|trm(%USID,%)=%oo,%oo=""
+ D $ZU(82,12,1)
  q
 wff D oo,$ZU(82,12,0) w:000 #  D $ZU(82,12,1) s %oo=$g(%oo)_$c(13,12),$y=1,$x=1
  q
@@ -2553,6 +2556,29 @@ VPA(%1) ; $Y
 VPR(%1) ; $Y
 VTS 
  q
+zpipe  quit ; CPIPE example to run host console command   -- https://github.com/rcemper/CPIPE/blob/master/CPIPE.int
+
+ cmd(command="",test=0) ;
+ if command="" set command="dir"
+ quit $$execute(command,test)
+execute(cmd,test)  ;; Public {
+ set dev="|CPIPE|1"
+ set $zt="cls"
+ set empty=0
+ open dev:cmd:0 s oo=$test
+ ;; write:test $test,!
+ ;; else write "pipe failed",! quit 0
+ ; while empty<3  ;;  {
+ use dev read line
+ set empty=$s($l(line):0,1:$i(empty))
+ use 0 write line,! ;;; or do any kind of analysis of the line
+ ;; }
+cls 
+ set $zt="" use 0
+ close dev
+ if $ze'["<ENDOFFILE>" w $ze,!
+ quit $t
+ }
 
 US^INT^1^65411,72860^0
 US ;    ; [ 11/04/2006  5:40 PM ]  ;[ 20190328 10:20:30 ]
