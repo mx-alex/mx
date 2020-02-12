@@ -1,5 +1,5 @@
 IRIS for Windows^INT^vmx.ro^~Format=IRIS.S~^RAW
-%RO on 12 Feb 2020  10:05 PM
+%RO on 13 Feb 2020   1:29 AM
 MX^INT^1^65411,72860^0
 MX ;[ 20200123 13:03:14 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
@@ -2367,12 +2367,12 @@ eqvTree2(z1,z2)
  s %1=0 f  s %1=$o(@z1@(%1)) q:'%1  s %2=0 f  s %2=$o(@z1@(%1,%2)) q:'%2  s %=$p($g(^(%2)),"<mx ") i $p($p($g(@z2@(%1,%2)),"<mx "),"?")'=% s %2=-1_" "_%1_-%2_"  "_%_" ::: "_$g(@z2@(%1,%2)),%1=" "_%1 q
  q:%2<0 %2  q 0
 
-MXterm^INT^1^65421,79486^0
-MXterm ;  ;[ 20200212 22:04:46 ]
+MXterm^INT^1^65422,5256^0
+MXterm ;  ;[ 20200213 01:27:36 ]
  q
 jo(%mcomm) ;;  s ^ERR(0,$h)=1_%mcomm h 1
  i $e(%mcomm,1,2)="Q;"!($e(%mcomm,1,2)="q;")!($e(%mcomm,1,6)=" ;STOP") s %=$$killJob($g(%jobChild)) k ^trm(%USID)  w !,"-EXIT-" q
- ;; i %mcomm_"   "[" p  "!(%mcomm[" P  "),%mcomm'["""" x %mcomm q ""
+ i "  "_%mcomm_"   "[" p  "!("  "_%mcomm[" P  "),%mcomm'["""" x %mcomm q
  s %zt=$zt,$zt="erjo^MXterm" n %  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_%zt,%zns=$znspace    
  if %mcomm'["; readTRM ;" s %=$$killJob($g(%jobChild)) i %mcomm'["^",%mcomm'[":",%mcomm'["w " s:$l($g(%USID)) ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_$zt,%zns=$znspace x %mcomm d:'$l($g(%USID)) oo q  
  if %mcomm'["; readTRM ;" job job(%mcomm,%USID):(:1):1 s %jobChild=$ZCHILD,^JOB(%USID,$ZCHILD)=$h
@@ -2422,15 +2422,15 @@ j2 s ^ERR("j2")=$j o "|TRM|:|"_j2 u "|TRM|:|"_j2 s ^ERR("$io")=$io
  q
 killJob(j) 
  n % s %=$g(%USID,0) s:'j j=$o(^JOB(%USID,0)) q:'j 0  k ^JOB(%,+j) q:'$d(^$JOB(+j)) -j  
- i +$p($zv,"Build ",2)>496 do $System.Process.Terminate(+j) q j
- Do $ZUTIL(4,+j,-65) q j
+ ;; i +$p($zv,"Build ",2)>496 do $System.Process.Terminate(+j) q j
+ Do $ZUTIL(4,+j,-65) h 1 q j
  q 0
 oo if '$d(%USID) s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
  q
 wstr(%exp) 
  ;;
  D oo,$ZU(82,12,0) n %  u 0  
- i %exp[$c(10) s %=$o(%oo(""),-1),%oo(%+1)=%oo_$p(%exp,$c(10))_"*****"_$c(10),%exp=$p(%exp,$c(10),2,999),%oo="",$x=1
+ ;; i %exp[$c(10) s %=$o(%oo(""),-1),%oo(%+1)=%oo_$p(%exp,$c(10))_"*****"_$c(10),%exp=$p(%exp,$c(10),2,999),%oo="",$x=1
  s %oo=$g(%oo)_$e(%exp,1,9999),$x=$x+$l(%exp)
  i $g(%j)-1 s %=+$o(^|%zns|trm(%USID,""),-1),%oo=$g(^|%zns|trm(%USID,%))_%oo s:$l(%oo)>999!'% %=%+1,%oo=%exp s ^|%zns|trm(%USID,%)=%oo,%oo=""
  i $l(%oo)>999 s %=$o(%oo(""),-1),%oo(%+1)=%oo,%oo=""
@@ -2438,7 +2438,7 @@ wstr(%exp)
  q
 wnl D oo,$ZU(82,12,0) n % w:000 !
  s %=$o(%oo(""),-1),%oo(%+1)=$g(%oo)_$c(10),%oo="",$x=1
- i $g(%j)-1 s %=+$o(^|%zns|trm(%USID,""),-1),%oo=$g(^|%zns|trm(%USID,%))_%oo s ^|%zns|trm(%USID,%)=%oo,%oo=""
+ i $g(%j)-1 s %=+$o(^|%zns|trm(%USID,""),-1),%oo=$g(^|%zns|trm(%USID,%))_%oo_$c(10),^|%zns|trm(%USID,%)=%oo,%oo=""
  D $ZU(82,12,1)
  q
 wff D oo,$ZU(82,12,0) w:000 #  D $ZU(82,12,1) s %oo=$g(%oo)_$c(13,12),$y=1,$x=1
@@ -2574,12 +2574,20 @@ execute(cmd,test)  ;; Public {
  set empty=$s($l(line):0,1:$i(empty))
  use 0 write line,! ;;; or do any kind of analysis of the line
  ;; }
-cls ;
+cls 
  set $zt="" use 0
  close dev
  if $ze'["<ENDOFFILE>" w $ze,!
  quit $t
  q  ;; }
+cpipe(osComm) 
+ k ^oPIPE($j) n pipe,%,R  s %zt=$zt,$zt="erpipe^MXterm",pipe="|CPIPE|"_$j 
+  o pipe:(osComm:"R"):1 q:'$test $ze   u pipe 
+ f %=1:1:999 read R:0 i $l(R) s ^oPIPE($j,%)=R
+ close pipe set $zt=%zt
+ q %
+erpipe c pipe s $zt=%zt q $ze
+ q
 
 US^INT^1^65411,72860^0
 US ;    ; [ 11/04/2006  5:40 PM ]  ;[ 20190328 10:20:30 ]
