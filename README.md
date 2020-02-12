@@ -16,17 +16,17 @@ How it works :
   Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
 		https://download.intersystems.com/download/login.csp
 
-	Preparation for start MX with IRIS InterSystems :
+	Preparation for start MX with Cache or IRIS InterSystems :
   -  download the repository
-  -  if you don’t yet have Cache or IRIS download and install IRIS preferably in unicode on any win-computer
-  -  start terminal then run the following commands:
+  -  if you don’t yet have Cache or IRIS, download and install IRIS, preferably in unicode, on any win-computer
+  -  start IRIS (Cache) terminal, then run the following commands:
   
 			zn "yournspace"
-			Set root = "<path on filesystem to which repository was downloaded>"
+			Set root = "path on filesystem to which repository was downloaded"
 			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
 			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
   -  copy **.xlsb files and all folders to a separate folder, for example: to c:\mx\, or to a removable drive (flash) 
-  -  edit the [connections] table in the MX_CONFI.xlsb (tcp port and $znspace)
+  -  edit the [connections] table in the MX_CONFI.xlsb (edit tcp port and $znspace)
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 
 		note : if you import vmx.ro to %SYS as well, MX-server will start automatically.
@@ -35,8 +35,8 @@ How it works :
   
   -  you can create new complex projects, or use MX as an auxiliary tool 
   -  your working Microsoft Excel applications receive powerful support : the MUMPS data server and M-language
-  -  your working Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional interface via Excel
-  -  you can use MX as their reporting framework, M creates tables and controls conditional formatting 
+  -  your working Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional EXCEL INTERFACE
+  -  you can use MX as their reporting framework, M creates tables and controls conditional formatting
   -  there is no problem exporting documents to Excel - with MX you are already in Excel
   
   
