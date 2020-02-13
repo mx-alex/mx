@@ -1,6 +1,6 @@
-IRIS for Windows^INT^vmx.ro^~Format=IRIS.S~^RAW
-%RO on 13 Feb 2020   1:29 AM
-MX^INT^1^65411,72860^0
+Cache for Windows^INT^vmx.ro^~Format=Cache.S~^RAW
+%RO on 13 Feb 2020   2:25 AM
+MX^INT^1^^0
 MX ;[ 20200123 13:03:14 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS 2005-2020
@@ -47,7 +47,7 @@ comRtest(Port)
  CLOSE ComPort s ^test(Port,ts)=Q_$$pD^MXD($h,2)
  q
 
-MX1^INT^1^65411,72860^0
+MX1^INT^1^^0
 MX1 ; ;[ 20200123 12:53:43 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2020
@@ -381,7 +381,7 @@ nspace(name)
   q o
  q
 
-MX2^INT^1^65411,72860^0
+MX2^INT^1^^0
 MX2 ;[ 20191011 20:14:18 ]
  ; M3-LITE, MSM, CACHE, GT.M-5x
 QQ ; TKWEB ; start mxWeb 
@@ -881,7 +881,7 @@ Ex(Cmd)
  ;; {1064}{1083}{1077}{1090} {1076}{1072}{1085}{1085}{1099}{1077} {1082}{1072}{1082} {1087}{1086}{1090}{1086}{1082}{1086}{1084} , {1090}{1072}{1082} {1080} {1090}{1080}{1087}{1072} {1087}{1086} {1082}{1086}{1084}{1072}{1085}{1076}{1077} {1072}{1085}{1072}{1083}{1086}{1075}{1072} VisM
  ;; {1054}{1090}{1076}{1077}{1083}{1100}{1085}{1086} {1084}{1086}{1078}{1085}{1086} {1087}{1077}{1088}{1077}{1076}{1072}{1074}{1072}{1090}{1100} {1080} {1087}{1086}{1083}{1091}{1095}{1072}{1090}{1100} {1088}{1077}{1075}{1080}{1089}{1090}{1088}{1099} {1086}{1090} P0 {1076}{1086} P9
 
-MXD^INT^1^65411,72860^0
+MXD^INT^1^^0
 MXD ;  [ 04/26/2006  6:08 PM ]  ;[ 20170821 15:08:20 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx ( multi-user virtual EXCEL incorporated into the database )
@@ -1123,7 +1123,7 @@ t1t2(t1,t2)
  s %1=%2-%1,%1=$e(%1\3600+100,2,3)_":"_$e(%1-(%1\3600*3600)\60+100,2,3)_":"_$e(%1#60+100,2,3)
  q:$d(%3) $p(%1,":",2,3)  q %1
 
-MXF^INT^1^65411,72860^0
+MXF^INT^1^^0
 MXF ;  [ 04/26/2006  6:08 PM ]  ;[ 20090514 13:53:39 ]
  ; MSM, CACHE, GT.M,  MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2020
@@ -1609,7 +1609,7 @@ omReplace(z,%re,%de,%xe)
  q $d(o)
  q
 
-MXGTM^INT^1^65411,72860^0
+MXGTM^INT^1^^0
 MXGTM ; for GTM ; ;[ 20190602 22:24:47 ]
  q
 FREAD ; terminal gtm !!
@@ -1680,7 +1680,7 @@ version
   QUIT
   ;
 
-MXTQM^INT^1^65411,72860^0
+MXTQM^INT^1^^0
 MXTQM ;  [ 03/28/2005  1:14 AM ]  ;[ 20200201 17:14:29 ]
  ; MSM, CACHE, IRIS, GT.M, MiniM
  ; vmx ( multi-users virtual EXCEL incorporated into the database )
@@ -2110,7 +2110,7 @@ getJourn(%1,%2)
 RestVars(%) 
  q 1
 
-MXTQM2^INT^1^65411,72860^0
+MXTQM2^INT^1^^0
 MXTQM2   ;[ 20190127 21:31:45 ]
  ; MSM, CACHE, GT.M, MiniM
  ; VMX-technology  ( Virtual Multi-channel EXCEL incorporated into the database )
@@ -2367,8 +2367,8 @@ eqvTree2(z1,z2)
  s %1=0 f  s %1=$o(@z1@(%1)) q:'%1  s %2=0 f  s %2=$o(@z1@(%1,%2)) q:'%2  s %=$p($g(^(%2)),"<mx ") i $p($p($g(@z2@(%1,%2)),"<mx "),"?")'=% s %2=-1_" "_%1_-%2_"  "_%_" ::: "_$g(@z2@(%1,%2)),%1=" "_%1 q
  q:%2<0 %2  q 0
 
-MXterm^INT^1^65422,5256^0
-MXterm ;  ;[ 20200213 01:27:36 ]
+MXterm^INT^1^^0
+MXterm ;  ;[ 20200213 02:18:25 ]
  q
 jo(%mcomm) ;;  s ^ERR(0,$h)=1_%mcomm h 1
  i $e(%mcomm,1,2)="Q;"!($e(%mcomm,1,2)="q;")!($e(%mcomm,1,6)=" ;STOP") s %=$$killJob($g(%jobChild)) k ^trm(%USID)  w !,"-EXIT-" q
@@ -2422,7 +2422,7 @@ j2 s ^ERR("j2")=$j o "|TRM|:|"_j2 u "|TRM|:|"_j2 s ^ERR("$io")=$io
  q
 killJob(j) 
  n % s %=$g(%USID,0) s:'j j=$o(^JOB(%USID,0)) q:'j 0  k ^JOB(%,+j) q:'$d(^$JOB(+j)) -j  
- ;; i +$p($zv,"Build ",2)>496 do $System.Process.Terminate(+j) q j
+ i +$p($zv,"Build ",2)>496 do $System.Process.Terminate(+j) q j
  Do $ZUTIL(4,+j,-65) h 1 q j
  q 0
 oo if '$d(%USID) s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
@@ -2446,8 +2446,8 @@ wff D oo,$ZU(82,12,0) w:000 #  D $ZU(82,12,1) s %oo=$g(%oo)_$c(13,12),$y=1,$x=1
 wchr(%) D oo,$ZU(82,12,0) w:000 *% D $ZU(82,12,1) s %oo=$g(%oo)_$c(%)
  q
 wtab(%) ; w ?%
- D oo n %0,%1 s %0=%,%=$s(%>$x:%-$x,1:1),%1="",$e(%1,%)=" ",%oo=$g(%oo)_%1,$x=%0
- i $g(%j)-1 s %=+$o(^|%zns|trm(%USID,""),-1),%oo=$g(^|%zns|trm(%USID,%))_%oo s ^|%zns|trm(%USID,%)=%oo,%oo=""
+ D oo n %0,%1 s %0=%,%=$s(%>$x:%-$x,1:1),%1="",$e(%1,%)=" ",%oo=$g(%oo)_%1_$c(9),$x=%0
+ i $g(%j)-1 s %=+$o(^|%zns|trm(%USID,""),-1),%oo=$g(^|%zns|trm(%USID,%))_%oo_$c(9) s ^|%zns|trm(%USID,%)=%oo,%oo=""
  q
 rstr(len,to) 
  D $ZU(82,12,0) d oo s:'$l($g(len)) len=999
@@ -2589,7 +2589,7 @@ cpipe(osComm)
 erpipe c pipe s $zt=%zt q $ze
  q
 
-US^INT^1^65411,72860^0
+US^INT^1^^0
 US ;    ; [ 11/04/2006  5:40 PM ]  ;[ 20190328 10:20:30 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx  Copyright(c) SIA ENTERS  1997-2019
@@ -2834,7 +2834,7 @@ tAccess(%0,%1)
 tAccessE s $zt=%zt w ";",$c(0) q 0 ; not accessed
  q
 
-USDOS^INT^1^65415,188^0
+USDOS^INT^1^^0
 USDOS ; MX.Shell  ;[ 20200204 17:46:33 ]
  ; MSM, CACHE, IRIS, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2020
@@ -3471,7 +3471,7 @@ OpenUseW i $zv["MS" o 51:(%file:"NW"):1 use 51 q
  d OpenUse
  q
 
-USE^INT^1^65411,72860^0
+USE^INT^1^^0
 USE ; MX select [ 01/10/2006  10:31 PM ]  ;[ 20160329 20:48:04 ]
  ; NiniM, MSM, CACHE, GT.M
  ; vmx Copyright(c) SIA ENTERS  2005-2016
@@ -3618,7 +3618,7 @@ clzr(%zr,i)
  s %=$p(%,",",i) i $e(%)="""" s %=$e(%,2,$l(%)-1)
  q %
 
-USF^INT^1^65411,72860^0
+USF^INT^1^^0
 USF ;  [ 04/05/2005  9:16 PM ]  ;[ 20170118 15:33:18 ]
  ; MSM, CACHE, GT.M,  MiniM
  ; MX Copyright(c) SIA ENTERS  2005-2016
@@ -3791,7 +3791,7 @@ zo500(%i,%d)
  q %
  q
 
-USMENU^INT^1^65411,72860^0
+USMENU^INT^1^^0
 USMENU ; US*  [ 01/10/2006  10:43 PM ]  ;[ 20070324 17:08:44 ]
  ; M3-LITE, MSM-4.4x, CACHE-3x..5x, GT.M-5x
  ; Soft-in-cell  MX Copyright(c) SIA ENTERS  1997-2007
@@ -3918,7 +3918,7 @@ EXITxx d 00  ;\izeja
  w:'%j $$yx(YY("max")+y1,4+x1,%3),%,"  ",$e("               ",1,x2-x1-$l(%))
  Q
 
-USOPEN^INT^1^65411,72860^0
+USOPEN^INT^1^^0
 USOPEN ; ;[ 20160310 22:27:24 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  1997-2016
@@ -3979,7 +3979,7 @@ korobov ; ;[ 11/24/00  12:49 PM ]
  close 4
  q
 
-USPRINT^INT^1^65411,72860^0
+USPRINT^INT^1^^0
 USPRINT ; US* ; [ 08/01/2005  5:48 PM ]  ;[ 20140228 13:44:16 ]
  ; MSM, CACHE, GT.M, MiniM
  ; VMX cellSoft Copyright(c) SIA ENTERS  2005-2014
@@ -4103,7 +4103,7 @@ USPRINT ; US* ; [ 08/01/2005  5:48 PM ]  ;[ 20140228 13:44:16 ]
 l(%lN,%i) 
  q:$d(%i) $$l^UST(%lN,%i) q:$d(%lN) $$l^UST(%lN) q $$l^UST
 
-UST^INT^1^65411,72860^0
+UST^INT^1^^0
 UST ;  ; [ 03/28/2005  1:10 AM ]  ;[ 20191011 20:24:39 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2016
@@ -4245,7 +4245,7 @@ trw(t,w1,w2,n)
  q $tr(t,$c(3)) 
  q
 
-USX^INT^1^65411,72860^0
+USX^INT^1^^0
 USX ; MX-SERVER [ 01/10/2006  10:11 PM ]  ;[ 20200130 18:47:21 ]
  ; MSM, CACHE, IRIS, GT.M, MiniM
  ; MX  Copyright(c) SIA ENTERS  2005-2020
@@ -4780,7 +4780,7 @@ xForma(%I,%xForma)
  q "?? "
  q
 
-USb^INT^1^65411,72860^0
+USb^INT^1^^0
 USb ; ;[ 20190219 13:36:55 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2019
@@ -4831,7 +4831,7 @@ Enter(%,%Ymn,%Ymx,%Xmn,%Xmx,%ww,%Zona)
  q ""
 Err s %mxWarng(0)=$g(^AL(%FILE,"START"))_" --- ERROR IN START-COMMAND --- "_$zr q
 
-UShelp^INT^1^65411,72860^0
+UShelp^INT^1^^0
 UShelp  ;[ 20191012 17:58:34 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS 2005-2018
@@ -4873,7 +4873,7 @@ Rcomp(f,Rout,UCI2) ; f=0/1 (short/full form)
  k ^r m oRcomp=t 
  q ""
 
-USm^INT^1^65411,72860^0
+USm^INT^1^^0
 USm ;US.m -setup^AL [ 03/28/2005  1:06 AM ]  ;[ 20070204 19:51:29 ]
  ; M3-LITE, MSM-4.4x, CACHE-3x..5x, GT.M-5x
  ; Soft-in-cell  MX Copyright(c) SIA ENTERS  1997-2007
@@ -4887,7 +4887,7 @@ SelALGlo(%all)
  . q:'$g(%all)  i '$d(@%1) s %SEL($c(254)_%)=^AL(%,"NAME")
  q $d(%SEL)
 
-ZSTU^INT^1^65415,193^0
+ZSTU^INT^1^^0
 mx ; d TCPSTART^APIMGR  ;[ 20200122 21:00:24 ]
 tcp j tcp^MX1  ;; j trm^MX1   ;; j web^MX1
  q
