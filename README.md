@@ -17,15 +17,15 @@ How it works :
 		https://download.intersystems.com/download/login.csp
 
 	Preparation for start MX with Cache 8-bit or unicode, or IRIS InterSystems :
-  -  download the repository
+  -  download the repository as ZIP file, then unzip to a separate folder, for example: to c:\mx\
   -  if you don’t yet have Cache or IRIS, download and install IRIS, preferably in unicode, on any win-computer
-  -  start IRIS (Cache) terminal, then run the following commands:
+  -  start IRIS (Cache) terminal, then run the following commands after USER>:
   
 			zn "yournspace"
 			Set root = "path on filesystem to which repository was downloaded"
 			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
 			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
-  -  copy **.xlsb files and all folders to a separate folder, for example: to c:\mx\, or to a removable drive (flash) 
+ 
   -  edit the [connections] table in the MX_CONFI.xlsb (edit tcp port and $znspace)
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
 
