@@ -28,9 +28,9 @@ How it works :
 			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
  
   -  edit the [connections] table in the MX_CONFI.xlsb (edit tcp port and $znspace)
-  -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter)
+  -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter) then select and press the big button to connect to the mx-server
 
-	you will see buttons for calling tests and games
+	you will see sheet with buttons for calling tests and games
 
 	note : if you import vmx.ro to %SYS as well, MX-server will start automatically.
 
