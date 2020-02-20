@@ -1,5 +1,5 @@
-IRIS for Windows^INT^8-bit&unicode^~Format=IRIS.S~^RAW
-%RO on 17 Feb 2020  10:43 PM
+IRIS for Windows^INT^^~Format=IRIS.S~^RAW
+%RO on 20 Feb 2020   3:11 PM
 MX^INT^1^65426,75816^0
 MX ;[ 20200217 19:30:25 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
@@ -2367,11 +2367,12 @@ eqvTree2(z1,z2)
  s %1=0 f  s %1=$o(@z1@(%1)) q:'%1  s %2=0 f  s %2=$o(@z1@(%1,%2)) q:'%2  s %=$p($g(^(%2)),"<mx ") i $p($p($g(@z2@(%1,%2)),"<mx "),"?")'=% s %2=-1_" "_%1_-%2_"  "_%_" ::: "_$g(@z2@(%1,%2)),%1=" "_%1 q
  q:%2<0 %2  q 0
 
-MXterm^INT^1^65426,81640^0
-MXterm ;  ;[ 20200217 22:40:40 ]
+MXterm^INT^1^65429,54325^0
+MXterm ;  ;[ 20200220 15:05:25 ]
  q
 jo(%mcomm) ;; s ^ERR(0,$h)=%mcomm 
- i $e(%mcomm,1,2)="Q;"!($e(%mcomm,1,2)="q;")!($e(%mcomm,1,6)=" ;STOP") s %=$$killJob($g(%jobChild)) k ^trm(%USID)  w !,"-EXIT-" q
+ i $e(%mcomm,1,2)="Q;"!($e(%mcomm,1,2)="q;")!($e(%mcomm,1,6)=" ;STOP") s %=$$killJob($g(%jobChild)) k ^trm(%USID)  w !,"-EXIT-" d oo zn:$d(%zns) %zns  d  q
+ . n j s j="",nn=0 f  s j=$o(^$JOB(j)) q:'j  q:nn>3  i '$d(^JOB(+$h,j)),$o(^(1)),$$killJob(j)=j w " -- process "_j_" killed --  "  s nn=nn+1
  if %mcomm'["; readTRM ;",$l($g(%USID)) s %zns=$znspace k ^|"%SYS"|ootrmooo,^ootrmooo
  i "  "_%mcomm_"   "[" p  "!("  "_%mcomm_"  "[" P  "),%mcomm'["""" x %mcomm q
  s %zt=$zt,$zt="erjo^MXterm" n %
@@ -2413,14 +2414,16 @@ x(%mcomm,%znsp)
  n %,o,%oo s %=0,o=1,%oo="" f  s %=$o(^ootrmooo(%)) q:'%  s %oo=%oo_^(%) d   s ^SPOOL($j,o)=%oo
  . f  s ^SPOOL($j,o)=$p(%oo,$c(10))_$c(10),%oo=$p(%oo,$c(10),2,999),o=o+1 q:%oo'[$c(10)
  q ""
-erx zn:$d(%UCI) %UCI  d oo D $ZU(82,12,0) close 2 u:$d(%io) %io s $zt=$g(%zt) ;; if $l($g(%USID))*$l($g(%zns))=0 halt
+erx D $ZU(82,12,0) s ^SPOOL($j,9999)=$ze_"  "_$g(%mcomm)  zn:$d(%UCI) %UCI  s ^SPOOL($j,9999)=$ze_"  "_$g(%mcomm)  d oo  close 2 u:$d(%io) %io s $zt=$g(%zt) ;; if $l($g(%USID))*$l($g(%zns))=0 halt
  q $g(^|%zns|ootrmooo)_$ze ;; s ^|%zns|trm(%USID,999999)=^|%zns|ootrmooo
  q
 j2 s ^ERR("j2")=$j o "|TRM|:|"_j2 u "|TRM|:|"_j2 s ^ERR("$io")=$io
  q
 killJob(j) 
- n % s %=$g(%USID,0) s:'j j=$o(^JOB(%USID,0)) q:'j 0  q:'$d(^$JOB(+j)) -j  
- i +$p($zv,"Build ",2)>602 do $System.Process.Terminate(+j) k ^JOB(%,+j) q j
+ n % s %=$g(%USID,0) s:'j j=$o(^JOB(%,0)) q:'j 0  q:'$d(^$JOB(+j)) -j  q:$d(^JOB(+$h,j)) -$h
+ i +$p($zv,"Build ",2)>602 do $System.Process.Terminate(+j) k ^JOB(%,+j) d  q j
+ . f %=1:1:9 q:'$d(^$JOB(+j))  h 1
+ . f %=1:1:99 k ^JOB($h-%)
  ;; Do $ZUTIL(4,+j,-65) h 1 q j
  q 0
 oo if '$d(%USID) s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
