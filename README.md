@@ -1,5 +1,5 @@
 # mx
-Now MS Excel and MUMPS database work together, all m-commands are located in cells of Excel
+Now MS Excel and MUMPS database works together, all m-commands are located in cells of Excel
 
 How it works :
   - Information is kept not in the Excel books, but on the server in the form of globals MUMPS and virtual Excel sheets
