@@ -1,5 +1,5 @@
 # mx
-Now MS Excel and MUMPS database work together, all m-commands are located in cells of Excel
+Now MS Excel and MUMPS database works together, all m-commands are located in cells of Excel
 
 How it works :
   - Information is kept not in the Excel books, but on the server in the form of globals MUMPS and virtual Excel sheets
@@ -14,26 +14,7 @@ How it works :
 	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
 	https://community.intersystems.com/post/m-cell  
 	
-  Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
-		https://download.intersystems.com/download/login.csp
-
-	Preparation for start MX with Cache 8-bit or unicode, or IRIS InterSystems :
-  -  download the repository as ZIP file, then unzip to a separate folder, for example: to c:\mx\
-  -  if you don’t yet have Cache or IRIS, download and install IRIS, preferably in unicode, on any win-computer
-  -  start IRIS (Cache) terminal, then run the following commands after USER>:
-  
-			zn "yournspace"
-			Set root = "path on filesystem to which repository was downloaded"
-			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
-			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
  
-  -  edit the [connections] table in the MX_CONFI.xlsb (edit tcp port and $znspace)
-  -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter) then select and press the big button to connect to the mx-server
-
-	you will see sheet with buttons for calling tests and games
-
-	note : if you import vmx.ro to %SYS as well, MX-server will start automatically.
-
 	With MX :
   
   -  you can create new complex projects, or use MX as an auxiliary tool 
