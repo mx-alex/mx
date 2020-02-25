@@ -15,6 +15,11 @@ How it works :
 	https://community.intersystems.com/post/m-cell  
 	
  
+   For start project with docker see :
+ https://community.intersystems.com/post/dockerfile-and-friends-or-how-run-and-collaborate-objectscript-projects-intersystems-iris
+
+	
+	
 	With MX :
   
   -  you can create new complex projects, or use MX as an auxiliary tool 
