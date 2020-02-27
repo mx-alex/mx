@@ -33,6 +33,8 @@ How it works :
 	you will see sheet with buttons for calling tests and games
 
 	note : if you import vmx.ro to %SYS as well, MX-server will start automatically.
+		for work in docker see https://github.com/mx-alex/mx/tree/docker
+
 
 	With MX :
   
