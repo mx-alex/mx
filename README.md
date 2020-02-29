@@ -34,6 +34,7 @@ How it works :
 
 	notes : - if you import vmx.ro to %SYS as well, MX-server will start automatically.
 		- for docker see https://github.com/mx-alex/mx/tree/docker
+		- you can test MX without m-server installation - start mx.xlsb and click [test-CACHE-32 bit-internet]
 
 
 	With MX :
