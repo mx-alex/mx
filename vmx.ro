@@ -1,5 +1,5 @@
 u127  
-  MX* US* ZSTU 20200229 13:48:25 |TCP|5436|9980
+  MX* US* ZSTU 20200229 18:20:25 |TCP|5436|7276
 MX
 MX ;[ 20200229 13:28:03 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
@@ -1603,7 +1603,7 @@ oooYX() n ooo,y,x,%,%Yrc s ooo="",%="%"
  q
 comment(s,mode) 
  ; ^list from comment of the cell
- n %,o,n,q s n=0 i mode'="^" q 0
+ n %,o,n,q s n=0 q:mode'="^" 0  q:s'[mode ""
  s s=$tr(s,$c(10)_$c(13),%B_%B) i $l(s,"^")>2,s'[%B s s=$$trw^UST(s,"^",%B_"^")
  s s=s_%B
  f %=1:1 q:'$l(s)  s o=$p(s,"^"),s=$p(s,"^",2,999),o="^"_$p(s,")"_%B)_")"_%B_o,s=$p(s,")"_%B,2,999) d 
