@@ -12,6 +12,7 @@ How it works :
 
   MUMPS:  http://mumps.sourceforge.net/docs.html#commands  
 	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
+	https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=AFL_globals
 	https://community.intersystems.com/post/m-cell  
 	
   Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
