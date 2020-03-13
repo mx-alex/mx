@@ -9,6 +9,7 @@ services:
       - 51773
       - 52773
       - 53773
+      - 5264:5264
     volumes:
       - ~/iris.key:/usr/irissys/mgr/iris.key
       - ./:/irisdev/app
