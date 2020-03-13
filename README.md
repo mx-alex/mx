@@ -12,13 +12,15 @@ How it works :
 
   MUMPS:  http://mumps.sourceforge.net/docs.html#commands  
 	https://community.intersystems.com/post/intersystem-cache-—-high-performence-and-operations-dbms
+	https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=AFL_globals
+        https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=GGBL_using_storing
 	https://community.intersystems.com/post/m-cell  
 	
  
+
    For start project with docker see :
  https://community.intersystems.com/post/dockerfile-and-friends-or-how-run-and-collaborate-objectscript-projects-intersystems-iris
 
-	
 	
 	With MX :
   
