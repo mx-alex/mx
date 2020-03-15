@@ -29,15 +29,16 @@ How it works :
 			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
 			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
  
-  -  edit the [connections] table in the MX_CONFI.xlsb (edit tcp port and $znspace)
+  -  edit the [connections] table in the MX_CONFI.xlsb (edit m-server-IP4-address, tcp port, $znspace)
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter) then select and press the big button to connect to the mx-server
 
-	you will see sheet with buttons for calling tests and games
+	Then you will see sheet with buttons for calling tests and games.
+	You can test MX without m-server installation - just start mx-sea-battle.xlsb.
 
-	notes : - if you import vmx.ro to %SYS as well, MX-server will start automatically.
-		- for docker see https://github.com/mx-alex/mx/tree/docker
-		- you can test MX without m-server installation - just start mx-sea-battle.xlsb 
-
+	For install IRIS LINUX in docker, unzip repozitory to /mx/, then enter: 
+	 $ docker run --name myiris -v /mx/:/mx -p 5264:5264 -d store/intersystems/iris-community:2020.1.0.202.0
+	 $ docker exec -it myiris session iris
+	   USER>do $System.OBJ.ImportDir("/mx","vmx.ro","ck",,1) do ^ZSTU
 
 	With MX :
   
