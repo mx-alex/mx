@@ -16,10 +16,18 @@ How it works :
         https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=GGBL_using_storing
 	https://community.intersystems.com/post/m-cell  
 	
- 
 
-   For start project with docker see :
- https://community.intersystems.com/post/dockerfile-and-friends-or-how-run-and-collaborate-objectscript-projects-intersystems-iris
+   For start project with docker 
+  -  edit the [connections] table in the MX_CONFI.xlsb (edit m-server-IP4-address, tcp port, $znspace)
+  -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter) then select and press the big button to connect to the mx-server
+
+	Then you will see sheet with buttons for calling tests and games.
+	You can test MX without m-server installation - just start mx-sea-battle.xlsb.
+
+	For install IRIS LINUX in docker, unzip repozitory to /path/to/mymx, then enter: 
+	 $ docker run --name myiris -v /path/to/mymx:/mx -p 5264:5264 -d store/intersystems/iris-community:2020.1.0.202.0
+	 $ docker exec -it myiris session iris
+	   USER>do $System.OBJ.ImportDir("/mx","vmx.ro","ck",,1) do ^ZSTU
 
 	
 	With MX :
