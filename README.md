@@ -42,7 +42,7 @@ How it works :
 	   
 	On clients side (any comp with Windows & MS Excel) :
 		unzip MX to any folder 
-		open mx_confi.xlsb
+		open mx_confi.xlsb, sheet [connections ]
 		change ‘localhost’ to IP4-address of mx-server (example : 192.168.1.106)
 		save workbook and run mx.xlsb
    
