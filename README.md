@@ -16,30 +16,20 @@ How it works :
         https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=GGBL_using_storing
 	https://community.intersystems.com/post/m-cell  
 	
-  Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
-		https://download.intersystems.com/download/login.csp
 
-	Preparation for start MX with Cache 8-bit or unicode, or IRIS InterSystems :
-  -  download the repository as ZIP file, then unzip to a separate folder, for example: to c:\mx\
-  -  if you don’t yet have Cache or IRIS, download and install IRIS, preferably in unicode, on any win-computer
-  -  start IRIS (Cache) terminal, then run the following commands after USER>:
-  
-			zn "yournspace"
-			Set root = "path on filesystem to which repository was downloaded"
-			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
-			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
- 
+   For start project with docker 
   -  edit the [connections] table in the MX_CONFI.xlsb (edit m-server-IP4-address, tcp port, $znspace)
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter) then select and press the big button to connect to the mx-server
 
 	Then you will see sheet with buttons for calling tests and games.
 	You can test MX without m-server installation - just start mx-sea-battle.xlsb.
 
-	For install IRIS LINUX in docker, unzip repozitory to /mx/, then enter: 
-	 $ docker run --name myiris -v /mx/:/mx -p 5264:5264 -d store/intersystems/iris-community:2020.1.0.202.0
+	For install IRIS LINUX in docker, unzip repozitory to /path/to/mymx, then enter: 
+	 $ docker run --name myiris -v /path/to/mymx:/mx -p 5264:5264 -d store/intersystems/iris-community:2020.1.0.202.0
 	 $ docker exec -it myiris session iris
 	   USER>do $System.OBJ.ImportDir("/mx","vmx.ro","ck",,1) do ^ZSTU
 
+	
 	With MX :
   
   -  you can create new complex projects, or use MX as an auxiliary tool 
