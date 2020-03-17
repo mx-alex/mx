@@ -35,10 +35,17 @@ How it works :
 	Then you will see sheet with buttons for calling tests and games.
 	You can test MX without m-server installation - just start mx-sea-battle.xlsb.
 
-	For install IRIS LINUX in docker, unzip repozitory to /mx/, then enter: 
-	 $ docker run --name myiris -v /mx/:/mx -p 5264:5264 -d store/intersystems/iris-community:2020.1.0.202.0
-	 $ docker exec -it myiris session iris
+	For install IRIS LINUX in docker, unzip repozitory to /path/to/mymx/, then enter: 
+	 $ docker run --name myiris -v /path/to/mymx:/mx -p 5264:5264 -d store/intersystems/iris-community:2020.1.0.202.0
+	 $ docker exec -it myiris iris session iris
 	   USER>do $System.OBJ.ImportDir("/mx","vmx.ro","ck",,1) do ^ZSTU
+	   
+	On clients side (any comp with Windows & MS Excel) :
+		unzip MX to any folder 
+		open mx_confi.xlsb
+		change ‘localhost’ to IP4-address of mx-server (example : 192.168.1.106)
+		save workbook and run mx.xlsb
+   
 
 	With MX :
   
