@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2020.1 (Build 215U)" ts="2020-04-13 13:56:14">
+<Class name="MX.impl">
+<Description><![CDATA[
+Business logic class defined by OpenAPI in MX.spec<br/>
+Updated Apr 13, 2020 13:42:29]]></Description>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%REST.Impl</Super>
+<TimeChanged>65482,49349.722387</TimeChanged>
+<TimeCreated>65480,2594.093312</TimeCreated>
+
+<Parameter name="ExposeServerExceptions">
+<Description>
+If ExposeServerExceptions is true, then details of internal errors will be exposed.</Description>
+<Default>1</Default>
+</Parameter>
+
+<Method name="ping">
+<Description>
+This request returns a reply message in response to a /ping request.</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec/>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    Do ..%SetStatusCode(200)
+	x "o 2:(1:1) u 2  zw  c 2 u $p"
+	s %=0,ooo="" f n=0:1 s %=$o(^SPOOL(1,%)) q:%>999999!'%  s ooo=ooo_$g(^(%))
+    Quit $h_"-Reply from MX-"_ooo_-$j
+]]></Implementation>
+</Method>
+<Method name="vmx">
+<Description>
+This request returns a reply message in response to a /vmx request.</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec/>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    Do ..%SetStatusCode(200)
+	;
+	s usermx=$g(%request.Data("usermx",1)) 
+	s:"u"[usermx usermx=$replace(%request.CgiEnvs("REMOTE_ADDR"),".","")
+	s nspace=%request.Data("nspace",1)
+	s %o=$p($g(%request.CgiEnvs("QUERY_STRING")),"mumps=",2,999)
+	s %o=$replace(%o,"%20"," "),%o=$replace(%o,"%23","#"),%o=$replace(%o,"%22","""")
+	s mumps=%o   if mumps="CLOSE" Quit "HALT"_-$j   
+	; x "o 2:($j:101) u 2 zw %request  c 2 u $p"
+	k ^SPOOL($j) s ^ERR=mumps  s %flagREST=$j
+	o 2:($j:1):"^MXterm" u 2                       ;; :($j:1):"^MXterm"
+	s ooo=$$rest^MX1(usermx,nspace,mumps)
+	close 2
+    Quit $h_-$j_" %zt="_$g(%zt)_"- from csp/MX/vmx - "_usermx_" "_nspace_" [["_$e(ooo,1,32765+1000)
+]]></Implementation>
+</Method>
+
+</Class>
+
+
+<Class name="MX.spec">
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%REST.Spec</Super>
+<TimeChanged>65482,49349.412231</TimeChanged>
+<TimeCreated>65482,49349.410511</TimeCreated>
+
+<XData name="OpenAPI">
+<MimeType>application/json</MimeType>
+<Data><![CDATA[
+{
+  "swagger":"2.0",
+  "info":{
+    "title":"New Application",
+    "version":"0"
+  },
+  "paths":{
+    "/ping":{
+      "get":{
+        "summary":"Respond to ping",
+        "description":"This request returns a reply message in response to a /ping request.",
+        "operationId":"ping",
+        "responses":{
+          "200":{
+            "description":"Returns 'Reply from MX -ping'.",
+            "schema": {
+              "type":"string"
+            }
+          }
+        }
+      }
+    },
+	"/vmx":{
+      "get":{
+        "summary":"Respond to vmx",
+        "description":"This request returns a reply message in response to a /vmx request.",
+        "operationId":"vmx",
+        "responses":{
+          "200":{
+            "description":"Returns 'Reply from MX-vmx'.",
+            "schema": {
+              "type":"string"
+            }
+          }
+        }
+      }
+    }
+	
+	
+  }
+}
+]]></Data>
+</XData>
+</Class>
+</Export>

@@ -1,6 +1,6 @@
-IRIS for Windows^INT^vmx.ro^~Format=IRIS.S~^RAW
-%RO on 01 Mar 2020   7:36 PM
-MX^INT^1^65438,48483^0
+IRIS/CACHE for Windows^INT^vmx.ro^~Format=IRIS.S~^RAW
+%RO on 20200420 11:49:56
+MX^INT^1^65489,42596^0
 MX ;[ 20200229 13:28:03 ]
  ; MSM, CACHE, IRIS,  GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS 2005-2020
@@ -56,9 +56,9 @@ omFormat(oo)
  if oo[%B set oo=oo_"<mx format=itog "
  q oo
 
-MX1
-MX1 ; ;[ 20200217 19:30:53 ]
- ; MSM, CACHE, GT.M, MiniM
+MX1^INT^1^65489,42596^0
+MX1 ; ;[ 20200420 11:48:35 ]
+ ; MSM, CACHE, IRIS, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2020
  q
 trm 
@@ -109,7 +109,6 @@ webChild USE $io:(:80:"RAWCD":"":32765:32765) s:000 ^mxMonito($$ts,0,-$j)=$io
  s %USID="web",shee=0,^mxMonito($$ts,0,-$j)=$io_";;"_ooo
  i 'o s ooo="",port=80,uci="%SYS" d  n o g webReply
  . s:o["{" o=$$u8^MXF(.o) s o=$p(o,";;") s:'$l(o) o="s ooo=1234567890"
- . f %=$l(o)-2:-1:1 s x=$e(o,%) i x="%" s x=$e(o,%,%+2),x=$f("%20  %22""  %23#  %3E> %3C<",x) s:x $e(o,%,%+2)=$e("%20  %22""  %23#  %3E> %3C<",x)
  . k %,x x o
  . s Html=$$U8^MXF(ooo),^mxMonito($$ts,1,-$j)=$g(o)_";;"_$l(ooo)_";;"_$e(ooo,1,333)
  f %=3:1:99 i $e(uci,%)?1n!($e(uci,%)=" ") s shee=$p($e(uci,%,99)," "),uci=$e(uci,1,%-1) q
@@ -126,13 +125,12 @@ tcpErrMi h 1 x "s view=$view(""err"",1)" s ^mxMonito($$ts,999,$j)=$ze_"  io="_$g
  q
 tcpError h 1 s ^mxMonito($$ts,999,$j)=$ze_"  io="_$g(io)
  c:$d(io) io h 1   ;; goto tcp+2
-tcp ; MX-CONCURRENT-SERVER with tcp on port 2232(32-bit) or 2264(64-bit) or 5233(minim) or 5264 (IRIS) ;
- s i=$io,p=$p
+tcp(PORT) ; MX-CONCURRENT-SERVER with tcp (defolt-PORT : 2232(32-bit) : 2264(64-bit) : 5233(minim) : 5264 (IRIS) )
+ s i=$io,p=$p,PORT=$g(PORT,$s($zv["IRIS":5264,$zv["-64":2264,1:2232))
  g:$zv["MiniM" tcpMiniM  g:$zv["MS" tcpMSM  q:$zv'["Ca"&($zv'["IRIS")  s io="|TCP|"_$j
- i $zv["IRIS" OPEN io:(:5264:"MA"):200  USE io:(:5264:"RAWCD":"":32765:32765) g tcpL   ;; 32767=7FFF
- OPEN:$zv'["-64" io:(:2232:"MA"):200   OPEN:$zv["-64" io:(:2264:"MA"):200 
- USE:$zv'["-64" io:(:2232:"RAWCD":"":32765:32765)   USE:$zv["-64" io:(:2264:"RAWCD":"":32765:32765)
- s ^mxMonito($$ts,0,$j)=$znspace_" -- START tcp^MX1 $io="_$io_"  i="_i_"  p="_p
+ OPEN io:(:PORT:"MA"):200 
+ USE io:(:PORT:"RAWCD":"":32765:32765)  ;; 32767=7FFF
+ s ^mxMonito($$ts,0,$j)=$znspace_" -- START tcp^MX1 $io="_$io_"  i="_i_"  p="_p_" PORT="_PORT
 tcpL 
  s $ztrap="tcpError^MX1"
  READ %   j tcpChild^MX1:(:5:$io:$io)
@@ -145,16 +143,9 @@ tcpL
 tcpChild ;; s ^mxMonito($$ts,0,$j)=$znspace_" -- START j tcpChild^MX1 "
  k ooo s ooo="" 
  i $zv["MS" USE 56 g tcpChilR^MX1
- i $zv["MS" USE 56 s uci=-1 d  g:'u tcpChild  V 2:$J:v*32+u:2 g tcpChilR^MX1   ;; msm-mx---EXCEL  -- not web
- . n r,zu,% s r="" f  read *%:1 q:%<0  s r=r_$c(%)
- . s uci=$e($tr($p($p(r," UCI=",2)," "),""""),1,3) x r w 0_$c(0)_$c(15),*-3 i $l(uci)<3 s v=0 q
- . S zu=$ZU(uci_",MXM"),u=$P(zu,","),v=$P(zu,",",2) ;; V 2:$J:v*32+u:2
- . h 2 s ^mxMonito($$ts,2,-$j)=uci_"   r="_r 
  i $zv["MiniM" USE $io:(/MODE="rwb":/TERM=$c(0))
- i $zv["Ca" USE:$zv'[-64 $io:(:2232:"RAWCD":"":32765:32765) USE:$zv[-64 $io:(:2264:"RAWCD":"":32765:32765)
- i $zv["IRIS" USE $io:(:5264:"RAWCD":"":32765:32765)
- s ^mxMonito($$ts,1,$j,"$io")=$io
- ;; i $d(^oooRead1) s ooo=^oooRead1,o=$tr($p($p(ooo," UCI=",2)," "),"""") s:$e(ooo,1,3)="GET" o=$p($p(ooo,"UCI=",2),";") s ^mxMonito($$ts,2,-$j)=ooo k ^oooRead1
+ i $zv'["MiniM" USE $io:(:PORT:"RAWCD":"":32765:32765)
+ s ^mxMonito($$ts,1,$j)=$znspace_" -- START tcp^MX1 $io="_$io_"  i="_i_"  p="_p_" PORT="_PORT
 tcpChil2 s $ztrap="saveMem^MX1",ooo=""
  i $zv'["MiniM" f  READ:600 ooo d:ooo=""  s uci=$tr($p($p(ooo," UCI=",2)," "),"""") s:ooo["OPTIONS" ^mxMonito($$ts,0,-$j)=ooo s:$e(ooo,1,3)="GET" o=$p($p($p(ooo,"UCI=",2),";",1,6)," "),uci=$p(o,";") q:$l(uci)>2
  . i $g(%session),$d(%mxWeb),$znspace'="%SYS",$g(%gm),$g(^oAllVars($g(%USID,-2.2),-%session,"$j"))=$j s %=%session n YX,Y,X,ooo,%session,%mxWeb  i $$SaveMem^USX(%USID,-%)
@@ -175,7 +166,6 @@ tcpChil2 s $ztrap="saveMem^MX1",ooo=""
  . i o'["%session" s %USID=$p(o,";",3),%mxSheet=$p(o,";",2),%session=0,YX="" 
  . i '%session s ^mxMonito($$ts,3.3,$j)="START tcpChild^MX1  o="_o h 1
  . s %1omCode=$p($p(ooo,";=",2,999),";];") s:%1omCode["{" %1omCode=$$u8^MXF(.%1omCode)
- . f %=$l(%1omCode)-2:-1:1 s o=$e(%1omCode,%) i o="%" s o=$e(%1omCode,%,%+2),o=$f("%20  %22""  %23#  %3E> %3C<",o) i o s o=$e("%20  %22""  %23#  %3E> %3C<",o),$e(%1omCode,%,%+2)=o
  . s %mxForma=%mxSheet i '%session d getStart q
  . ;
  . ;; s ^mxMonito($$ts,4,$j)=YX_" "_%USID_" "_%mxSheet_" %session="_%session_" ooo="_ooo_"   o="_o
@@ -224,7 +214,6 @@ getForma n %
  . x %1omCode  n %mxSheet,%mxForma,%1omCode,YX,ooo  i $$SaveMem^USX(%USID,-%session)
  s %=$o(^oYrc(%USID,%mxSheet,0,0)) i % s YX="[=",ooo=^(%) k ^(%) q 
  q:'$l(%1omCode)
- n %0,Yrc,%insRows,ym,xm,xi,X,Y,%11,%,%1,%22,%123,%formatC
  s Yrc=0,%insRows=0,ym=2,xm=5,xi=5,%formatC=$g(^vmxExcel(%USID,%mxSheet,".format"))
  s Y=0 f  s Y=$o(^cYX(%USID,%mxSheet,Y)) q:'Y  s X=1 f  s X=$o(^cYX(%USID,%mxSheet,Y,X)) q:'X  i $d(^(X,2)) s ^oTQMo(%USID,%mxSheet,Y,X)=$g(^oTQMo(%USID,%mxSheet,Y,X))_";;oRC=?$$Image cYX Size=222"
  f  s Yrc=$o(^oTQMo(%USID,%mxSheet,Yrc)) d:Yrc  i 'Yrc s ^oYrc(%USID,%mxSheet,0,999999)=ooo q
@@ -253,6 +242,27 @@ tcpChilR
  x %1omCode w 0_$c(0)_$c(15),*-3  ;; w:$g(%oorxxxw)'="0" 0,$c(0),$c(15),*-3
  g tcpChilR
  q
+rest(%USID,%UCI,%1omCode) 
+ ;; n (%USID,%UCI,%1omCode)
+ if '$d(%USIDoo)!$g(^oAllVars(%USID_"*",%UCI,-2)) s %1=%USID,%2=%UCI d   s %USIDoo=%USID
+ . n %USID,%UCI,%omCode,%request,%response,%SYSLOG,%session,skipheader,tAuthorized,tRedirectRoutine,tRedirected,tSC,tURL,%zt,%j  if 1_$$RestMem^USX(%1_"*",%2)
+ ;
+ s ooo="",%zt=$zt,%zns=$znspace,$ztrap="restErr^MX1",%io=$io
+ s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_$zt 
+ k ^oooorest($j)
+ ;;  s:$e(%1omCode,1,4)["zw" ^mxMonito($$ts,0_$g(%USID))=%1omCode_" ::: "_$zt
+ s %oorxxxU=$f(%1omCode,"{") d:%oorxxxU
+ . n %1,%,s f %=%oorxxxU-1:1:$l(%1omCode) i $e(%1omCode,%)="{" f %1=4,5,6 s s=$e(%1omCode,%+%1) i s="}" s s=$e(%1omCode,%+1,%+%1-1) i s\1=s,s<66200,s>250 s $e(%1omCode,%,%+%1)=$c(s) q
+ D $ZU(82,12,1)
+ x %1omCode   if '$d(%USID) d oo  ;;  w 0_$c(0)_$c(15),*-3 
+ D $ZU(82,12,0)
+ n % s %=0,ooo="" f  s %=$o(^|%zns|oooorest($j,%)) q:'%  s ooo=ooo_^(%)
+restE 
+ if $l($g(%USID)),$znspace=$g(%UCI),$$SaveMem^USX(%USID_"*",%UCI)
+ q $g(ooo)
+restErr s:$l($g(%zt)) $zt=$g(%zt),ooo="ERROR ::: "_$ze_"  "_ooo   D $ZU(82,12,0)
+ g restE
+ ; 
 tcpChilRformsm ;; not correct  work
  i $zv["Ca"!($zv["IRIS") READ %1omCode i 1 ;; i $zv["MS" s ^mxMonito($$ts,$g(%USID)_" ")=$e(%1omCode,1,500)
  else  s %1omCode="" f  READ *% q:%<1  s %1omCode=%1omCode_$c(%)
@@ -284,15 +294,6 @@ mxErrChR n e
  I %["<NAMESPACE>" h 1 close $p h 1 HALT
  g tcpChilR
  q
-TCP(PORT) 
-o ;  Start MX-SERVER with TCP.
-audi 
-x 
-xx 
-getPORT 
-mxRead 
-readX 
-erMXserv q 
 W(%) w $c(0,0),$c($l(%)\256),$c($l(%)#256),%
  q
 GTMread ;;w !,"gtm : WRITE /WAIT(%ZNTimeS) :  %ZNCmd=",%ZNCmd,"  SOCKET=",%ZNSock
@@ -390,7 +391,7 @@ nspace(name)
   q o
  q
 
-MX2
+MX2^INT^1^65489,42596^0
 MX2 ;[ 20191011 20:14:18 ]
  ; M3-LITE, MSM, CACHE, GT.M-5x
 QQ ; TKWEB ; start mxWeb 
@@ -890,7 +891,7 @@ Ex(Cmd)
  ;; {1064}{1083}{1077}{1090} {1076}{1072}{1085}{1085}{1099}{1077} {1082}{1072}{1082} {1087}{1086}{1090}{1086}{1082}{1086}{1084} , {1090}{1072}{1082} {1080} {1090}{1080}{1087}{1072} {1087}{1086} {1082}{1086}{1084}{1072}{1085}{1076}{1077} {1072}{1085}{1072}{1083}{1086}{1075}{1072} VisM
  ;; {1054}{1090}{1076}{1077}{1083}{1100}{1085}{1086} {1084}{1086}{1078}{1085}{1086} {1087}{1077}{1088}{1077}{1076}{1072}{1074}{1072}{1090}{1100} {1080} {1087}{1086}{1083}{1091}{1095}{1072}{1090}{1100} {1088}{1077}{1075}{1080}{1089}{1090}{1088}{1099} {1086}{1090} P0 {1076}{1086} P9
 
-MXD
+MXD^INT^1^65489,42596^0
 MXD ;  [ 04/26/2006  6:08 PM ]  ;[ 20170821 15:08:20 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx ( multi-user virtual EXCEL incorporated into the database )
@@ -1132,7 +1133,7 @@ t1t2(t1,t2)
  s %1=%2-%1,%1=$e(%1\3600+100,2,3)_":"_$e(%1-(%1\3600*3600)\60+100,2,3)_":"_$e(%1#60+100,2,3)
  q:$d(%3) $p(%1,":",2,3)  q %1
 
-MXF
+MXF^INT^1^65489,42596^0
 MXF ;  [ 04/26/2006  6:08 PM ]  ;[ 20090514 13:53:39 ]
  ; MSM, CACHE, IRIS, GT.M,  MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2020
@@ -1618,7 +1619,7 @@ omReplace(z,%re,%de,%xe)
  q $d(o)
  q
 
-MXGTM
+MXGTM^INT^1^65489,42596^0
 MXGTM ; for GTM ; ;[ 20190602 22:24:47 ]
  q
 FREAD ; terminal gtm !!
@@ -1689,7 +1690,7 @@ version
   QUIT
   ;
 
-MXTQM
+MXTQM^INT^1^65489,42596^0
 MXTQM ;  [ 03/28/2005  1:14 AM ]  ;[ 20200229 01:10:11 ]
  ; MSM, CACHE, IRIS, GT.M, MiniM
  ; vmx ( multi-users virtual EXCEL incorporated into the database )
@@ -2125,7 +2126,7 @@ getJourn(%1,%2)
 RestVars(%) 
  q 1
 
-MXTQM2
+MXTQM2^INT^1^65489,42596^0
 MXTQM2   ;[ 20190127 21:31:45 ]
  ; MSM, CACHE, GT.M, MiniM
  ; VMX-technology  ( Virtual Multi-channel EXCEL incorporated into the database )
@@ -2382,8 +2383,8 @@ eqvTree2(z1,z2)
  s %1=0 f  s %1=$o(@z1@(%1)) q:'%1  s %2=0 f  s %2=$o(@z1@(%1,%2)) q:'%2  s %=$p($g(^(%2)),"<mx ") i $p($p($g(@z2@(%1,%2)),"<mx "),"?")'=% s %2=-1_" "_%1_-%2_"  "_%_" ::: "_$g(@z2@(%1,%2)),%1=" "_%1 q
  q:%2<0 %2  q 0
 
-MXterm
-MXterm ;  ;[ 20200301 19:53:45 ]
+MXterm^INT^1^65489,42596^0
+MXterm ;  ;[ 20200418 23:54:58 ]
  q
 jo(%mcomm) ;; s ^ERR(0,$h)=%mcomm 
  i $e(%mcomm,1,2)="Q;"!($e(%mcomm,1,2)="q;")!($e(%mcomm,1,6)=" ;STOP") s %=$$killJob($g(%jobChild)) k ^trm(%USID)  w !,"-EXIT-" d oo zn:$d(%zns) %zns  d  q
@@ -2398,7 +2399,7 @@ jo(%mcomm) ;; s ^ERR(0,$h)=%mcomm
  i 'o,$g(%jobChild),%>98 w "  !! process ID = ",%jobChild i $$killJob(%jobChild)
  w "^trm(%USID)"    if $l($g(%USID)),$$RestMem^USX(%USID,"trm",$j)
  q
-erjo w $ze," $zn=",$zn
+erjo w $ze," $zn=",$zn c:+$io=2 2
  q
 job 
  s %io=$io,%B=$c(254)  k ^trm(%USID) k ^oAllVars(%USID,"trm") k ^|%zns|ootrmooo
@@ -2411,9 +2412,22 @@ job
  s %=0 f o=1:1 s %=$o(^|%zns|ootrmooo(%)) q:'%  s ^|%zns|trm(%USID,o)=^|%zns|ootrmooo(%)
  s ^|%zns|trm(%USID,o+100)=$g(^|%zns|ootrmooo) ;; k ^|%zns|ootrmooo 
  q
-er d oo D $ZU(82,12,0) u $io  u:$d(%io) %io  s $zt=$g(%zt) if $l($g(%USID))*$l($g(%zns))=0 halt
+er d oo D $ZU(82,12,0) c:+$io=2 2  u $p  u:$d(%io) %io  s $zt=$g(%zt) if $l($g(%USID))*$l($g(%zns))=0 halt
  s ^|%zns|trm(%USID,999999)=$e($g(^|%zns|ootrmooo),1,9999)_$ze
  q
+jx(%mcomm,%znsp) 
+ s %zns=$znspace,%znsp=$g(%znsp,%zns)  ;; if +$io=2 c 2
+ job jobx:(:1):1 h 1 s %jobChild=$ZCHILD
+ n %,oo  s %="",oo="" f  s %=$o(^ojx(1,%)) q:'%  s oo=oo_^(%)
+ ;; n %,oo  s %="",oo="" f  s %=$o(^SPOOL(1,%)) q:'%  s oo=oo_^(%)
+ q:'$l(oo) %mcomm  q "" 
+jobx s %zt=$zt,$zt="jxErr^MXterm" n %  s:%zns'=%znsp $namespace=%znsp
+ o 2:(1:1):"^MXterm" u 2 k ^SPOOL(1) D:000 $ZU(82,12,1) x %mcomm   D:000 $ZU(82,12,0)
+ k ^|%zns|ojx(1) ;; s ^|%zns|ojx(1,-1)=%mcomm_" ;;; "_$zu(5)_" $io="_$io_" $p="_$p_"  $j="_$j
+ s:%zns'=%znsp $namespace=%zns  ;;  s ^ojx(1,-2)=%mcomm_";;;;;"_$zu(5)_" $io="_$io_" $p="_$p_"  $j="_$j
+ m ^ojx(1)=^|%znsp|SPOOL(1) 
+ q
+jxErr zn:$l($g(%zns)) %zns s ^ojx(1,1)=$ze_" "_$zt_" "_$g(^ojx(1,1)) s:$d(%zt) $zt=%zt  q  ;; c:+$io=2 2 q
 x(%mcomm,%znsp) 
  s %io=$io k ^SPOOL($j) i $$killJob(0)
  s ^|"%SYS"|trm($j)=$znspace_" "_%USID_" "_$zt,%zns=$znspace    
@@ -2421,15 +2435,17 @@ x(%mcomm,%znsp)
  i (%mcomm[" zw  ")!(%mcomm[" w  ")!(%mcomm[" ZW  ")!(%mcomm[" W  ") s %mcomm="s %=""%"" f  s %=$o(@%) q:'$l(%)  i '$p(%,""%"",2) w %,""="",$g(@%) w:$d(@%)>2 !,"" ..."" w ! "
  else  i %mcomm[" p  "!(%mcomm[" P  "),%mcomm'["""" x %mcomm q ""
  i $d(%znsp) s %UCI=$znspace zn %znsp  
- o 2:($j:1):"^MXterm"  u 2::"^MXterm" 
+ set ^ERR("x+7")=$io  o 2:($j:1):"^MXterm"  u 2::"^MXterm" 
  D $ZU(82,12,1)  x %mcomm   D $ZU(82,12,0)
- c 2 u $io u:$d(%io) %io
+ set ^ERR("x+9")=$io  c 2 u $io u:$d(%io) %io
  i $d(%znsp),$d(%UCI) zn %UCI  
   ;; if '$d(%USID) d oo zn %zns s %j=1,%B=$c(254)
  n %,o,%oo s %=0,o=1,%oo="" f  s %=$o(^ootrmooo(%)) q:'%  s %oo=%oo_^(%) d   s ^SPOOL($j,o)=%oo
  . f  s ^SPOOL($j,o)=$p(%oo,$c(10))_$c(10),%oo=$p(%oo,$c(10),2,999),o=o+1 q:%oo'[$c(10)
  q ""
-erx D $ZU(82,12,0) s ^SPOOL($j,9999)=$ze_"  "_$g(%mcomm)  zn:$d(%UCI) %UCI  s ^SPOOL($j,9999)=$ze_"  "_$g(%mcomm)  d oo  close 2 u:$d(%io) %io s $zt=$g(%zt) ;; if $l($g(%USID))*$l($g(%zns))=0 halt
+erx 
+ D $ZU(82,12,0)  o 2:($j:9999)  u 2  w $ze_"  "_$g(%mcomm)  zn:$d(%UCI) %UCI  w $ze_"  "_$g(%mcomm)
+ d oo  close 2 u:$d(%io) %io s $zt=$g(%zt)
  q $g(^|%zns|ootrmooo)_$ze ;; s ^|%zns|trm(%USID,999999)=^|%zns|ootrmooo
  q
 j2 s ^ERR("j2")=$j o "|TRM|:|"_j2 u "|TRM|:|"_j2 s ^ERR("$io")=$io
@@ -2444,22 +2460,35 @@ killJob(j)
 oo if '$d(%USID) s %=$g(^|"%SYS"|trm($j)),%zns=$p(%," "),%USID=$p(%," ",2),%zt=$p(%," ",3,99)
  q
 wstr(%exp) 
- D oo,$ZU(82,12,0) n %,o,z  u 0  s z=$zr 
- s %=+$o(^|%zns|ootrmooo(""),-1),o=$g(^(%)) s:'% %=1 s:$l(o)+$l(%exp)>999 %=%+1,o="" s ^(%)=o_%exp,$x=$x+$l(%exp)
- D $ZU(82,12,1) u 0::"^MXterm" i $d(z),$d(@z)
+ D oo,$ZU(82,12,0) n %,o,z  u:000 0  s z=$zr 
+ if %exp[$c(27) n %1,%2 s %1=""""_$c(27)_"[1m_$c("_$c(27)_"[m",%2=$c(27)_"[1m)_"_$c(27)_"[m""" d
+ . f o=1:1:9 q:%exp'[%1!(%exp'[%2)  s %="s %=$c("_$p($p($p(%exp,%1,2),%2),$c(27))_")" q:%["-"  x % s %exp=$p(%exp,%1)_%_$p(%exp,%2,2,999)
+ . s %2=$c(27)_"[1m)"_$c(27)_"[m"
+ . f o=1:1:9 q:%exp'[%1!(%exp'[%2)  s %="s %=$c("_$p($p($p(%exp,%1,2),%2),$c(27))_")" q:%["-"  x % s %exp=$p(%exp,%1)_%_$p(%exp,%2,2,999)
+ . s %1=$c(27)_"[1m$c("_$c(27)_"[m",%2=$c(27)_"[1m)"_$c(27)_"[m"
+ . f o=1:1:9 q:%exp'[%1!(%exp'[%2)  s %="s %=$c("_$p($p($p(%exp,%1,2),%2),$c(27))_")" q:%["-"  x % s %exp=$p(%exp,%1)_""""_%_""""_$p(%exp,%2,2,999) q
+ ;;f %=1:1:9 s o=$p($p(%exp,"_$c(1",2),")_"),%exp=%exp_o q:'$l(o)  d
+ ;; . x "s o=$c(1"_o_")" s:$l(o) %exp=$p(%exp,"_$c(1")_o_$p(%exp,")_",2,99)
+ ;;
+ s %=+$o(^|%zns|ootrmooo(""),-1),o=$g(^(%)) s:'% %=1 s:$l(o)+$l(%exp)>999 %=%+1,o="" s ^(%)=o_%exp ;; ,$x=$x+$l(%exp)
+ s %=+$o(^|%zns|oooorest($j,""),-1),o=$g(^(%)) s:'% %=1 s:$l(o)+$l(%exp)>999 %=%+1,o="" s ^(%)=o_%exp,$x=$x+$l(%exp)
+ D $ZU(82,12,1) u:000 0::"^MXterm" i $d(z),$d(@z)
  q
 wnl D oo,$ZU(82,12,0) n %,o,z  s z=$zr ;; w !
  s %=+$o(^|%zns|ootrmooo(""),-1),o=$g(^(%)),%='%+%,^(%)=o_$c(10),$x=1
+ s %=+$o(^|%zns|oooorest($j,""),-1),o=$g(^(%)),%='%+%,^(%)=o_$c(10),$x=1
  i $d(z),$d(@z)
  D $ZU(82,12,1)
  q
 wff D oo,$ZU(82,12,0) w:000 #  n %,o,z s z=$zr 
  s %=+$o(^|%zns|ootrmooo(""),-1),o=$g(^(%)),%='%+%,^(%)=o_$c(13,12),$y=1,$x=1
+ s %=+$o(^|%zns|oooorest($j,""),-1),o=$g(^(%)),%='%+%,^(%)=o_$c(13,12),$y=1,$x=1
  i $d(z),$d(@z)
  D $ZU(82,12,1) 
  q
 wchr(%) D oo,$ZU(82,12,0) w:000 *%   n %,o,z s z=$zr 
  s %=+$o(^|%zns|ootrmooo(""),-1),o=$g(^(%)),%='%+%,^(%)=o_$c(%)
+ s %=+$o(^|%zns|oooorest($j,""),-1),o=$g(^(%)),%='%+%,^(%)=o_$c(%)
  i $d(z),$d(@z)
  D $ZU(82,12,1)
  q
@@ -2467,6 +2496,7 @@ wtab(%) ; w ?%
  D oo,$ZU(82,12,0)
  n %0,%1,o,z s %0=%,%=$s(%>$x:%-$x,1:1),%1="",$e(%1,%)=" " s z=$zr 
  s %=+$o(^|%zns|ootrmooo(""),-1),o=$g(^(%)),%='%+%,^(%)=o_%1_$c(9),$x=%0
+ s %=+$o(^|%zns|oooorest($j,""),-1),o=$g(^(%)),%='%+%,^(%)=o_%1_$c(9),$x=%0
  i $d(z),$d(@z)
  D $ZU(82,12,1)
  q
@@ -2598,7 +2628,7 @@ cmd(osComm)
 erPIPE s $zt=%zt close pipe  u 0
  q
 
-US
+US^INT^1^65489,42596^0
 US ;    ; [ 11/04/2006  5:40 PM ]  ;[ 20200217 19:32:22 ]
  ; MSM, CACHE, IRIS, GT.M, MiniM
  ; vmx  Copyright(c) SIA ENTERS  1997-2020
@@ -2843,8 +2873,8 @@ tAccess(%0,%1)
 tAccessE s $zt=%zt w ";",$c(0) q 0 ; not accessed
  q
 
-USDOS
-USDOS ; MX.Shell  ;[ 20200217 21:01:03 ]
+USDOS^INT^1^65489,42596^0
+USDOS ; MX.Shell  ;[ 20200301 21:09:29 ]
  ; MSM, CACHE, IRIS, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2020
  ; 
@@ -3139,13 +3169,15 @@ ErGSend
  ..i %=%r k %r(%) q
  ..i %r["*",1_%[(1_$p(%r,"*")) k %r(%)
  q:$g(%L)_%RL["?"
- s:%file'[".r" %file=$p(%file,".") s %CMT=$g(%MET)_" "_$g(%USER)_" "_%RL_" "_$$ts^MX1_" "_$io
+ s:%file'[".r" %file=$p(%file,".") s %CMT=$g(%MET)_" "_$g(%USER)_" "_%RL_" "_$$ts^MX1
  s %=%file,$p(%,"\",$l(%,"\"))="x.x"  q:$$zos(2,%)=-5  
  d OpenUseW
- w $g(%USID)_"  ",!,%CMT n r 
+ w:$zv["IRIS" "IRIS/CACHE for Windows^INT^vmx.ro^~Format=IRIS.S~^RAW"
+ w:$zv'["IRIS" "CACHE for Windows^INT^vmx.ro^~Format=CACHE.S~^RAW"
+ w !,"%RO on ",$$ts^MX1    ;; MX^INT^1^65438,48483^0!,%CMT n r 
  s %r="" f n=1:1 s %r=$o(%r(%r)) q:%r=""  d  ;;  q:$zc
  . ;; k r x "zl @%r f %=0:1 s t=$t(@%r+@%) q:'$l(t)  s:t'["" ""&% t=t_"" ""  s r(%)=t"
- .k r f %=0:1:999 s t=$t(+%^@%r) i $l(t) s r(%)=t_$s(t'[" "&%:" ",1:"")
+ .k r f %=0:1:999 s t=$t(+%^@%r) i $l(t) s r(%)=t_$s(t'[" "&%:" ",1:"") s:'% r(%)=r(%)_"^INT^1^"_$h_"^0"
  .f %=0:1 s t=$g(r(%)) q:'$l(t)  s t=$$U^MXF(t) s:%RL["-msm" t=$$Uu^MXF(t) w !,t
  .w ! q:'$zc   ;;  q:%j
  .s n=0
@@ -3480,7 +3512,7 @@ OpenUseW i $zv["MS" o 51:(%file:"NW"):1 use 51 q
  d OpenUse
  q
 
-USE
+USE^INT^1^65489,42596^0
 USE ; MX select [ 01/10/2006  10:31 PM ]  ;[ 20160329 20:48:04 ]
  ; NiniM, MSM, CACHE, GT.M
  ; vmx Copyright(c) SIA ENTERS  2005-2016
@@ -3627,7 +3659,7 @@ clzr(%zr,i)
  s %=$p(%,",",i) i $e(%)="""" s %=$e(%,2,$l(%)-1)
  q %
 
-USF
+USF^INT^1^65489,42596^0
 USF ;  [ 04/05/2005  9:16 PM ]  ;[ 20170118 15:33:18 ]
  ; MSM, CACHE, GT.M,  MiniM
  ; MX Copyright(c) SIA ENTERS  2005-2016
@@ -3800,7 +3832,7 @@ zo500(%i,%d)
  q %
  q
 
-USMENU
+USMENU^INT^1^65489,42596^0
 USMENU ; US*  [ 01/10/2006  10:43 PM ]  ;[ 20070324 17:08:44 ]
  ; M3-LITE, MSM-4.4x, CACHE-3x..5x, GT.M-5x
  ; Soft-in-cell  MX Copyright(c) SIA ENTERS  1997-2007
@@ -3927,8 +3959,8 @@ EXITxx d 00  ;\izeja
  w:'%j $$yx(YY("max")+y1,4+x1,%3),%,"  ",$e("               ",1,x2-x1-$l(%))
  Q
 
-USOPEN
-USOPEN ; ;[ 20200217 19:33:59 ]
+USOPEN^INT^1^65489,42596^0
+USOPEN ; ;[ 20160310 22:27:24 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  1997-2016
  ; 
@@ -3988,7 +4020,7 @@ korobov ; ;[ 11/24/00  12:49 PM ]
  close 4
  q
 
-USPRINT
+USPRINT^INT^1^65489,42596^0
 USPRINT ; US* ; [ 08/01/2005  5:48 PM ]  ;[ 20140228 13:44:16 ]
  ; MSM, CACHE, GT.M, MiniM
  ; VMX cellSoft Copyright(c) SIA ENTERS  2005-2014
@@ -4112,7 +4144,7 @@ USPRINT ; US* ; [ 08/01/2005  5:48 PM ]  ;[ 20140228 13:44:16 ]
 l(%lN,%i) 
  q:$d(%i) $$l^UST(%lN,%i) q:$d(%lN) $$l^UST(%lN) q $$l^UST
 
-UST
+UST^INT^1^65489,42596^0
 UST ;  ; [ 03/28/2005  1:10 AM ]  ;[ 20191011 20:24:39 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2016
@@ -4254,8 +4286,8 @@ trw(t,w1,w2,n)
  q $tr(t,$c(3)) 
  q
 
-USX
-USX ; MX-SERVER [ 01/10/2006  10:11 PM ]  ;[ 20200130 18:47:21 ]
+USX^INT^1^65489,42596^0
+USX ; MX-SERVER [ 01/10/2006  10:11 PM ]  ;[ 20200420 11:49:30 ]
  ; MSM, CACHE, IRIS, GT.M, MiniM
  ; MX  Copyright(c) SIA ENTERS  2005-2020
  ; 
@@ -4470,7 +4502,7 @@ SaveMem(%1,%2,LiOfMvar)
  q ""
 SaveMem3 
  s ^oAllVars(%1,%2,1)=$h,%="%" ;; s:$zv["M3" %="%1J"
- f  s %=$o(@%) q:%=""  i $e(%)'="$",$e(%,1,2)'?1"%"1n," %USID o oo ooo %msm8uni cMSM2Uni "'[(" "_%_" ") s:$d(@%)#2 ^(%)=@% i $d(@%)>1 m ^oAllVars(%1,%2,%)=@% i $d(^oAllVars(%1,%2,%)) 
+ f  s %=$o(@%) q:%=""  i $e(%)'="$",$e(%,1,2)'?1"%"1n," %USID %msm8uni cMSM2Uni "'[(" "_%_" ") s:$d(@%)#2 ^(%)=@% i $d(@%)>1 m ^oAllVars(%1,%2,%)=@% i $d(^oAllVars(%1,%2,%)) 
  q ""
 CopySave(%) 
  n %1
@@ -4495,12 +4527,12 @@ RestMem(%1,%2,%3)
  s:0[$g(%1) %1=%USID s:0[$g(%2) %2=0 ;; i %2'<0,$d(%mxWeb) q %2
  h:'$d(^oAllVars(%1,%2,"$j")) .1   q:'$d(^oAllVars(%1,%2,"$j")) -1  
  i %3>0,^("$j")-%3 q -%3_" -- saved.job="_^("$j")
- i %3'>0,'$d(%mxWeb),^("$j")-$j q -1
+ i %3'>0,'$d(%mxWeb),^("$j")-$j,%1'["*" q -1
  i $l($g(^oAllVars(%1,%2,-1))) n %11,LiOfMvar s LiOfMvar=^(-1) d  g RestMemE
  . f %11=1:1:$l(LiOfMvar," ") s %=$p(LiOfMvar," ",%11) i $l(%),%'="%" s %=$p(%,"("),@%=$g(^(%)) i $d(^(%))>1 k @% m @%=^oAllVars(%1,%2,%) i $d(^oAllVars(%1,%2,%))
  i $zv'["MS" s %=999 f  s %=$o(^(%)) q:%=""  d:$e(%)'="$"
- .q:" oo o ERR mxMsgBox mxERROR %USID %RestMem % %1 %2 "[(" "_%_" ")
- .i %3'>0,$e(%)="%",'$d(%mxWeb),$d(@%) q:"%LANG %YX %omPrint %mxSheet %mxForma %XD81 %XD82 %gm %DatUMs %DATUMS %MENESI %GADS %DAYS %YEAR %XD81m %XD82m "[(%_" ")
+ .if %1'["*" q:" oo o ERR mxMsgBox mxERROR %USID %RestMem % %1 %2 "[(" "_%_" ")
+ .if %1'["*" i %3'>0,$e(%)="%",'$d(%mxWeb),$d(@%) q:"%LANG %YX %omPrint %mxSheet %mxForma %XD81 %XD82 %gm %DatUMs %DATUMS %MENESI %GADS %DAYS %YEAR %XD81m %XD82m "[(%_" ")
  .i $d(^(%))=1 s @%=^(%) q
  .k @% m @%=^oAllVars(%1,%2,%)
  i $zv["MS" s %=999 f  s %=$o(^(%)) q:%=""  d:$e(%)'="$"
@@ -4789,7 +4821,7 @@ xForma(%I,%xForma)
  q "?? "
  q
 
-USb
+USb^INT^1^65489,42596^0
 USb ; ;[ 20190219 13:36:55 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS  2005-2019
@@ -4840,7 +4872,7 @@ Enter(%,%Ymn,%Ymx,%Xmn,%Xmx,%ww,%Zona)
  q ""
 Err s %mxWarng(0)=$g(^AL(%FILE,"START"))_" --- ERROR IN START-COMMAND --- "_$zr q
 
-UShelp
+UShelp^INT^1^65489,42596^0
 UShelp  ;[ 20191012 17:58:34 ]
  ; MSM, CACHE, GT.M, MiniM
  ; vmx Copyright(c) SIA ENTERS 2005-2018
@@ -4882,7 +4914,7 @@ Rcomp(f,Rout,UCI2) ; f=0/1 (short/full form)
  k ^r m oRcomp=t 
  q ""
 
-USm
+USm^INT^1^65489,42596^0
 USm ;US.m -setup^AL [ 03/28/2005  1:06 AM ]  ;[ 20070204 19:51:29 ]
  ; M3-LITE, MSM-4.4x, CACHE-3x..5x, GT.M-5x
  ; Soft-in-cell  MX Copyright(c) SIA ENTERS  1997-2007
@@ -4896,7 +4928,7 @@ SelALGlo(%all)
  . q:'$g(%all)  i '$d(@%1) s %SEL($c(254)_%)=^AL(%,"NAME")
  q $d(%SEL)
 
-ZSTU
+ZSTU^INT^1^65489,42596^0
 mx ; d TCPSTART^APIMGR  ;[ 20200122 21:00:24 ]
 tcp j tcp^MX1  ;; j trm^MX1   ;; j web^MX1
  q
