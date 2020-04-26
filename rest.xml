@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2020.1 (Build 215U)" ts="2020-04-13 13:56:14">
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2020.1 (Build 215U)" ts="2020-04-26 11:01:21">
 <Class name="MX.impl">
 <Description><![CDATA[
 Business logic class defined by OpenAPI in MX.spec<br/>
 Updated Apr 13, 2020 13:42:29]]></Description>
 <ProcedureBlock>1</ProcedureBlock>
 <Super>%REST.Impl</Super>
-<TimeChanged>65482,49349.722387</TimeChanged>
+<TimeChanged>65489,74787.694</TimeChanged>
 <TimeCreated>65480,2594.093312</TimeCreated>
 
 <Parameter name="ExposeServerExceptions">
@@ -28,6 +28,7 @@ This request returns a reply message in response to a /ping request.</Descriptio
     Quit $h_"-Reply from MX-"_ooo_-$j
 ]]></Implementation>
 </Method>
+
 <Method name="vmx">
 <Description>
 This request returns a reply message in response to a /vmx request.</Description>
@@ -45,13 +46,12 @@ This request returns a reply message in response to a /vmx request.</Description
 	s mumps=%o   if mumps="CLOSE" Quit "HALT"_-$j   
 	; x "o 2:($j:101) u 2 zw %request  c 2 u $p"
 	k ^SPOOL($j) s ^ERR=mumps  s %flagREST=$j
-	o 2:($j:1):"^MXterm" u 2                       ;; :($j:1):"^MXterm"
+	o 2:($j:1):"^MXterm" u 2:($j:1):"^MXterm" 
 	s ooo=$$rest^MX1(usermx,nspace,mumps)
 	close 2
     Quit $h_-$j_" %zt="_$g(%zt)_"- from csp/MX/vmx - "_usermx_" "_nspace_" [["_$e(ooo,1,32765+1000)
 ]]></Implementation>
 </Method>
-
 </Class>
 
 
