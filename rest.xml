@@ -38,10 +38,11 @@ This request returns a reply message in response to a /vmx request.</Description
 <Implementation><![CDATA[
     Do ..%SetStatusCode(200)
 	;
-	s usermx=$g(%request.Data("usermx",1)) 
-	s:"u"[usermx usermx=$replace(%request.CgiEnvs("REMOTE_ADDR"),".","")
-	s nspace=%request.Data("nspace",1)
-	s %o=$p($g(%request.CgiEnvs("QUERY_STRING")),"mumps=",2,999)
+	; s usermx=$g(%request.Data("usermx",1)) 
+	; s:"u"[usermx usermx=$replace(%request.CgiEnvs("REMOTE_ADDR"),".","")
+	; s nspace=%request.Data("nspace",1)
+	s %o=$g(%request.CgiEnvs("QUERY_STRING")),nspace=$p($p(%o,"nspace=",2),"&"),usermx=$p($p(%o,"usermx=",2),"&")
+	s %o=$p(%o,"mumps=",2,999) s:"u"[usermx usermx=$replace(usermx,".","")
 	s %o=$replace(%o,"%20"," "),%o=$replace(%o,"%23","#"),%o=$replace(%o,"%22","""")
 	s mumps=%o   if mumps="CLOSE" Quit "HALT"_-$j   
 	; x "o 2:($j:101) u 2 zw %request  c 2 u $p"
