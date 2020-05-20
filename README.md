@@ -19,23 +19,23 @@ How it works :
   Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
 		https://download.intersystems.com/download/login.csp
 
-	Preparation for start MX with Cache 8-bit or unicode, or IRIS InterSystems :
+## Preparation (for Windows) to start MX with Cache 8-bit or unicode, or IRIS InterSystems :
   -  download the repository as ZIP file, then unzip to a separate folder, for example: to c:\mx\
   -  if you don’t yet have Cache or IRIS, download and install IRIS, preferably in unicode, on any win-computer
   -  start IRIS (Cache) terminal, then run the following commands after USER>:
-  
-			zn "yournspace"
-			Set root = "path on filesystem to which repository was downloaded"
-			Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
+~~~sh
+			USER> zn "yournspace"
+			USER> Set root = "path on filesystem to which repository was downloaded"
+			USER> Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
 			( Alternative option :   USER> zn "yournspace" Do ^%RI Do ^ZSTU  )
- 
+~~~
   -  edit the [connections] table in the MX_CONFI.xlsb (edit m-server-IP4-address, tcp port, $znspace)
   -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter) then select and press the big button to connect to the mx-server
 
 	Then you will see sheet with buttons for calling tests and games.
-	You can test MX without m-server installation - just start mx-sea-battle.xlsb.
+## You can test MX without m-server installation - just start mx-sea-battle.xlsb.
 
-	For install IRIS LINUX in docker, unzip repozitory to /path/to/mymx/, then enter: 
+	For install IRIS UNIX in docker, unzip repozitory to /path/to/mymx/, then enter:	
 	 $ docker run --name myiris -v /path/to/mymx:/mx -p 5264:5264 -d store/intersystems/iris-community:2020.1.0.202.0
 	 $ docker exec -it myiris iris session iris
 	   USER>do $System.OBJ.ImportDir("/mx","vmx.ro","ck",,1) do ^ZSTU
@@ -46,26 +46,27 @@ How it works :
 		change ‘localhost’ to IP4-address of mx-server (example : 192.168.1.106)
 		save workbook and run mx.xlsb
    
+## MX shows its power with huge tables and complex logic
 
-	With MX :
-  
+## With MX :
+
   -  you can create new complex projects, or use MX as an auxiliary tool 
-  -  your working Microsoft Excel applications receive powerful support : the MUMPS data server and M-language
-  -  your working Mumps projects (Cache, IRIS, MSM, MiniM) receive an additional EXCEL INTERFACE
+  -  your working Microsoft Excel applications receive powerful support : the M-database and M-language
+  -  your working M-projects (Cache, IRIS, MSM, MiniM) receive an additional EXCEL INTERFACE
   -  you can use MX as their reporting framework, M creates tables and controls conditional formatting
   -  there is no problem exporting documents to Excel - with MX you are already in Excel
   
   
 	Using the tool is easy enough.
 	You write commands in sheet cells in MX_FORMA_TEST.xlsb in design_mode.
-	Do not use :    write $zv     in m-commands.
+	Do not use just 'write' :    write $zv     in m-commands.
 	Instead of this :   ?=$zv     (or:  ?o ; set oo=$zv  ).  Version will be displayed in this cell.
 	Question mark to distinguish between mx-formulas and  excel’s native formulas.
 	In order to open a sheet for editing click the design_mode icon on the top bar MX.
 	After editing click this icon again for save.
 	Carefully program For …  loops so as not to cause an infinite loop.
 	Do not use column “A” - it is reserved for the system.
-	After running the mx.xlsb macro, you will see a few examples. The easiest to learn is game i15.
+	After running the mx.xlsb macro, you will see a few examples. The easiest to learn is game 'i15'.
 	Small bonus.  In MX each cell is a mini calculator.
 	You entered  345+5=    in a cell, and immediately got the result: 350.
 	Try MX - it's just !
