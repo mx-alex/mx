@@ -34,7 +34,7 @@ How it works :
 
 	Then you will see menu-sheet for calling tests and games.
 	
-##### You also can test MX without m-server installation - just start mx-sea-battle.xlsb.
+#### You also can test MX without m-server installation - just start mx-sea-battle.xlsb.
 
 	For install IRIS UNIX in docker, unzip repozitory to /path/to/mymx/, then enter:	
 	 $ docker run --name myiris -v /path/to/mymx:/mx -p 5264:5264 -d store/intersystems/iris-community:2020.1.0.202.0
@@ -47,7 +47,7 @@ How it works :
 		change ‘localhost’ to IP4-address of mx-server (example : 192.168.1.106)
 		save workbook and run mx.xlsb
    
-##### MX shows its power with huge tables and complex logic
+#### MX shows its power with huge tables and complex logic
 
 ### With MX :
 
