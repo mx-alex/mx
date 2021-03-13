@@ -1,12 +1,12 @@
 ## mx
-#### MS Excel and 'virtualExcel' inside m-database works synchronously and interactively, m-commands are located in cells of Excel
+#### VirtualExcel inside database, micro-programms (m-commands) located in cells of Excel
 
 How it works :
-  - Information is kept not in the Excel books, but on the m-server in the form of globals - 'virtualExcel' sheets
-  - When user connects to the server, his real Excel sheet fills with data from required virtual sheet, also, any cell of the sheet can give a query to the database, the query result is displayed. Sheets are closely interrelated – changes are displayed on both
-  - User works with the sheet, mx-triggers (M-commands in cells) monitor his actions and initiate the necessary changes in cells
-  - After disconnection, the real Excel sheet is not being saved, however data still remains on the m-database
-  - MX work without additional programming of VBA-macros or MUMPS, enough mx-formulas in cells
+  - Information is kept not in the Excel books, but on the m-server in the form of mumps-globals and 'VirtualExcel-sheets'
+  - When any user connects to the mx-server via internet or intranet, his Real Excel sheet fills with data from required 'Virtual-sheet', also, any cell of the Real sheet can give a query to the database, the query result is displayed. Real and Virtual sheets are closely interrelated – changes are displayed on both
+  - User works with the Real sheet, mx-triggers (m-commands in cells) track its actions and start the necessary processes in VirtualExcel
+  - After disconnection, the Real sheet is not being saved, however all data still remains in the database inside the VirtualExcel
+  - MX work without additional programming of VBA-macros or MUMPS-routines, enough m-commands in cells
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
 
