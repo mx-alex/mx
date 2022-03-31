@@ -19,7 +19,7 @@ How it works :
   Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
 		https://download.intersystems.com/download/login.csp
 
-### Preparation (for Windows) to start MX with 'Cache' 8-bit or unicode, or with 'IRIS InterSystems' :
+### Preparation (for Windows) to start MX with 'Cache' or 'IRIS InterSystems' :
   -  download the repository as ZIP file, then unzip to a separate folder, for example: to c:\mx\
   -  if you don’t yet have Cache or IRIS, download and install IRIS, preferably in unicode, on any win-computer
   -  start IRIS (Cache) terminal, then run the following commands after USER>:
