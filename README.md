@@ -1,12 +1,12 @@
 ## mx
-#### VirtualExcel inside database, micro-programms (m-commands) located in cells of Excel
+#### VirtualExcel inside database, MUMPS micro-programms (m-commands) located in virtual cells
 
 How it works :
-  - Information is kept not in the Excel books, but on the m-server in the form of mumps-globals and 'VirtualExcel-sheets'
-  - When any user connects to the mx-server via internet or intranet, his Real Excel sheet fills with data from required 'Virtual-sheet', also, any cell of the Real sheet can give a query to the database, the query result is displayed. Real and Virtual sheets are closely interrelated – changes are displayed on both
+  - Information is kept not in the Excel books, but on the m-server IRIS/CACHE, in the form of globals ('VirtualExcel-sheets-on-globals')
+  - When any user connects to the m-server via internet or intranet, his Real Excel sheet fills with data from required 'Virtual-sheet'. Real and Virtual sheets are closely interrelated – changes are displayed on both
   - User works with the Real sheet, m-triggers (m-commands in cells) track its actions and start the necessary processes in VirtualExcel
   - After disconnection, the Real sheet is not being saved, however all data still remains in the database inside the VirtualExcel
-  - MX work without additional programming of VBA-macros or MUMPS-routines, enough m-commands in cells
+  - MX work without additional programming of VBA-macros or M-routines, enough m-commands in cells
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
 
@@ -19,10 +19,10 @@ How it works :
   Download IRIS: https://www.intersystems.com/try-intersystems-iris-for-free/
 		https://download.intersystems.com/download/login.csp
 
-### Preparation (for Windows) to start MX with 'Cache' or 'IRIS InterSystems' :
+### Preparation (for Windows) to start MX with Cache/IRIS InterSystems :
   -  download the repository as ZIP file, then unzip to a separate folder, for example: to c:\mx\
-  -  if you don’t yet have Cache or IRIS, download and install IRIS, preferably in unicode, on any win-computer
-  -  start IRIS (Cache) terminal, then run the following commands after USER>:
+  -  if you don’t yet have Cache/IRIS, download and install IRIS, preferably in unicode, on any windows-computer
+  -  start IRIS terminal, then run the following commands after USER>:
 ~~~sh
 			USER> Set root = "path on filesystem to which repository was downloaded"  ; f.e.  "c:\mx"
 			USER> Do $System.OBJ.ImportDir(root,"vmx.ro","ck",,1) Do ^ZSTU
