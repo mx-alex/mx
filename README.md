@@ -2,7 +2,7 @@
 #### VirtualExcel inside database, MUMPS micro-programms (m-commands) located in virtual cells
 
 How it works :
-  - Information is kept not in the Excel books, but on the m-server IRIS/CACHE, in the form of globals ('VirtualExcel-sheets-on-globals')
+  - Information is kept not in the Excel books, but on the m-server IRIS/CACHE, in the form of globals ('virtual-spreadsheets-on-globals')
   - When any user connects to the m-server via internet or intranet, his Real Excel sheet fills with data from required 'Virtual-sheet'. Real and Virtual sheets are closely interrelated – changes are displayed on both
   - User works with the Real sheet, m-triggers (m-commands in cells) track its actions and start the necessary processes in VirtualExcel
   - After disconnection, the Real sheet is not being saved, however all data still remains in the database inside the VirtualExcel
@@ -70,3 +70,6 @@ How it works :
 	After running the mx.xlsb macro, you will see a few examples. The easiest to learn is game 'i15'.
 	
 	Try MX - it's just !
+	
+	see also article
+	https://community.intersystems.com/post/multiexcel
