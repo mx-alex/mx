@@ -1,12 +1,12 @@
 ## mx
-#### VirtualExcel inside database, MUMPS micro-programms (m-commands) located in virtual cells
+#### Spreadsheets inside database, m-formulas in cells of 'VirtualExcel', based on globals
 
 How it works :
-  - Information is kept not in the Excel books, but on the m-server IRIS/CACHE, in the form of globals ('virtual-spreadsheets-on-globals')
-  - When any user connects to the m-server via internet or intranet, his Real Excel sheet fills with data from required 'Virtual-sheet'. Real and Virtual sheets are closely interrelated – changes are displayed on both
-  - User works with the Real sheet, m-triggers (m-commands in cells) track its actions and start the necessary processes in VirtualExcel
-  - After disconnection, the Real sheet is not being saved, however all data still remains in the database inside the VirtualExcel
-  - MX work without additional programming of VBA-macros or M-routines, enough m-commands in cells
+  - Information is kept not in the Excel workbooks, but inside the m-server IRIS/CACHE, in the form of globals ('virtual-spreadsheets-on-globals')
+  - When any user connects to the m-server via internet or intranet, his Real-Excel worksheet fills with data from required 'Virtual-sheet'. Real and Virtual sheets are closely interrelated – changes are displayed on both
+  - User works with the Real-sheet, m-triggers (MUMPS-commands in cells) track its actions and start the necessary processes in 'VirtualExcel'
+  - After disconnection, the Real-sheets is not being saved, however all data still remains inside the database
+  - MX work without additional programming of VBA-macros or M-routines, enough m-formulas (MUMPS-commands) in cells
   
   (MUMPS is an acronym for the Massachusetts General Hospital Utility Multi-Programming System, also known as M)
 
@@ -29,7 +29,7 @@ How it works :
 			( Alternative option :   USER> Do ^%RI Do ^ZSTU  )
 ~~~
   -  edit the [connections] table in the MX_CONFI.xlsb (edit your m-server-IP4-address)
-  -  run mx.xlsb (MS EXCEL be sure, required dot . as system-decimal-delimiter) 
+  -  run mx.xlsb (MS EXCEL macros be sure, required dot . as system-decimal-delimiter) 
   -  select and press the button to connect to the mx-server
 
 	Then you will see menu-sheet for calling tests and games.
@@ -55,7 +55,7 @@ How it works :
   -  your working Microsoft Excel applications receive powerful support : the M-database and M-language
   -  your working M-projects (Cache, IRIS, MSM, MiniM) receive an additional EXCEL INTERFACE
   -  you can use MX as their reporting framework, M creates tables and controls conditional formatting
-  -  there is no problem exporting documents to Excel - with MX you are already in Excel
+  -  there is no problem exporting documents to Excel - with MX you are already inside Excel and inside the database at the same time
   
   
 	Using the tool is easy enough.
