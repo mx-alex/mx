@@ -73,3 +73,4 @@ How it works :
 	
 	see also article
 	https://community.intersystems.com/post/multiexcel
+	
